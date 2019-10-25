@@ -43,9 +43,12 @@ passport.use(
 			clientID: keys.facebookAppID,
 			clientSecret: keys.facebookAppSecret,
 			callbackURL: "/auth/facebook/callback",
+            profileFields: ["id", "displayName", "email"],
 			proxy: true
 		},
 		async (accessToken, refreshToken, profile, done) => {
+            console.log(profile);
+            
 			const existingUser = await User.findOne({ facebookId: profile.id });
 
 			if (existingUser) {
