@@ -3,18 +3,23 @@ const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const bodyParser = require("body-parser");
-
 const keys = require("./config/keys");
-const authRouter = require("./routes/authRouter");
+
 require("./models/User");
+require("./models/Category");
+require("./models/Card");
 require("./services/passport");
+
+const authRouter = require("./routes/authRouter");
+const categoryRouter = require("./routes/categoryRouter");
+const flashCardRouter = require("./routes/flashCardRouter");
+
+const app = express();
 
 mongoose.connect(keys.mongoURI, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
 });
-
-const app = express();
 
 app.use(bodyParser.json());
 app.use(
@@ -27,6 +32,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/auth", authRouter);
+app.use("/categories", categoryRouter);
+app.use("/flashcards", flashCardRouter);
 
 if (process.env.NODE_ENV === "production") {
 	app.use(express.static("client/build"));

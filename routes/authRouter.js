@@ -13,8 +13,7 @@ authRouter.get(
 	"/google/callback",
 	passport.authenticate("google"),
 	(req, res) => {
-		// once logged in, redirect to other page?
-		res.redirect("/");
+		res.redirect("/dashboard");
 	}
 );
 
@@ -29,8 +28,7 @@ authRouter.get(
 	"/facebook/callback",
 	passport.authenticate("facebook"),
 	(req, res) => {
-		// once logged in, redirect to other page?
-		res.redirect("/");
+		res.redirect("/dashboard");
 	}
 );
 

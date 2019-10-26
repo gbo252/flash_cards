@@ -1,0 +1,3 @@
+export const FETCH_USER = "FETCH_USER";
+export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
+export const FETCH_FLASH_CARDS = "FETCH_FLASH_CARDS";
