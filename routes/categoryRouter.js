@@ -27,4 +27,10 @@ categoryRouter.post("/", requireLogin, async (req, res) => {
 	res.send({});
 });
 
+categoryRouter.delete("/:id", requireLogin, async (req, res) => {
+	await Category.deleteOne({ _id: req.params.id });
+
+	res.send({});
+});
+
 module.exports = categoryRouter;

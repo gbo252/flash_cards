@@ -5,9 +5,9 @@ const requireLogin = require("../middlewares/requireLogin");
 
 const Category = mongoose.model("categories");
 
-flashCardRouter.get("/:categoryId", requireLogin, async (req, res) => {
+flashCardRouter.get("/:category", requireLogin, async (req, res) => {
 	const flashCards = await Category.findOne({
-		_id: req.params.categoryId
+		category: req.params.category
 	}).select({
 		cards: 1
 	});
@@ -15,15 +15,29 @@ flashCardRouter.get("/:categoryId", requireLogin, async (req, res) => {
 	res.send(flashCards);
 });
 
-flashCardRouter.post("/", requireLogin, async (req, res) => {
-	const { categoryId, header, content } = req.body;
+flashCardRouter.post("/:category", requireLogin, async (req, res) => {
+	const { header, content } = req.body;
 
-	await Category.updateOne(
+	const flashCards = await Category.findOneAndUpdate(
 		{
-			_id: categoryId
+			category: req.params.category
 		},
 		{
 			$push: { cards: { header, content, lastEdited: Date.now() } }
+		},
+		{ new: true }
+	).exec();
+
+	res.send(flashCards);
+});
+
+flashCardRouter.delete("/:category/:id", requireLogin, async (req, res) => {
+	await Category.updateOne(
+		{
+			category: req.params.category
+		},
+		{
+			$pull: { cards: { _id: req.params.id } }
 		}
 	).exec();
 

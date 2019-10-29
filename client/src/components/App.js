@@ -7,6 +7,8 @@ import Header from "./Header";
 import Login from "./Login";
 import Dashboard from "./Dashboard";
 import Category from "./Category";
+import NewFlashCard from "./NewFlashCard";
+import NewCategory from "./NewCategory";
 
 const App = ({ fetchUser }) => {
 	React.useEffect(() => {
@@ -19,7 +21,12 @@ const App = ({ fetchUser }) => {
 			<div className="container">
 				<Route exact path="/" component={Login} />
 				<Route exact path="/dashboard" component={Dashboard} />
-				<Route path="/dashboard/:categoryId" component={Category} />
+				<Route exact path="/newCategory" component={NewCategory} />
+				<Route exact path="/dashboard/:category" component={Category} />
+				<Route
+					path="/dashboard/:category/new"
+					component={NewFlashCard}
+				/>
 			</div>
 		</BrowserRouter>
 	);
