@@ -1,37 +1,37 @@
 import React from "react";
 import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
-import { newCategory } from "../actions";
+import * as actions from "../actions";
 
 let categoriesState = [];
 
-const NewCategory = ({ handleSubmit, newCategory, history, categories }) => {
+const renderInput = ({ input, label, meta: { error, touched } }) => {
+	return (
+		<div className="form-group">
+			<label htmlFor={label}>{label}</label>
+			<input
+				id={label}
+				className="form-control"
+				{...input}
+				autoComplete="off"
+			/>
+			<small className="form-text text-danger">{touched && error}</small>
+		</div>
+	);
+};
+
+const NewCategory = ({
+	handleSubmit,
+	fetchCategories,
+	newCategory,
+	history,
+	categories
+}) => {
+	React.useEffect(() => {
+		fetchCategories();
+	}, [fetchCategories]);
+
 	categoriesState = categories;
-
-	const renderError = ({ error, touched }) => {
-		if (error && touched) {
-			return (
-				<div>
-					<small className="form-text text-danger">{error}</small>
-				</div>
-			);
-		}
-	};
-
-	const renderInput = ({ input, label, meta }) => {
-		return (
-			<div className="form-group">
-				<label htmlFor={label}>{label}</label>
-				<input
-					id={label}
-					className="form-control"
-					{...input}
-					autoComplete="off"
-				/>
-				{renderError(meta)}
-			</div>
-		);
-	};
 
 	return (
 		<form
@@ -84,6 +84,6 @@ export default reduxForm({
 })(
 	connect(
 		mapStateToProps,
-		{ newCategory }
+		actions
 	)(NewCategory)
 );

@@ -5,6 +5,21 @@ import * as actions from "../actions";
 
 let flashCardsState = [];
 
+const renderInput = ({ input, label, meta: { error, touched } }) => {
+	return (
+		<div className="form-group">
+			<label htmlFor={label}>{label}</label>
+			<input
+				id={label}
+				className="form-control"
+				{...input}
+				autoComplete="off"
+			/>
+			<small className="form-text text-danger">{touched && error}</small>
+		</div>
+	);
+};
+
 const NewFlashCard = ({
 	flashCards,
 	match,
@@ -14,8 +29,6 @@ const NewFlashCard = ({
 	newFlashCard,
 	history
 }) => {
-	flashCardsState = flashCards;
-
 	React.useEffect(() => {
 		fetchFlashCards(match.params.category);
 
@@ -24,30 +37,7 @@ const NewFlashCard = ({
 		};
 	}, [fetchFlashCards, clearFlashCards, match]);
 
-	const renderError = ({ error, touched }) => {
-		if (error && touched) {
-			return (
-				<div>
-					<small className="form-text text-danger">{error}</small>
-				</div>
-			);
-		}
-	};
-
-	const renderInput = ({ input, label, meta }) => {
-		return (
-			<div className="form-group">
-				<label htmlFor={label}>{label}</label>
-				<input
-					id={label}
-					className="form-control"
-					{...input}
-					autoComplete="off"
-				/>
-				{renderError(meta)}
-			</div>
-		);
-	};
+	flashCardsState = flashCards;
 
 	return (
 		<form

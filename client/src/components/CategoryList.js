@@ -12,7 +12,7 @@ const CategoryList = ({ categories, fetchCategories, deleteCategory }) => {
 	return categories.map(({ category, lastEdited, _id, cards }) => {
 		return (
 			<div
-				key={category}
+				key={_id}
 				className="card shadow m-3"
 				id="category-card"
 				style={{ width: "15rem" }}

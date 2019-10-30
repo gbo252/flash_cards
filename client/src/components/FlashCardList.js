@@ -20,7 +20,7 @@ const FlashCardList = ({
 	return flashCards.map(({ lastEdited, header, content, _id }) => {
 		return (
 			<div
-				key={lastEdited}
+				key={_id}
 				className="card border-success shadow m-3"
 				style={{ width: "15rem" }}
 			>
