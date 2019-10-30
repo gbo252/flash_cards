@@ -1,3 +1,4 @@
+import "../css/CategoryList.css";
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -8,22 +9,35 @@ const CategoryList = ({ categories, fetchCategories, deleteCategory }) => {
 		fetchCategories();
 	}, [fetchCategories]);
 
-	return categories.map(({ category, lastEdited, _id }) => {
+	return categories.map(({ category, lastEdited, _id, cards }) => {
 		return (
-			<div key={category}>
-				<button
-					className="btn right deep-orange waves-effect waves-light"
-					onClick={() => deleteCategory(_id)}
+			<div
+				key={category}
+				className="card shadow m-3"
+				id="category-card"
+				style={{ width: "15rem" }}
+			>
+				<div className="d-flex flex-column m-1">
+					<button
+						className="btn btn-danger py-0 px-1 align-self-end"
+						onClick={() => deleteCategory(_id)}
+					>
+						X
+					</button>
+				</div>
+				<Link
+					to={`/dashboard/${category}`}
+					style={{ textDecoration: "none" }}
 				>
-					<i className="material-icons">close</i>
-				</button>
-				<Link to={`/dashboard/${category}`}>
-					<div className="card-panel z-depth-3 deep-orange lighten-5">
-						<h5 className="black-text">{category}</h5>
-						<p className="black-text">
-							Last Edited:{" "}
+					<div className="card-body">
+						<h5 className="card-title text-body">{category}</h5>
+						<p className="card-text text-body">Total: {cards.length}</p>
+					</div>
+					<div className="card-footer">
+						<small className="text-muted">
+							Last Updated:{" "}
 							{new Date(lastEdited).toLocaleDateString()}
-						</p>
+						</small>
 					</div>
 				</Link>
 			</div>

@@ -19,19 +19,30 @@ const FlashCardList = ({
 
 	return flashCards.map(({ lastEdited, header, content, _id }) => {
 		return (
-			<div key={lastEdited}>
-				<div className="card-panel z-depth-3 lime lighten-5">
-					<button
-						className="btn right deep-orange waves-effect waves-light"
-						onClick={() => deleteFlashCard(_id, category)}
-					>
-						<i className="material-icons">close</i>
-					</button>
-					<h5 className="black-text">{header}</h5>
-					<p className="black-text">{content}</p>
-					<p className="black-text">
-						Last Edited: {new Date(lastEdited).toLocaleDateString()}
-					</p>
+			<div
+				key={lastEdited}
+				className="card border-success shadow m-3"
+				style={{ width: "15rem" }}
+			>
+				<div className="card-header">
+					<div className="d-flex flex-column mr-n3 mt-n2">
+						<button
+							className="btn btn-danger py-0 px-1 align-self-end"
+							onClick={() => deleteFlashCard(_id, category)}
+						>
+							X
+						</button>
+					</div>
+					<h5>{header}</h5>
+				</div>
+				<div className="card-body">
+					<p className="card-text">{content}</p>
+				</div>
+				<div className="card-footer">
+					<small className="text-muted">
+						Last Updated:{" "}
+						{new Date(lastEdited).toLocaleDateString()}
+					</small>
 				</div>
 			</div>
 		);

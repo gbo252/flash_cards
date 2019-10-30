@@ -1,5 +1,3 @@
-import "materialize-css/dist/css/materialize.min.css";
-import "materialize-css/dist/js/materialize.min.js";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
@@ -10,8 +8,8 @@ import App from "./components/App";
 import reducers from "./reducers";
 
 // DEV ONLY
-import axios from "axios";
-window.axios = axios;
+// import axios from "axios";
+// window.axios = axios;
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(

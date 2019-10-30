@@ -6,9 +6,7 @@ const requireLogin = require("../middlewares/requireLogin");
 const Category = mongoose.model("categories");
 
 categoryRouter.get("/", requireLogin, async (req, res) => {
-	const categories = await Category.find({ _user: req.user.id }).select({
-		cards: 0
-	});
+	const categories = await Category.find({ _user: req.user.id });
 
 	res.send(categories);
 });

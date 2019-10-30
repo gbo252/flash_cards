@@ -6,33 +6,46 @@ import React from "react";
 import { connect } from "react-redux";
 
 const Login = ({ auth, history }) => {
-	function renderContent() {
+	const renderContent = () => {
 		switch (auth) {
 			case null:
 				return null;
 			case false:
 				return (
-					<div>
-						<h5>Welcome to Flash</h5>
-						<h6>Please log in below</h6>
-						<a href="/auth/google">
-							<img
-								onMouseOver={e =>
-									(e.currentTarget.src = googleSignInFocus)
-								}
-								onMouseOut={e =>
-									(e.currentTarget.src = googleSignIn)
-								}
-								onMouseDown={e =>
-									(e.currentTarget.src = googleSignInPressed)
-								}
-								src={googleSignIn}
-								alt="google sign in"
-							/>
-						</a>
-						<a href="/auth/facebook">
-							<img width="191px" src={facebookSignIn} alt="facebook sign in" />
-						</a>
+					<div className="card shadow-lg text-center text-white bg-danger mb-3">
+						<div className="card-header">
+							Welcome to Flash
+							<br />
+							Please Log In Below
+						</div>
+						<div className="card-body">
+							<div className="card-title">
+								<a href="/auth/google">
+									<img
+										onMouseOver={e =>
+											(e.currentTarget.src = googleSignInFocus)
+										}
+										onMouseOut={e =>
+											(e.currentTarget.src = googleSignIn)
+										}
+										onMouseDown={e =>
+											(e.currentTarget.src = googleSignInPressed)
+										}
+										src={googleSignIn}
+										alt="google sign in"
+									/>
+								</a>
+							</div>
+							<div className="card-title">
+								<a href="/auth/facebook">
+									<img
+										width="191px"
+										src={facebookSignIn}
+										alt="facebook sign in"
+									/>
+								</a>
+							</div>
+						</div>
 					</div>
 				);
 			default:
@@ -40,9 +53,9 @@ const Login = ({ auth, history }) => {
 					history.push("/dashboard");
 				}, 100);
 		}
-	}
+	};
 
-	return <div style={{ textAlign: "center" }}>{renderContent()}</div>;
+	return <div className="row mt-5 d-flex justify-content-center">{renderContent()}</div>;
 };
 
 const mapStateToProps = ({ auth }) => {

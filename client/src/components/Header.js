@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Header = ({ auth }) => {
-	function renderContent() {
+	const renderContent = () => {
 		switch (auth) {
 			case null:
 				return null;
@@ -11,24 +11,19 @@ const Header = ({ auth }) => {
 				return null;
 			default:
 				return (
-					<li>
-						<a
-							className="waves-effect waves-light btn blue-grey lighten-5 black-text"
-							href="/auth/logout"
-						>
-							Log Out
-						</a>
-					</li>
+					<a className="btn btn-outline-dark" role="button" href="/auth/logout">
+						Log Out
+					</a>
 				);
 		}
-	}
+	};
 
 	return (
-		<nav className="nav-wrapper deep-orange lighten-1 z-depth-3">
-			<Link to="/" className="brand-logo" style={{ marginLeft: "20px" }}>
-				Flash!
+		<nav className="navbar navbar-light bg-warning shadow">
+			<Link to="/" className="navbar-brand">
+				Flash Cards Online!
 			</Link>
-			<ul className="right">{renderContent()}</ul>
+			{renderContent()}
 		</nav>
 	);
 };

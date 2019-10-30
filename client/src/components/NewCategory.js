@@ -12,7 +12,7 @@ const NewCategory = ({ handleSubmit, newCategory, history, categories }) => {
 		if (error && touched) {
 			return (
 				<div>
-					<span className="helper-text red-text">{error}</span>
+					<small className="form-text text-danger">{error}</small>
 				</div>
 			);
 		}
@@ -20,9 +20,14 @@ const NewCategory = ({ handleSubmit, newCategory, history, categories }) => {
 
 	const renderInput = ({ input, label, meta }) => {
 		return (
-			<div>
-				<label>{label}</label>
-				<input {...input} autoComplete="off" />
+			<div className="form-group">
+				<label htmlFor={label}>{label}</label>
+				<input
+					id={label}
+					className="form-control"
+					{...input}
+					autoComplete="off"
+				/>
 				{renderError(meta)}
 			</div>
 		);
@@ -40,7 +45,9 @@ const NewCategory = ({ handleSubmit, newCategory, history, categories }) => {
 				label="Category Name"
 				name="category"
 			/>
-			<button className="btn lime black-text right">New Category</button>
+			<button type="submit" className="btn btn-success">
+				New Category
+			</button>
 		</form>
 	);
 };

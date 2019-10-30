@@ -28,7 +28,7 @@ const NewFlashCard = ({
 		if (error && touched) {
 			return (
 				<div>
-					<span className="helper-text red-text">{error}</span>
+					<small className="form-text text-danger">{error}</small>
 				</div>
 			);
 		}
@@ -36,9 +36,14 @@ const NewFlashCard = ({
 
 	const renderInput = ({ input, label, meta }) => {
 		return (
-			<div>
-				<label>{label}</label>
-				<input {...input} autoComplete="off" />
+			<div className="form-group">
+				<label htmlFor={label}>{label}</label>
+				<input
+					id={label}
+					className="form-control"
+					{...input}
+					autoComplete="off"
+				/>
 				{renderError(meta)}
 			</div>
 		);
@@ -53,7 +58,7 @@ const NewFlashCard = ({
 		>
 			<Field component={renderInput} label="Title" name="header" />
 			<Field component={renderInput} label="Content" name="content" />
-			<button className="btn lime black-text right">
+			<button type="submit" className="btn btn-success">
 				New Flash Card
 			</button>
 		</form>
