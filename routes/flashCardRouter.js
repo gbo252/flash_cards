@@ -23,7 +23,8 @@ flashCardRouter.post("/:category", requireLogin, async (req, res) => {
 			category: req.params.category
 		},
 		{
-			$push: { cards: { header, content, lastEdited: Date.now() } }
+			$push: { cards: { header, content, lastEdited: Date.now() } },
+			lastEdited: Date.now()
 		},
 		{ new: true }
 	).exec();

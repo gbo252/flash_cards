@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { reduxForm, Field } from "redux-form";
 import * as actions from "../actions";
 
@@ -23,20 +24,10 @@ const renderInput = ({ input, label, meta: { error, touched } }) => {
 const NewFlashCard = ({
 	flashCards,
 	match,
-	fetchFlashCards,
-	clearFlashCards,
 	handleSubmit,
 	newFlashCard,
 	history
 }) => {
-	React.useEffect(() => {
-		fetchFlashCards(match.params.category);
-
-		return () => {
-			clearFlashCards();
-		};
-	}, [fetchFlashCards, clearFlashCards, match]);
-
 	flashCardsState = flashCards;
 
 	return (
@@ -48,9 +39,18 @@ const NewFlashCard = ({
 		>
 			<Field component={renderInput} label="Title" name="header" />
 			<Field component={renderInput} label="Content" name="content" />
-			<button type="submit" className="btn btn-success">
-				New Flash Card
-			</button>
+			<div className="d-flex justify-content-between">
+				<Link
+					to={`/dashboard/${match.params.category}`}
+					className="btn btn-danger"
+					role="button"
+				>
+					Cancel
+				</Link>
+				<button type="submit" className="btn btn-success">
+					New Flash Card
+				</button>
+			</div>
 		</form>
 	);
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { reduxForm, Field } from "redux-form";
 import * as actions from "../actions";
 
@@ -22,15 +23,10 @@ const renderInput = ({ input, label, meta: { error, touched } }) => {
 
 const NewCategory = ({
 	handleSubmit,
-	fetchCategories,
 	newCategory,
 	history,
 	categories
 }) => {
-	React.useEffect(() => {
-		fetchCategories();
-	}, [fetchCategories]);
-
 	categoriesState = categories;
 
 	return (
@@ -45,9 +41,12 @@ const NewCategory = ({
 				label="Category Name"
 				name="category"
 			/>
-			<button type="submit" className="btn btn-success">
-				New Category
-			</button>
+			<div className="d-flex justify-content-between">
+				<Link to="/dashboard" className="btn btn-danger" role="button">Cancel</Link>
+				<button type="submit" className="btn btn-success">
+					New Category
+				</button>
+			</div>
 		</form>
 	);
 };

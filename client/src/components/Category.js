@@ -1,42 +1,70 @@
 import React from "react";
-import FlashCardList from "./FlashCardList";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import * as actions from "../actions";
+import FlashCardList from "./FlashCardList";
 
-const Category = ({ match }) => {
+const Category = ({ match, fetchFlashCards, flashCards }) => {
 	const { category } = match.params;
 
-	let space = [];
+	React.useEffect(() => {
+		fetchFlashCards(category);
+	}, [fetchFlashCards, category]);
 
-	for (let i = 0; i < 3; i++) {
-		space.push(
-			<div
-				key={i}
-				className="mx-3"
-				style={{ width: "15rem", height: "0" }}
-			></div>
-		);
-	}
+	const renderButton = () => {
+		if (flashCards) {
+			return (
+				<div className="d-flex justify-content-end">
+					<Link
+						to={`/dashboard/${category}/new`}
+						role="button"
+						className="btn btn-warning rounded-pill"
+					>
+						Add Flash Card
+					</Link>
+				</div>
+			);
+		}
+	};
+
+	const renderContent = () => {
+		if (!flashCards) {
+			return (
+				<div className="d-flex justify-content-center mt-5">
+					<div className="spinner-border" role="status">
+						<span className="sr-only">Loading...</span>
+					</div>
+				</div>
+			);
+		} else if (flashCards.length > 0) {
+			return (
+				<div className="d-flex flex-wrap justify-content-center mb-4">
+					<FlashCardList
+						category={category}
+						flashCards={flashCards}
+					/>
+				</div>
+			);
+		} else {
+			return <div className="h5 text-center">No Flash Cards</div>;
+		}
+	};
 
 	return (
 		<div className="mt-3">
-			<h1 className="display-4 text-center mb-5">{category}</h1>
-
-			<div className="d-flex flex-wrap justify-content-center">
-				<FlashCardList category={category} />
-				{space}
-			</div>
-
-			<div className="d-flex justify-content-end">
-				<Link
-					to={`/dashboard/${category}/new`}
-					role="button"
-					className="btn btn-warning rounded-pill"
-				>
-					Add Flash Card
-				</Link>
-			</div>
+			<h1 className="display-4 text-center">{category}</h1>
+			<Link to="/dashboard" className="btn btn-info rounded-pill mb-3" role="button">Back</Link>
+			{renderContent()}
+			{renderButton()}
 		</div>
 	);
 };
 
-export default Category;
+const mapStateToProps = ({ flashCards }) => {
+	return { flashCards };
+};
+
+export default connect(
+	mapStateToProps,
+	actions
+)(Category);

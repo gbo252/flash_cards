@@ -1,5 +1,10 @@
 import axios from "axios";
-import { FETCH_USER, FETCH_CATEGORIES, FETCH_FLASH_CARDS } from "./types";
+import {
+	FETCH_USER,
+	FETCH_CATEGORIES,
+	FETCH_FLASH_CARDS,
+	CLEAR_FLASH_CARDS
+} from "./types";
 
 export const fetchUser = () => async dispatch => {
 	const res = await axios.get("/auth/current_user");
@@ -32,7 +37,7 @@ export const newFlashCard = (formValues, category, history) => async () => {
 };
 
 export const clearFlashCards = () => {
-	return { type: FETCH_FLASH_CARDS, payload: [] };
+	return { type: CLEAR_FLASH_CARDS };
 };
 
 export const deleteCategory = id => async dispatch => {
