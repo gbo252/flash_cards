@@ -22,12 +22,17 @@ const renderInput = ({ input, label, meta: { error, touched } }) => {
 };
 
 const NewFlashCard = ({
+	fetchFlashCards,
 	flashCards,
 	match,
 	handleSubmit,
 	newFlashCard,
 	history
 }) => {
+	React.useEffect(() => {
+		fetchFlashCards(match.params.category);
+	}, [fetchFlashCards, match.params.category]);
+
 	flashCardsState = flashCards;
 
 	return (
@@ -68,7 +73,9 @@ const validateHeader = header => {
 const validate = formValues => {
 	const errors = {};
 
-	errors.header = validateHeader(formValues.header || "");
+	if (flashCardsState) {
+		errors.header = validateHeader(formValues.header || "");
+	}
 
 	if (!formValues.header) {
 		errors.header = "You must enter a header";

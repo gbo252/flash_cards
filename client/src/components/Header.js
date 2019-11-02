@@ -4,23 +4,24 @@ import { Link } from "react-router-dom";
 
 const Header = ({ auth }) => {
 	const renderContent = () => {
-		switch (auth) {
-			case null:
-				return null;
-			case false:
-				return null;
-			default:
-				return (
-					<a className="btn btn-outline-dark" role="button" href="/auth/logout">
-						Log Out
-					</a>
-				);
+		if (auth) {
+			return (
+				<a
+					className="btn btn-outline-dark"
+					role="button"
+					href="/auth/logout"
+				>
+					Log Out
+				</a>
+			);
 		}
+
+		return null;
 	};
 
 	return (
 		<nav className="navbar navbar-light bg-warning shadow">
-			<Link to="/" className="navbar-brand">
+			<Link to="/dashboard" className="navbar-brand">
 				Flash Cards Online!
 			</Link>
 			{renderContent()}

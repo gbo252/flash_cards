@@ -17,7 +17,7 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories }) => {
 			return (
 				<div className="d-flex justify-content-end">
 					<Link
-						to="/newCategory"
+						to="/new"
 						role="button"
 						className="btn btn-warning rounded-pill"
 					>
@@ -28,7 +28,7 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories }) => {
 		}
 	};
 
-	const renderContent = () => {
+	const renderCategories = () => {
 		if (!categories) {
 			return (
 				<div className="d-flex justify-content-center mt-5">
@@ -48,34 +48,34 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories }) => {
 		}
 	};
 
-	const renderSort = () => {
+	const renderSortOptions = () => {
 		return (
-			<form>
-				<div className="form-row align-items-center">
-					<div className="col-auto">
-						<label htmlFor="sort-by">Sort By:</label>
-						<Field
-							name="sortBy"
-							component="select"
-							className="form-control"
-							id="sort-by"
-						>
-							<option value="a-z">Alphabetic - ascending</option>
-							<option value="z-a">Alphabetic - descending</option>
-							<option value="total-asc">
-								Flash Card Total - ascending
-							</option>
-							<option value="total-desc">
-								Flash Card Total - descending
-							</option>
-							<option value="created-asc">
-								Date Created - ascending
-							</option>
-							<option value="created-desc">
-								Date Created - descending
-							</option>
-						</Field>
-					</div>
+			<form className="form-inline">
+				<div className="form-group">
+					<label htmlFor="sort-by-method">Sort By:</label>
+					<Field
+						name="sortByMethod"
+						id="sort-by-method"
+						component="select"
+						className="form-control mx-2"
+					>
+						<option value="alphabetic">Alphabetic</option>
+						<option value="total-cards">Flash Card Total</option>
+						<option value="date-created">Date Created</option>
+						<option value="last-updated">Last Updated</option>
+					</Field>
+				</div>
+				<div className="form-group">
+					<label className="sr-only" htmlFor="direction" />
+					<Field
+						name="direction"
+						id="direction"
+						component="select"
+						className="form-control mx-2"
+					>
+						<option value="asc">Ascending</option>
+						<option value="desc">Descending</option>
+					</Field>
 				</div>
 			</form>
 		);
@@ -84,47 +84,54 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories }) => {
 	return (
 		<div className="mt-3">
 			<h1 className="display-4 text-center">Categories</h1>
-			{renderSort()}
-			{renderContent()}
+			{renderSortOptions()}
+			{renderCategories()}
 			{renderButton()}
 		</div>
 	);
 };
 
-const sort = (categories, sortBy) => {
+const sort = (categories, formValues) => {
 	if (!categories) {
 		return null;
 	}
+
+	const sortBy = formValues.sortByMethod + "-" + formValues.direction;
+
 	switch (sortBy) {
-		case "a-z":
+		case "alphabetic-asc":
 			return _.sortBy(categories, ["category"]);
-		case "z-a":
+		case "alphabetic-desc":
 			return _.sortBy(categories, ["category"]).reverse();
-		case "total-asc":
+		case "total-cards-asc":
 			return _.sortBy(categories, [x => x.cards.length, "category"]);
-		case "total-desc":
+		case "total-cards-desc":
 			return _.chain(categories)
 				.sortBy(["category"])
 				.reverse()
 				.sortBy([x => x.cards.length])
 				.reverse()
 				.value();
-		case "created-asc":
+		case "date-created-asc":
 			return categories;
-		case "created-desc":
+		case "date-created-desc":
 			return [...categories].reverse();
+		case "last-updated-asc":
+			return _.sortBy(categories, ["lastEdited"]);
+		case "last-updated-desc":
+			return _.sortBy(categories, ["lastEdited"]).reverse();
 		default:
 			return categories;
 	}
 };
 
 const mapStateToProps = ({ categories, form }) => {
-	return { categories: sort(categories, form.categorySortBy.values.sortBy) };
+	return { categories: sort(categories, form.categorySortBy.values) };
 };
 
 export default reduxForm({
 	form: "categorySortBy",
-	initialValues: { sortBy: "a-z" },
+	initialValues: { sortByMethod: "alphabetic", direction: "asc" },
 	destroyOnUnmount: false
 })(
 	connect(

@@ -1,3 +1,7 @@
+#category-card {
+	transition: transform 50ms linear;
+}
+
 #category-card:hover {
-	background-color: rgba(255, 194, 25, 0.87)
+	transform: scale(1.02);
 }

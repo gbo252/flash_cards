@@ -40,8 +40,14 @@ export const clearFlashCards = () => {
 	return { type: CLEAR_FLASH_CARDS };
 };
 
+export const editCategory = (formValues, category, history) => async () => {
+	await axios.patch(`/categories/edit/${category}`, formValues);
+
+	history.push("/dashboard");
+};
+
 export const deleteCategory = id => async dispatch => {
-	await axios.delete(`/categories/${id}`);
+	await axios.delete(`/categories/delete/${id}`);
 
 	dispatch(fetchCategories());
 };

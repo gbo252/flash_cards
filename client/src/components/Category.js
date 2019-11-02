@@ -4,12 +4,29 @@ import { Link } from "react-router-dom";
 import * as actions from "../actions";
 import FlashCardList from "./FlashCardList";
 
-const Category = ({ match, fetchFlashCards, flashCards }) => {
+const Category = ({
+	match,
+	fetchCategories,
+	categories,
+	fetchFlashCards,
+	flashCards
+}) => {
 	const { category } = match.params;
 
 	React.useEffect(() => {
+		// fetchCategories();
+
+		// if (categories) {
+		// 	const categoryNames = categories.map(x => x.category.toLowerCase());
+
+		// 	if (!categoryNames.includes(category.toLowerCase())) {
+
+		// 	}
+
+		// 	fetchFlashCards(category);
+		// }
 		fetchFlashCards(category);
-	}, [fetchFlashCards, category]);
+	}, [fetchCategories, fetchFlashCards, categories, category]);
 
 	const renderButton = () => {
 		if (flashCards) {
@@ -52,16 +69,33 @@ const Category = ({ match, fetchFlashCards, flashCards }) => {
 
 	return (
 		<div className="mt-3">
-			<h1 className="display-4 text-center">{category}</h1>
-			<Link to="/dashboard" className="btn btn-info rounded-pill mb-3" role="button">Back</Link>
+			<h1 className="display-4 text-center">
+				{category}
+				<span>
+					<Link
+						to={`/edit/${category}`}
+						className="btn btn-danger rounded-pill mb-3"
+						role="button"
+					>
+						Edit
+					</Link>
+				</span>
+			</h1>
+			<Link
+				to="/dashboard"
+				className="btn btn-info rounded-pill mb-3"
+				role="button"
+			>
+				Back
+			</Link>
 			{renderContent()}
 			{renderButton()}
 		</div>
 	);
 };
 
-const mapStateToProps = ({ flashCards }) => {
-	return { flashCards };
+const mapStateToProps = ({ categories, flashCards }) => {
+	return { categories, flashCards };
 };
 
 export default connect(

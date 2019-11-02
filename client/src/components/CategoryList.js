@@ -35,7 +35,7 @@ const CategoryList = ({ categories, deleteCategory }) => {
 						<div className="card-footer">
 							<small className="text-muted">
 								Last Updated:{" "}
-								{new Date(lastEdited).toLocaleDateString()}
+								{new Date(lastEdited).toLocaleDateString("en-GB")}
 							</small>
 						</div>
 					</Link>

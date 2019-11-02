@@ -25,7 +25,23 @@ categoryRouter.post("/", requireLogin, async (req, res) => {
 	res.send({});
 });
 
-categoryRouter.delete("/:id", requireLogin, async (req, res) => {
+categoryRouter.patch("/edit/:category", requireLogin, async (req, res) => {
+	const { category } = req.body;
+
+	await Category.updateOne(
+		{
+			category: req.params.category,
+			_user: req.user.id
+		},
+		{
+			category: category
+		}
+	).exec();
+
+	res.send({});
+});
+
+categoryRouter.delete("/delete/:id", requireLogin, async (req, res) => {
 	await Category.deleteOne({ _id: req.params.id });
 
 	res.send({});

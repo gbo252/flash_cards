@@ -4,6 +4,10 @@ const passport = require("passport");
 
 authRouter.get(
 	"/google",
+	(req, res, next) => {
+		process.env.REDIRECT = req.query.next;
+		next();
+	},
 	passport.authenticate("google", {
 		scope: ["profile", "email"]
 	})
@@ -13,7 +17,7 @@ authRouter.get(
 	"/google/callback",
 	passport.authenticate("google"),
 	(req, res) => {
-		res.redirect("/dashboard");
+		res.redirect(`${process.env.REDIRECT}`);
 	}
 );
 
@@ -34,7 +38,7 @@ authRouter.get(
 
 authRouter.get("/logout", (req, res) => {
 	req.logout();
-	res.redirect("/");
+	res.redirect("/login");
 });
 
 authRouter.get("/current_user", (req, res) => {

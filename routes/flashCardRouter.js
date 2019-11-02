@@ -7,7 +7,8 @@ const Category = mongoose.model("categories");
 
 flashCardRouter.get("/:category", requireLogin, async (req, res) => {
 	const flashCards = await Category.findOne({
-		category: req.params.category
+		category: req.params.category,
+		_user: req.user.id
 	}).select({
 		cards: 1
 	});
@@ -20,7 +21,8 @@ flashCardRouter.post("/:category", requireLogin, async (req, res) => {
 
 	const flashCards = await Category.findOneAndUpdate(
 		{
-			category: req.params.category
+			category: req.params.category,
+			_user: req.user.id
 		},
 		{
 			$push: { cards: { header, content, lastEdited: Date.now() } },
@@ -35,10 +37,12 @@ flashCardRouter.post("/:category", requireLogin, async (req, res) => {
 flashCardRouter.delete("/:category/:id", requireLogin, async (req, res) => {
 	await Category.updateOne(
 		{
-			category: req.params.category
+			category: req.params.category,
+			_user: req.user.id
 		},
 		{
-			$pull: { cards: { _id: req.params.id } }
+			$pull: { cards: { _id: req.params.id } },
+			lastEdited: Date.now()
 		}
 	).exec();
 
