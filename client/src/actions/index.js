@@ -27,13 +27,13 @@ export const fetchFlashCards = category => async dispatch => {
 export const newCategory = (formValues, history) => async () => {
 	await axios.post("/categories", formValues);
 
-	history.push("/dashboard");
+	history.push("/");
 };
 
 export const newFlashCard = (formValues, category, history) => async () => {
 	await axios.post(`/flashcards/${category}`, formValues);
 
-	history.push(`/dashboard/${category}`);
+	history.push(`/categories/${category}`);
 };
 
 export const clearFlashCards = () => {
@@ -43,7 +43,7 @@ export const clearFlashCards = () => {
 export const editCategory = (formValues, category, history) => async () => {
 	await axios.patch(`/categories/edit/${category}`, formValues);
 
-	history.push("/dashboard");
+	history.push("/");
 };
 
 export const deleteCategory = id => async dispatch => {

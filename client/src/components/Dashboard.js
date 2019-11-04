@@ -17,7 +17,7 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories }) => {
 			return (
 				<div className="d-flex justify-content-end">
 					<Link
-						to="/new"
+						to="/new-category"
 						role="button"
 						className="btn btn-warning rounded-pill"
 					>

@@ -23,7 +23,7 @@ const CategoryList = ({ categories, deleteCategory }) => {
 						</button>
 					</div>
 					<Link
-						to={`/dashboard/${category}`}
+						to={`/categories/${category}`}
 						style={{ textDecoration: "none" }}
 					>
 						<div className="card-body">

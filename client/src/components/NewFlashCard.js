@@ -48,7 +48,7 @@ const NewFlashCard = ({
 			<Field component={renderInput} label="Content" name="content" />
 			<div className="d-flex justify-content-between">
 				<Link
-					to={`/dashboard/${category}`}
+					to={`/categories/${category}`}
 					className="btn btn-danger"
 					role="button"
 				>

@@ -31,7 +31,7 @@ const CategoryForm = ({ handleSubmit, onSubmit, categories, buttonText }) => {
 				name="category"
 			/>
 			<div className="d-flex justify-content-between">
-				<Link to="/dashboard" className="btn btn-danger" role="button">
+				<Link to="/" className="btn btn-danger" role="button">
 					Cancel
 				</Link>
 				<button type="submit" className="btn btn-success">

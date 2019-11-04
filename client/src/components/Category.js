@@ -16,7 +16,7 @@ const Category = ({ match, fetchFlashCards, flashCards }) => {
 			return (
 				<div className="d-flex justify-content-end">
 					<Link
-						to={`/dashboard/${category}/new`}
+						to={`/categories/${category}/new-flash-card`}
 						role="button"
 						className="btn btn-warning rounded-pill"
 					>
@@ -56,7 +56,7 @@ const Category = ({ match, fetchFlashCards, flashCards }) => {
 				{category}
 				<span>
 					<Link
-						to={`/edit/${category}`}
+						to={`/edit-category/${category}`}
 						className="btn btn-danger rounded-pill mb-3"
 						role="button"
 					>
@@ -65,7 +65,7 @@ const Category = ({ match, fetchFlashCards, flashCards }) => {
 				</span>
 			</h1>
 			<Link
-				to="/dashboard"
+				to="/"
 				className="btn btn-info rounded-pill mb-3"
 				role="button"
 			>

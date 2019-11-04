@@ -21,7 +21,7 @@ const Header = ({ auth }) => {
 
 	return (
 		<nav className="navbar navbar-light bg-warning shadow">
-			<Link to="/dashboard" className="navbar-brand">
+			<Link to="/" className="navbar-brand">
 				Flash Cards Online!
 			</Link>
 			{renderContent()}

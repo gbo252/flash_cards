@@ -32,7 +32,7 @@ authRouter.get(
 	"/facebook/callback",
 	passport.authenticate("facebook"),
 	(req, res) => {
-		res.redirect("/dashboard");
+		res.redirect("/");
 	}
 );
 

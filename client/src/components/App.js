@@ -27,23 +27,23 @@ const App = ({ fetchUser }) => {
 					<Route exact path="/login" component={Login} />
 					<PrivateRoute
 						exact
-						path="/dashboard"
+						path="/"
 						component={Dashboard}
 					/>
 					<PrivateRoute
 						exact
-						path="/dashboard/:category"
+						path="/categories/:category"
 						component={Category}
 					/>
-					<PrivateRoute exact path="/new" component={NewCategory} />
+					<PrivateRoute exact path="/new-category" component={NewCategory} />
 					<PrivateRoute
 						exact
-						path="/edit/:category"
+						path="/edit-category/:category"
 						component={EditCategory}
 					/>
 					<PrivateRoute
 						exact
-						path="/dashboard/:category/new"
+						path="/categories/:category/new-flash-card"
 						component={NewFlashCard}
 					/>
 					<Route path="/404" component={NotFound} />

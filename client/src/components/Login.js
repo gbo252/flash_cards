@@ -5,10 +5,10 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 const Login = ({ auth, location }) => {
-	const { from } = location.state || { from: { pathname: "/dashboard" } };
+	const { from } = location.state || { from: { pathname: "/" } };
 
 	if (auth) {
-		return <Redirect to="/dashboard" />;
+		return <Redirect to="/" />;
 	}
 
 	return (
