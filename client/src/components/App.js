@@ -14,7 +14,7 @@ import NewCategory from "./NewCategory";
 import EditCategory from "./EditCategory";
 import NotFound from "./NotFound";
 
-const App = ({ fetchUser, auth }) => {
+const App = ({ fetchUser }) => {
 	React.useEffect(() => {
 		fetchUser();
 	}, [fetchUser]);
@@ -28,31 +28,22 @@ const App = ({ fetchUser, auth }) => {
 					<PrivateRoute
 						exact
 						path="/dashboard"
-						auth={auth}
 						component={Dashboard}
 					/>
 					<PrivateRoute
 						exact
 						path="/dashboard/:category"
-						auth={auth}
 						component={Category}
 					/>
-					<PrivateRoute
-						exact
-						path="/new"
-						auth={auth}
-						component={NewCategory}
-					/>
+					<PrivateRoute exact path="/new" component={NewCategory} />
 					<PrivateRoute
 						exact
 						path="/edit/:category"
-						auth={auth}
 						component={EditCategory}
 					/>
 					<PrivateRoute
 						exact
 						path="/dashboard/:category/new"
-						auth={auth}
 						component={NewFlashCard}
 					/>
 					<Route path="/404" component={NotFound} />
@@ -63,11 +54,7 @@ const App = ({ fetchUser, auth }) => {
 	);
 };
 
-const mapStateToProps = ({ auth }) => {
-	return { auth };
-};
-
 export default connect(
-	mapStateToProps,
+	null,
 	actions
 )(App);

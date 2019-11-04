@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { reduxForm, Field } from "redux-form";
 import * as actions from "../actions";
-import checkCategory from "../utils/checkCategory";
 
 let flashCardsState = [];
 
@@ -23,8 +22,6 @@ const renderInput = ({ input, label, meta: { error, touched } }) => {
 };
 
 const NewFlashCard = ({
-	fetchCategories,
-	categories,
 	fetchFlashCards,
 	flashCards,
 	match,
@@ -35,14 +32,8 @@ const NewFlashCard = ({
 	const { category } = match.params;
 
 	React.useEffect(() => {
-		checkCategory(
-			fetchCategories,
-			categories,
-			category,
-			history,
-			fetchFlashCards
-		);
-	}, [fetchFlashCards, fetchCategories, categories, category, history]);
+		fetchFlashCards(category);
+	}, [fetchFlashCards, category]);
 
 	flashCardsState = flashCards;
 
@@ -99,8 +90,8 @@ const validate = formValues => {
 	return errors;
 };
 
-const mapStateToProps = ({ categories, flashCards }) => {
-	return { categories, flashCards };
+const mapStateToProps = ({ flashCards }) => {
+	return { flashCards };
 };
 
 export default reduxForm({

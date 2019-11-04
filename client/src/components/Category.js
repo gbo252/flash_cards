@@ -3,27 +3,13 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import * as actions from "../actions";
 import FlashCardList from "./FlashCardList";
-import checkCategory from "../utils/checkCategory";
 
-const Category = ({
-	match,
-	categories,
-	fetchCategories,
-	fetchFlashCards,
-	flashCards,
-	history
-}) => {
+const Category = ({ match, fetchFlashCards, flashCards }) => {
 	const { category } = match.params;
 
 	React.useEffect(() => {
-		checkCategory(
-			fetchCategories,
-			categories,
-			category,
-			history,
-			fetchFlashCards
-		);
-	}, [fetchFlashCards, fetchCategories, categories, category, history]);
+		fetchFlashCards(category);
+	}, [fetchFlashCards, category]);
 
 	const renderButton = () => {
 		if (flashCards) {
@@ -91,8 +77,8 @@ const Category = ({
 	);
 };
 
-const mapStateToProps = ({ categories, flashCards }) => {
-	return { categories, flashCards };
+const mapStateToProps = ({ flashCards }) => {
+	return { flashCards };
 };
 
 export default connect(
