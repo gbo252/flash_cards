@@ -6,7 +6,16 @@ const requireLogin = require("../middlewares/requireLogin");
 const Category = mongoose.model("categories");
 
 categoryRouter.get("/", requireLogin, async (req, res) => {
-	const categories = await Category.find({ _user: req.user.id });
+	const categories = await Category.aggregate([
+		{ $match: { _user: mongoose.Types.ObjectId(req.user.id) } },
+		{
+			$project: {
+				category: 1,
+				lastEdited: 1,
+				cardsTotal: { $size: "$cards" }
+			}
+		}
+	]).exec();
 
 	res.send(categories);
 });
@@ -34,7 +43,7 @@ categoryRouter.patch("/edit/:category", requireLogin, async (req, res) => {
 			_user: req.user.id
 		},
 		{
-			category: category
+			category
 		}
 	).exec();
 

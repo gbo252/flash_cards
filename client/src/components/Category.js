@@ -3,30 +3,27 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import * as actions from "../actions";
 import FlashCardList from "./FlashCardList";
+import checkCategory from "../utils/checkCategory";
 
 const Category = ({
 	match,
-	fetchCategories,
 	categories,
+	fetchCategories,
 	fetchFlashCards,
-	flashCards
+	flashCards,
+	history
 }) => {
 	const { category } = match.params;
 
 	React.useEffect(() => {
-		// fetchCategories();
-
-		// if (categories) {
-		// 	const categoryNames = categories.map(x => x.category.toLowerCase());
-
-		// 	if (!categoryNames.includes(category.toLowerCase())) {
-
-		// 	}
-
-		// 	fetchFlashCards(category);
-		// }
-		fetchFlashCards(category);
-	}, [fetchCategories, fetchFlashCards, categories, category]);
+		checkCategory(
+			fetchCategories,
+			categories,
+			category,
+			history,
+			fetchFlashCards
+		);
+	}, [fetchFlashCards, fetchCategories, categories, category, history]);
 
 	const renderButton = () => {
 		if (flashCards) {

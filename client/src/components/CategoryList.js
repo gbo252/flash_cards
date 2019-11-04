@@ -6,7 +6,7 @@ import * as actions from "../actions";
 
 const CategoryList = ({ categories, deleteCategory }) => {
 	const categoriesArray = categories.map(
-		({ category, lastEdited, _id, cards }) => {
+		({ category, lastEdited, _id, cardsTotal }) => {
 			return (
 				<div
 					key={_id}
@@ -29,13 +29,15 @@ const CategoryList = ({ categories, deleteCategory }) => {
 						<div className="card-body">
 							<h5 className="card-title text-body">{category}</h5>
 							<p className="card-text text-body">
-								Total: {cards.length}
+								Total: {cardsTotal}
 							</p>
 						</div>
 						<div className="card-footer">
 							<small className="text-muted">
 								Last Updated:{" "}
-								{new Date(lastEdited).toLocaleDateString("en-GB")}
+								{new Date(lastEdited).toLocaleDateString(
+									"en-GB"
+								)}
 							</small>
 						</div>
 					</Link>

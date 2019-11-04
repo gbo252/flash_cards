@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { reduxForm, Field } from "redux-form";
 import * as actions from "../actions";
+import checkCategory from "../utils/checkCategory";
 
 let flashCardsState = [];
 
@@ -22,6 +23,8 @@ const renderInput = ({ input, label, meta: { error, touched } }) => {
 };
 
 const NewFlashCard = ({
+	fetchCategories,
+	categories,
 	fetchFlashCards,
 	flashCards,
 	match,
@@ -29,16 +32,24 @@ const NewFlashCard = ({
 	newFlashCard,
 	history
 }) => {
+	const { category } = match.params;
+
 	React.useEffect(() => {
-		fetchFlashCards(match.params.category);
-	}, [fetchFlashCards, match.params.category]);
+		checkCategory(
+			fetchCategories,
+			categories,
+			category,
+			history,
+			fetchFlashCards
+		);
+	}, [fetchFlashCards, fetchCategories, categories, category, history]);
 
 	flashCardsState = flashCards;
 
 	return (
 		<form
 			onSubmit={handleSubmit(formValues =>
-				newFlashCard(formValues, match.params.category, history)
+				newFlashCard(formValues, category, history)
 			)}
 			style={{ marginTop: "40px" }}
 		>
@@ -46,7 +57,7 @@ const NewFlashCard = ({
 			<Field component={renderInput} label="Content" name="content" />
 			<div className="d-flex justify-content-between">
 				<Link
-					to={`/dashboard/${match.params.category}`}
+					to={`/dashboard/${category}`}
 					className="btn btn-danger"
 					role="button"
 				>
@@ -88,8 +99,8 @@ const validate = formValues => {
 	return errors;
 };
 
-const mapStateToProps = ({ flashCards }) => {
-	return { flashCards };
+const mapStateToProps = ({ categories, flashCards }) => {
+	return { categories, flashCards };
 };
 
 export default reduxForm({

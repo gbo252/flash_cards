@@ -55,6 +55,7 @@ const App = ({ fetchUser, auth }) => {
 						auth={auth}
 						component={NewFlashCard}
 					/>
+					<Route path="/404" component={NotFound} />
 					<Route component={NotFound} />
 				</Switch>
 			</div>

@@ -12,7 +12,7 @@ flashCardRouter.get("/:category", requireLogin, async (req, res) => {
 	}).select({
 		cards: 1
 	});
-
+	
 	res.send(flashCards);
 });
 
