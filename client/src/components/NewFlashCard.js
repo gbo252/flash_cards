@@ -3,23 +3,9 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { reduxForm, Field } from "redux-form";
 import * as actions from "../actions";
+import FormField from "./FormField";
 
 let flashCardsState = [];
-
-const renderInput = ({ input, label, meta: { error, touched } }) => {
-	return (
-		<div className="form-group">
-			<label htmlFor={label}>{label}</label>
-			<input
-				id={label}
-				className="form-control"
-				{...input}
-				autoComplete="off"
-			/>
-			<small className="form-text text-danger">{touched && error}</small>
-		</div>
-	);
-};
 
 const NewFlashCard = ({
 	fetchFlashCards,
@@ -44,8 +30,8 @@ const NewFlashCard = ({
 			)}
 			style={{ marginTop: "40px" }}
 		>
-			<Field component={renderInput} label="Title" name="header" />
-			<Field component={renderInput} label="Content" name="content" />
+			<Field component={FormField} label="Title" name="header" />
+			<Field component={FormField} label="Content" name="content" />
 			<div className="d-flex justify-content-between">
 				<Link
 					to={`/categories/${category}`}

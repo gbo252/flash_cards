@@ -104,12 +104,12 @@ const sort = (categories, formValues) => {
 		case "alphabetic-desc":
 			return _.sortBy(categories, ["category"]).reverse();
 		case "total-cards-asc":
-			return _.sortBy(categories, [x => x.cards.length, "category"]);
+			return _.sortBy(categories, ["cardsTotal", "category"]);
 		case "total-cards-desc":
 			return _.chain(categories)
 				.sortBy(["category"])
 				.reverse()
-				.sortBy([x => x.cards.length])
+				.sortBy(["cardsTotal"])
 				.reverse()
 				.value();
 		case "date-created-asc":

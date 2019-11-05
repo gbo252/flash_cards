@@ -11,6 +11,7 @@ categoryRouter.get("/", requireLogin, async (req, res) => {
 		{
 			$project: {
 				category: 1,
+				color: 1,
 				lastEdited: 1,
 				cardsTotal: { $size: "$cards" }
 			}
@@ -21,10 +22,11 @@ categoryRouter.get("/", requireLogin, async (req, res) => {
 });
 
 categoryRouter.post("/", requireLogin, async (req, res) => {
-	const { category } = req.body;
+	const { category, color } = req.body;
 
 	const newCategory = new Category({
 		category,
+		color,
 		lastEdited: Date.now(),
 		_user: req.user.id
 	});
@@ -35,7 +37,7 @@ categoryRouter.post("/", requireLogin, async (req, res) => {
 });
 
 categoryRouter.patch("/edit/:category", requireLogin, async (req, res) => {
-	const { category } = req.body;
+	const { category, color } = req.body;
 
 	await Category.updateOne(
 		{
@@ -43,7 +45,9 @@ categoryRouter.patch("/edit/:category", requireLogin, async (req, res) => {
 			_user: req.user.id
 		},
 		{
-			category
+			category,
+			color,
+			lastEdited: Date.now()
 		}
 	).exec();
 

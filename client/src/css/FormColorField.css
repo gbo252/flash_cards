@@ -1,0 +1,24 @@
+div.color-circle {
+	width: 60px;
+	height: 60px;
+}
+
+.color-group input.radio {
+	display: none;
+}
+
+.color-group input.radio + .color-group-item {
+	cursor: pointer;
+}
+
+label.color-group-item div.color-circle {
+	border: 3px solid transparent;
+	background-clip: padding-box;
+}
+
+label.color-group-item div.color-circle:hover {
+	border: 3px solid rgb(153, 209, 255);
+}
+.color-group input.radio:checked + label.color-group-item div.color-circle {
+	border: 3px solid rgb(153, 209, 255);
+}

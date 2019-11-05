@@ -14,7 +14,7 @@ const EditCategory = ({ editCategory, history, match }) => {
 		<div>
 			<CategoryForm
 				onSubmit={onSubmit}
-				initialValues={{ category: category }}
+				initialValues={{ category }}
 				buttonText="Edit Category"
 			/>
 		</div>

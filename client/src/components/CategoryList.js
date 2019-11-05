@@ -6,13 +6,13 @@ import * as actions from "../actions";
 
 const CategoryList = ({ categories, deleteCategory }) => {
 	const categoriesArray = categories.map(
-		({ category, lastEdited, _id, cardsTotal }) => {
+		({ category, color, lastEdited, _id, cardsTotal }) => {
 			return (
 				<div
 					key={_id}
 					className="card shadow m-3"
 					id="category-card"
-					style={{ width: "15rem" }}
+					style={{ width: "15rem", backgroundColor: color }}
 				>
 					<div className="d-flex flex-column m-1">
 						<button

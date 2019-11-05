@@ -3,7 +3,8 @@ const { Schema } = mongoose;
 const cardSchema = require("./Card");
 
 const categorySchema = new Schema({
-	category: String,
+    category: String,
+    color: String,
     cards: [cardSchema],
     lastEdited: Date,
 	_user: { type: Schema.Types.ObjectId, ref: "User" }
