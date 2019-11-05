@@ -13,7 +13,7 @@ export const fetchUser = () => async dispatch => {
 };
 
 export const fetchCategories = () => async dispatch => {
-	const res = await axios.get("/categories");
+	const res = await axios.get("/category-routes");
 
 	dispatch({ type: FETCH_CATEGORIES, payload: res.data });
 };
@@ -25,7 +25,7 @@ export const fetchFlashCards = category => async dispatch => {
 };
 
 export const newCategory = (formValues, history) => async () => {
-	await axios.post("/categories", formValues);
+	await axios.post("/category-routes", formValues);
 
 	history.push("/");
 };
@@ -41,13 +41,13 @@ export const clearFlashCards = () => {
 };
 
 export const editCategory = (formValues, category, history) => async () => {
-	await axios.patch(`/categories/edit/${category}`, formValues);
+	await axios.patch(`/category-routes/edit/${category}`, formValues);
 
 	history.push("/");
 };
 
 export const deleteCategory = id => async dispatch => {
-	await axios.delete(`/categories/delete/${id}`);
+	await axios.delete(`/category-routes/delete/${id}`);
 
 	dispatch(fetchCategories());
 };

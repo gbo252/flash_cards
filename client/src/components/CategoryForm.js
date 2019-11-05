@@ -94,8 +94,10 @@ const validate = (formValues, props) => {
 		errors.category = "You must enter a category name";
 	}
 
-	if (!formValues.color) {
-		errors.color = "Please select a color";
+	if (!props.initialValues) {
+		if (!formValues.color) {
+			errors.color = "Please select a color";
+		}
 	}
 
 	return errors;

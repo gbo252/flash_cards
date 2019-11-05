@@ -12,20 +12,18 @@ flashCardRouter.get("/:category", requireLogin, async (req, res) => {
 	}).select({
 		cards: 1
 	});
-	
+
 	res.send(flashCards);
 });
 
 flashCardRouter.post("/:category", requireLogin, async (req, res) => {
-	const { header, content } = req.body;
-
 	const flashCards = await Category.findOneAndUpdate(
 		{
 			category: req.params.category,
 			_user: req.user.id
 		},
 		{
-			$push: { cards: { header, content, lastEdited: Date.now() } },
+			$push: { cards: { ...req.body, lastEdited: Date.now() } },
 			lastEdited: Date.now()
 		},
 		{ new: true }

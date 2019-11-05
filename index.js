@@ -33,7 +33,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/auth", authRouter);
-app.use("/categories", categoryRouter);
+app.use("/category-routes", categoryRouter);
 app.use("/flashcards", flashCardRouter);
 
 if (process.env.NODE_ENV === "production") {
