@@ -13,6 +13,7 @@ categoryRouter.get("/", requireLogin, async (req, res) => {
 				category: 1,
 				color: 1,
 				lastEdited: 1,
+				dateCreated: 1,
 				cardsTotal: { $size: "$cards" }
 			}
 		}
@@ -25,6 +26,7 @@ categoryRouter.post("/", requireLogin, async (req, res) => {
 	const newCategory = new Category({
 		...req.body,
 		lastEdited: Date.now(),
+		dateCreated: Date.now(),
 		_user: req.user.id
 	});
 

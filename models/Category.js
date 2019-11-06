@@ -7,6 +7,7 @@ const categorySchema = new Schema({
     color: String,
     cards: [cardSchema],
     lastEdited: Date,
+    dateCreated: Date,
 	_user: { type: Schema.Types.ObjectId, ref: "User" }
 });
 

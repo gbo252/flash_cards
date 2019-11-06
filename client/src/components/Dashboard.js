@@ -15,15 +15,13 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories }) => {
 	const renderButton = () => {
 		if (categories) {
 			return (
-				<div className="d-flex justify-content-end">
-					<Link
-						to="/new-category"
-						role="button"
-						className="btn btn-warning rounded-pill"
-					>
-						Add Category
-					</Link>
-				</div>
+				<Link
+					to="/new-category"
+					role="button"
+					className="btn btn-outline-secondary rounded-pill"
+				>
+					Add Category
+				</Link>
 			);
 		}
 	};
@@ -39,7 +37,7 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories }) => {
 			);
 		} else if (categories.length > 0) {
 			return (
-				<div className="d-flex flex-wrap justify-content-center my-4">
+				<div className="my-4">
 					<CategoryList categories={categories} />
 				</div>
 			);
@@ -82,11 +80,16 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories }) => {
 	};
 
 	return (
-		<div className="mt-3">
-			<h1 className="display-4 text-center">Categories</h1>
-			{renderSortOptions()}
+		<div className="d-flex flex-column mt-3">
+			<h1 className="display-4 text-center">Flash Cards Online</h1>
+			<p className="h4 mb-5 font-weight-light text-center">
+				An easy to use online flash card maker!
+			</p>
+			<div className="d-flex justify-content-between">
+				{renderSortOptions()}
+				{renderButton()}
+			</div>
 			{renderCategories()}
-			{renderButton()}
 		</div>
 	);
 };
