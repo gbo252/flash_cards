@@ -5,8 +5,16 @@ import { Link } from "react-router-dom";
 import { reduxForm, Field } from "redux-form";
 import * as actions from "../actions";
 import CategoryList from "./CategoryList";
+import ModalDeleteCategory from "./modals/ModalDeleteCategory";
 
-const Dashboard = ({ fetchCategories, clearFlashCards, categories }) => {
+const Dashboard = ({
+	fetchCategories,
+	clearFlashCards,
+	categories,
+	deleteCategory
+}) => {
+	const [modalInfo, setModalInfo] = React.useState({});
+
 	React.useEffect(() => {
 		fetchCategories();
 		clearFlashCards();
@@ -38,7 +46,10 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories }) => {
 		} else if (categories.length > 0) {
 			return (
 				<div className="my-4">
-					<CategoryList categories={categories} />
+					<CategoryList
+						categories={categories}
+						setModalInfo={setModalInfo}
+					/>
 				</div>
 			);
 		} else {
@@ -81,6 +92,10 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories }) => {
 
 	return (
 		<div className="d-flex flex-column mt-3">
+			<ModalDeleteCategory
+				modalInfo={modalInfo}
+				deleteCategory={deleteCategory}
+			/>
 			<h1 className="display-4 text-center">Flash Cards Online</h1>
 			<p className="h4 mb-5 font-weight-light text-center">
 				An easy to use online flash card maker!

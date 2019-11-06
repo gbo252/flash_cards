@@ -1,11 +1,9 @@
 import "../css/CategoryList.css";
 import React from "react";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import * as actions from "../actions";
 
-const CategoryList = ({ categories, deleteCategory }) => {
-	const categoriesArray = categories.map(
+export default ({ categories, setModalInfo }) => {
+	return categories.map(
 		({ _id, category, color, lastEdited, dateCreated, cardsTotal }) => {
 			return (
 				<div key={_id} className="d-flex my-4">
@@ -74,8 +72,9 @@ const CategoryList = ({ categories, deleteCategory }) => {
 						<button
 							type="button"
 							className="close delete-category"
-							// onClick={() => deleteCategory(_id)}
-							onClick={() => console.log(_id)}
+							data-toggle="modal"
+							data-target="#action-modal"
+							onClick={() => setModalInfo({ _id, category })}
 						>
 							<i
 								className="text-black-50 material-icons"
@@ -89,27 +88,4 @@ const CategoryList = ({ categories, deleteCategory }) => {
 			);
 		}
 	);
-
-	const blankSpaces = () => {
-		let space = [];
-
-		for (let i = 0; i < 3; i++) {
-			space.push(
-				<div
-					key={i}
-					className="mx-3"
-					style={{ width: "15rem", height: "0" }}
-				></div>
-			);
-		}
-
-		return space;
-	};
-
-	return [...categoriesArray, ...blankSpaces()];
 };
-
-export default connect(
-	null,
-	actions
-)(CategoryList);

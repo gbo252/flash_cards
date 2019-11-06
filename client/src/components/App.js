@@ -25,17 +25,17 @@ const App = ({ fetchUser }) => {
 			<div className="container">
 				<Switch>
 					<Route exact path="/login" component={Login} />
-					<PrivateRoute
-						exact
-						path="/"
-						component={Dashboard}
-					/>
+					<PrivateRoute exact path="/" component={Dashboard} />
 					<PrivateRoute
 						exact
 						path="/categories/:category"
 						component={Category}
 					/>
-					<PrivateRoute exact path="/new-category" component={NewCategory} />
+					<PrivateRoute
+						exact
+						path="/new-category"
+						component={NewCategory}
+					/>
 					<PrivateRoute
 						exact
 						path="/edit-category/:category"
