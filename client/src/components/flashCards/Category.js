@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import * as actions from "../actions";
+import * as actions from "../../actions";
 import FlashCardList from "./FlashCardList";
 
 const Category = ({ match, fetchFlashCards, flashCards }) => {
@@ -52,18 +52,7 @@ const Category = ({ match, fetchFlashCards, flashCards }) => {
 
 	return (
 		<div className="mt-3">
-			<h1 className="display-4 text-center">
-				{category}
-				<span>
-					<Link
-						to={`/edit-category/${category}`}
-						className="btn btn-danger rounded-pill mb-3"
-						role="button"
-					>
-						Edit
-					</Link>
-				</span>
-			</h1>
+			<h1 className="display-4 text-center">{category}</h1>
 			<Link
 				to="/"
 				className="btn btn-info rounded-pill mb-3"

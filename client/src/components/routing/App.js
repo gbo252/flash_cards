@@ -1,17 +1,16 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
-import * as actions from "../actions";
+import * as actions from "../../actions";
 
 import PrivateRoute from "./PrivateRoute";
 
-import Header from "./Header";
-import Login from "./Login";
-import Dashboard from "./Dashboard";
-import Category from "./Category";
-import NewFlashCard from "./NewFlashCard";
-import NewCategory from "./NewCategory";
-import EditCategory from "./EditCategory";
+import Header from "../Header";
+import Login from "../Login";
+import Dashboard from "../category/Dashboard";
+import Category from "../flashCards/Category";
+import NewFlashCard from "../NewFlashCard";
+import NewCategory from "../NewCategory";
 import NotFound from "./NotFound";
 
 const App = ({ fetchUser }) => {
@@ -35,11 +34,6 @@ const App = ({ fetchUser }) => {
 						exact
 						path="/new-category"
 						component={NewCategory}
-					/>
-					<PrivateRoute
-						exact
-						path="/edit-category/:category"
-						component={EditCategory}
 					/>
 					<PrivateRoute
 						exact

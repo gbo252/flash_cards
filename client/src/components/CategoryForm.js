@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { reduxForm, Field } from "redux-form";
 import FormField from "./FormField";
 import FormColorField from "./FormColorField";
@@ -11,7 +10,7 @@ const ErrorMessage = ({ meta: { error, touched } }) => {
 	return <small className="form-text text-danger">{touched && error}</small>;
 };
 
-const CategoryForm = ({ handleSubmit, onSubmit, categories, buttonText }) => {
+const CategoryForm = ({ handleSubmit, onSubmit, categories }) => {
 	categoriesState = categories;
 
 	const colors = [
@@ -25,7 +24,11 @@ const CategoryForm = ({ handleSubmit, onSubmit, categories, buttonText }) => {
 	];
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} style={{ marginTop: "40px" }}>
+		<form
+			id="category-form"
+			onSubmit={handleSubmit(onSubmit)}
+			style={{ marginTop: "40px" }}
+		>
 			<Field
 				component={FormField}
 				label="Category Name"
@@ -45,14 +48,6 @@ const CategoryForm = ({ handleSubmit, onSubmit, categories, buttonText }) => {
 					))}
 					<Field name="color" component={ErrorMessage} />
 				</div>
-			</div>
-			<div className="d-flex justify-content-between">
-				<Link to="/" className="btn btn-danger" role="button">
-					Cancel
-				</Link>
-				<button type="submit" className="btn btn-success">
-					{buttonText}
-				</button>
 			</div>
 		</form>
 	);
@@ -94,10 +89,8 @@ const validate = (formValues, props) => {
 		errors.category = "You must enter a category name";
 	}
 
-	if (!props.initialValues) {
-		if (!formValues.color) {
-			errors.color = "Please select a color";
-		}
+	if (!formValues.color) {
+		errors.color = "Please select a color";
 	}
 
 	return errors;
@@ -109,5 +102,6 @@ const mapStateToProps = ({ categories }) => {
 
 export default reduxForm({
 	form: "category",
+	enableReinitialize: true,
 	validate
 })(connect(mapStateToProps)(CategoryForm));

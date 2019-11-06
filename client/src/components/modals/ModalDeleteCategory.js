@@ -3,7 +3,7 @@ import Modal from "./Modal";
 
 export default ({ modalInfo, deleteCategory }) => {
 	const renderModalContent = () => {
-		return `Are you sure want to delete the category: ${modalInfo.category}`;
+		return modalInfo ? `Are you sure want to delete the category: ${modalInfo.category}` : null;
 	};
 
 	const renderModalActions = () => {
@@ -12,7 +12,7 @@ export default ({ modalInfo, deleteCategory }) => {
 				className="btn btn-secondary"
 				onClick={() => deleteCategory(modalInfo._id)}
 				data-toggle="modal"
-				data-target="#action-modal"
+				data-target="#delete-category"
 			>
 				Delete
 			</button>
@@ -21,6 +21,7 @@ export default ({ modalInfo, deleteCategory }) => {
 
 	return (
 		<Modal
+			id="delete-category"
 			title="Delete Category"
 			content={renderModalContent()}
 			actions={renderModalActions()}

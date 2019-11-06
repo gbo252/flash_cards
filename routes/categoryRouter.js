@@ -36,10 +36,6 @@ categoryRouter.post("/", requireLogin, async (req, res) => {
 });
 
 categoryRouter.patch("/edit/:category", requireLogin, async (req, res) => {
-	if (!req.body.color) {
-		delete req.body.color;
-	}
-
 	await Category.updateOne(
 		{
 			category: req.params.category,

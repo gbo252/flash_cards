@@ -3,17 +3,19 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { reduxForm, Field } from "redux-form";
-import * as actions from "../actions";
+import * as actions from "../../actions";
 import CategoryList from "./CategoryList";
-import ModalDeleteCategory from "./modals/ModalDeleteCategory";
+import ModalEditCategory from "../modals/ModalEditCategory";
+import ModalDeleteCategory from "../modals/ModalDeleteCategory";
 
 const Dashboard = ({
 	fetchCategories,
 	clearFlashCards,
 	categories,
-	deleteCategory
+	deleteCategory,
+	editCategory
 }) => {
-	const [modalInfo, setModalInfo] = React.useState({});
+	const [modalInfo, setModalInfo] = React.useState(null);
 
 	React.useEffect(() => {
 		fetchCategories();
@@ -92,6 +94,10 @@ const Dashboard = ({
 
 	return (
 		<div className="d-flex flex-column mt-3">
+			<ModalEditCategory
+				modalInfo={modalInfo}
+				editCategory={editCategory}
+			/>
 			<ModalDeleteCategory
 				modalInfo={modalInfo}
 				deleteCategory={deleteCategory}

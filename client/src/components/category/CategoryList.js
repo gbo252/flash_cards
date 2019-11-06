@@ -1,4 +1,4 @@
-import "../css/CategoryList.css";
+import "../../css/CategoryList.css";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -68,12 +68,26 @@ export default ({ categories, setModalInfo }) => {
 							</div>
 						</Link>
 					</div>
-					<div className="d-flex align-items-center ml-4">
+					<div className="d-flex flex-column justify-content-center ml-4">
 						<button
 							type="button"
-							className="close delete-category"
+							className="close"
 							data-toggle="modal"
-							data-target="#action-modal"
+							data-target="#edit-category"
+							onClick={() => setModalInfo({ category, color })}
+						>
+							<i
+								className="text-black-50 material-icons"
+								style={{ fontSize: "2.5rem" }}
+							>
+								edit
+							</i>
+						</button>
+						<button
+							type="button"
+							className="close"
+							data-toggle="modal"
+							data-target="#delete-category"
 							onClick={() => setModalInfo({ _id, category })}
 						>
 							<i

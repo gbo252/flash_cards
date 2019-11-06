@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-const Modal = ({ title, content, actions }) => {
+const Modal = ({ id, title, content, actions }) => {
 	return ReactDOM.createPortal(
 		<div
 			className="modal fade"
-			id="action-modal"
+			id={id}
 			tabIndex="-1"
 			role="dialog"
 			aria-labelledby="exampleModalCenterTitle"
