@@ -10,7 +10,6 @@ import Login from "../Login";
 import Dashboard from "../category/Dashboard";
 import Category from "../flashCards/Category";
 import NewFlashCard from "../NewFlashCard";
-import NewCategory from "../NewCategory";
 import NotFound from "./NotFound";
 
 const App = ({ fetchUser }) => {
@@ -29,11 +28,6 @@ const App = ({ fetchUser }) => {
 						exact
 						path="/categories/:category"
 						component={Category}
-					/>
-					<PrivateRoute
-						exact
-						path="/new-category"
-						component={NewCategory}
 					/>
 					<PrivateRoute
 						exact

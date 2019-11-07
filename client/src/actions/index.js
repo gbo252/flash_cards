@@ -24,10 +24,10 @@ export const fetchFlashCards = category => async dispatch => {
 	dispatch({ type: FETCH_FLASH_CARDS, payload: res.data.cards });
 };
 
-export const newCategory = (formValues, history) => async () => {
+export const newCategory = formValues => async dispatch => {
 	await axios.post("/category-routes", formValues);
 
-	history.push("/");
+	dispatch(fetchCategories());
 };
 
 export const newFlashCard = (formValues, category, history) => async () => {

@@ -1,30 +1,42 @@
 import React from "react";
 import Modal from "./Modal";
 
-export default ({ modalInfo, deleteCategory }) => {
-	const renderModalContent = () => {
-		return modalInfo ? `Are you sure want to delete the category: ${modalInfo.category}` : null;
+export default ({ modalInfo, deleteCategory, show, setModalShow }) => {
+	const renderContent = () => {
+		return modalInfo
+			? `Are you sure want to delete the category: ${modalInfo.category}`
+			: null;
 	};
 
-	const renderModalActions = () => {
+	const renderActions = () => {
 		return (
-			<button
-				className="btn btn-secondary"
-				onClick={() => deleteCategory(modalInfo._id)}
-				data-toggle="modal"
-				data-target="#delete-category"
-			>
-				Delete
-			</button>
+			<div>
+				<button
+					className="btn btn-danger mx-2"
+					onClick={() => setModalShow(false)}
+				>
+					Cancel
+				</button>
+				<button
+					className="btn btn-success mx-2"
+					onClick={() => {
+						deleteCategory(modalInfo._id);
+						setModalShow(false);
+					}}
+				>
+					Delete
+				</button>
+			</div>
 		);
 	};
 
 	return (
 		<Modal
-			id="delete-category"
 			title="Delete Category"
-			content={renderModalContent()}
-			actions={renderModalActions()}
+			content={renderContent()}
+			actions={renderActions()}
+			show={show}
+			onHide={() => setModalShow(false)}
 		/>
 	);
 };

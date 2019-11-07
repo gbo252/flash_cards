@@ -2,7 +2,12 @@ import "../../css/CategoryList.css";
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default ({ categories, setModalInfo }) => {
+export default ({
+	categories,
+	setModalInfo,
+	setModalDeleteShow,
+	setModalEditShow
+}) => {
 	return categories.map(
 		({ _id, category, color, lastEdited, dateCreated, cardsTotal }) => {
 			return (
@@ -72,9 +77,10 @@ export default ({ categories, setModalInfo }) => {
 						<button
 							type="button"
 							className="close"
-							data-toggle="modal"
-							data-target="#edit-category"
-							onClick={() => setModalInfo({ category, color })}
+							onClick={() => {
+								setModalInfo({ category, color });
+								setModalEditShow(true);
+							}}
 						>
 							<i
 								className="text-black-50 material-icons"
@@ -86,9 +92,10 @@ export default ({ categories, setModalInfo }) => {
 						<button
 							type="button"
 							className="close"
-							data-toggle="modal"
-							data-target="#delete-category"
-							onClick={() => setModalInfo({ _id, category })}
+							onClick={() => {
+								setModalInfo({ _id, category });
+								setModalDeleteShow(true);
+							}}
 						>
 							<i
 								className="text-black-50 material-icons"

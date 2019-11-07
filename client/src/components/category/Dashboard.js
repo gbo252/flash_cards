@@ -1,10 +1,11 @@
 import _ from "lodash";
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { reduxForm, Field } from "redux-form";
 import * as actions from "../../actions";
+
 import CategoryList from "./CategoryList";
+import ModalNewCategory from "../modals/ModalNewCategory";
 import ModalEditCategory from "../modals/ModalEditCategory";
 import ModalDeleteCategory from "../modals/ModalDeleteCategory";
 
@@ -13,9 +14,13 @@ const Dashboard = ({
 	clearFlashCards,
 	categories,
 	deleteCategory,
-	editCategory
+	editCategory,
+	newCategory
 }) => {
 	const [modalInfo, setModalInfo] = React.useState(null);
+	const [modalDeleteShow, setModalDeleteShow] = React.useState(false);
+	const [modalEditShow, setModalEditShow] = React.useState(false);
+	const [modalNewShow, setModalNewShow] = React.useState(false);
 
 	React.useEffect(() => {
 		fetchCategories();
@@ -25,13 +30,12 @@ const Dashboard = ({
 	const renderButton = () => {
 		if (categories) {
 			return (
-				<Link
-					to="/new-category"
-					role="button"
+				<button
 					className="btn btn-outline-secondary rounded-pill"
+					onClick={() => setModalNewShow(true)}
 				>
 					Add Category
-				</Link>
+				</button>
 			);
 		}
 	};
@@ -51,6 +55,8 @@ const Dashboard = ({
 					<CategoryList
 						categories={categories}
 						setModalInfo={setModalInfo}
+						setModalDeleteShow={setModalDeleteShow}
+						setModalEditShow={setModalEditShow}
 					/>
 				</div>
 			);
@@ -94,13 +100,22 @@ const Dashboard = ({
 
 	return (
 		<div className="d-flex flex-column mt-3">
+			<ModalNewCategory
+				newCategory={newCategory}
+				show={modalNewShow}
+				setModalShow={setModalNewShow}
+			/>
 			<ModalEditCategory
 				modalInfo={modalInfo}
 				editCategory={editCategory}
+				show={modalEditShow}
+				setModalShow={setModalEditShow}
 			/>
 			<ModalDeleteCategory
 				modalInfo={modalInfo}
 				deleteCategory={deleteCategory}
+				show={modalDeleteShow}
+				setModalShow={setModalDeleteShow}
 			/>
 			<h1 className="display-4 text-center">Flash Cards Online</h1>
 			<p className="h4 mb-5 font-weight-light text-center">
@@ -150,7 +165,9 @@ const sort = (categories, formValues) => {
 };
 
 const mapStateToProps = ({ categories, form }) => {
-	return { categories: sort(categories, form.categorySortBy.values) };
+	return {
+		categories: sort(categories, form.categorySortBy.values)
+	};
 };
 
 export default reduxForm({
