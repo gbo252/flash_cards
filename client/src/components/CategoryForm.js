@@ -4,15 +4,11 @@ import { reduxForm, Field } from "redux-form";
 import FormField from "./FormField";
 import FormColorField from "./FormColorField";
 
-let categoriesState = [];
-
 const ErrorMessage = ({ meta: { error, touched } }) => {
 	return <small className="form-text text-danger">{touched && error}</small>;
 };
 
-const CategoryForm = ({ handleSubmit, onSubmit, categories }) => {
-	categoriesState = categories;
-
+const CategoryForm = ({ handleSubmit, onSubmit }) => {
 	const colors = [
 		"rgba(255, 157, 157, 0.8)",
 		"rgba(244, 239, 137, 0.8)",
@@ -27,14 +23,13 @@ const CategoryForm = ({ handleSubmit, onSubmit, categories }) => {
 		<form
 			id="category-form"
 			onSubmit={handleSubmit(onSubmit)}
-			style={{ marginTop: "40px" }}
 		>
 			<Field
 				component={FormField}
 				label="Category Name"
 				name="category"
 			/>
-			<div className="color-group mb-3">
+			<div className="color-group">
 				<label>Colour</label>
 				<div>
 					{colors.map(color => (
@@ -53,8 +48,8 @@ const CategoryForm = ({ handleSubmit, onSubmit, categories }) => {
 	);
 };
 
-const validateCategory = (category, initialValues) => {
-	let categoryNames = categoriesState.map(x => x.category.toLowerCase());
+const validateCategory = (categories, category, initialValues) => {
+	let categoryNames = categories.map(x => x.category.toLowerCase());
 
 	if (initialValues) {
 		const index = categoryNames.indexOf(
@@ -75,13 +70,14 @@ const validateCategory = (category, initialValues) => {
 	return null;
 };
 
-const validate = (formValues, props) => {
+const validate = (formValues, {categories, initialValues}) => {
 	const errors = {};
 
-	if (categoriesState) {
+	if (categories) {
 		errors.category = validateCategory(
+			categories,
 			formValues.category || "",
-			props.initialValues
+			initialValues
 		);
 	}
 
@@ -100,8 +96,10 @@ const mapStateToProps = ({ categories }) => {
 	return { categories };
 };
 
-export default reduxForm({
-	form: "category",
-	enableReinitialize: true,
-	validate
-})(connect(mapStateToProps)(CategoryForm));
+export default connect(mapStateToProps)(
+	reduxForm({
+		form: "category",
+		enableReinitialize: true,
+		validate
+	})(CategoryForm)
+);

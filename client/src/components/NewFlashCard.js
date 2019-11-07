@@ -5,23 +5,18 @@ import { reduxForm, Field } from "redux-form";
 import * as actions from "../actions";
 import FormField from "./FormField";
 
-let flashCardsState = [];
-
 const NewFlashCard = ({
 	fetchFlashCards,
-	flashCards,
-	match,
+	match: {
+		params: { category }
+	},
 	handleSubmit,
 	newFlashCard,
 	history
 }) => {
-	const { category } = match.params;
-
 	React.useEffect(() => {
 		fetchFlashCards(category);
 	}, [fetchFlashCards, category]);
-
-	flashCardsState = flashCards;
 
 	return (
 		<form
@@ -48,8 +43,8 @@ const NewFlashCard = ({
 	);
 };
 
-const validateHeader = header => {
-	const headerNames = flashCardsState.map(x => x.header.toLowerCase());
+const validateHeader = (flashCards, header) => {
+	const headerNames = flashCards.map(x => x.header.toLowerCase());
 
 	if (headerNames.includes(header.toLowerCase())) {
 		return `There is already a flash card with header ${header}`;
@@ -58,11 +53,11 @@ const validateHeader = header => {
 	return null;
 };
 
-const validate = formValues => {
+const validate = (formValues, { flashCards }) => {
 	const errors = {};
 
-	if (flashCardsState) {
-		errors.header = validateHeader(formValues.header || "");
+	if (flashCards) {
+		errors.header = validateHeader(flashCards, formValues.header || "");
 	}
 
 	if (!formValues.header) {
@@ -80,12 +75,12 @@ const mapStateToProps = ({ flashCards }) => {
 	return { flashCards };
 };
 
-export default reduxForm({
-	form: "flashCard",
-	validate
-})(
-	connect(
-		mapStateToProps,
-		actions
-	)(NewFlashCard)
+export default connect(
+	mapStateToProps,
+	actions
+)(
+	reduxForm({
+		form: "flashCard",
+		validate
+	})(NewFlashCard)
 );

@@ -4,9 +4,13 @@ import { Link } from "react-router-dom";
 import * as actions from "../../actions";
 import FlashCardList from "./FlashCardList";
 
-const Category = ({ match, fetchFlashCards, flashCards }) => {
-	const { category } = match.params;
-
+const Category = ({
+	match: {
+		params: { category }
+	},
+	fetchFlashCards,
+	flashCards
+}) => {
 	React.useEffect(() => {
 		fetchFlashCards(category);
 	}, [fetchFlashCards, category]);
