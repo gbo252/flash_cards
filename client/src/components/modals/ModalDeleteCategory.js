@@ -24,7 +24,7 @@ export default ({ modalInfo, deleteCategory, show, setModalShow }) => {
 						setModalShow(false);
 					}}
 				>
-					Delete
+					Submit
 				</button>
 			</div>
 		);

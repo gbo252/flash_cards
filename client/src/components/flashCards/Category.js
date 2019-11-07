@@ -2,7 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import * as actions from "../../actions";
+
 import FlashCardList from "./FlashCardList";
+import Spinner from "../Spinner";
 
 const Category = ({
 	match: {
@@ -33,13 +35,7 @@ const Category = ({
 
 	const renderContent = () => {
 		if (!flashCards) {
-			return (
-				<div className="d-flex justify-content-center mt-5">
-					<div className="spinner-border" role="status">
-						<span className="sr-only">Loading...</span>
-					</div>
-				</div>
-			);
+			return <Spinner />;
 		} else if (flashCards.length > 0) {
 			return (
 				<div className="d-flex flex-wrap justify-content-center mb-4">

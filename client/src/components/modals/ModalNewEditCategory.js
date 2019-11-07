@@ -2,14 +2,24 @@ import React from "react";
 import CategoryForm from "../CategoryForm";
 import Modal from "./Modal";
 
-export default ({ modalInfo, editCategory, show, setModalShow }) => {
-	const editCategoryRef = React.useRef(null);
+export default ({ modalInfo, action, title, show, setModalShow }) => {
+	const onSubmit = formValues => {
+		action(formValues, modalInfo ? modalInfo.category : null);
+		setModalShow(false);
+	};
+
+	const renderContent = () => {
+		return modalInfo ? (
+			<CategoryForm onSubmit={onSubmit} initialValues={modalInfo} />
+		) : (
+			<CategoryForm onSubmit={onSubmit} />
+		);
+	};
 
 	const renderActions = () => {
 		return (
 			<div>
 				<button
-					ref={editCategoryRef}
 					className="btn btn-danger mx-2"
 					onClick={() => setModalShow(false)}
 				>
@@ -20,23 +30,16 @@ export default ({ modalInfo, editCategory, show, setModalShow }) => {
 					type="submit"
 					form="category-form"
 				>
-					Edit
+					Submit
 				</button>
 			</div>
 		);
 	};
 
-	const onSubmit = formValues => {
-		editCategory(formValues, modalInfo.category);
-		editCategoryRef.current.click();
-	};
-
 	return (
 		<Modal
-			title="Edit Category"
-			content={
-				<CategoryForm onSubmit={onSubmit} initialValues={modalInfo} />
-			}
+			title={`${title} Category`}
+			content={renderContent()}
 			actions={renderActions()}
 			show={show}
 			onHide={() => setModalShow(false)}

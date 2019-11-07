@@ -1,13 +1,13 @@
-import _ from "lodash";
 import React from "react";
 import { connect } from "react-redux";
-import { reduxForm, Field } from "redux-form";
 import * as actions from "../../actions";
 
 import CategoryList from "./CategoryList";
-import ModalNewCategory from "../modals/ModalNewCategory";
-import ModalEditCategory from "../modals/ModalEditCategory";
+import SortCategoriesForm from "./SortCategoriesForm";
+import Spinner from "../Spinner";
 import ModalDeleteCategory from "../modals/ModalDeleteCategory";
+import ModalNewEditCategory from "../modals/ModalNewEditCategory";
+import { sortCategories } from "./SortCategoriesForm";
 
 const Dashboard = ({
 	fetchCategories,
@@ -42,13 +42,7 @@ const Dashboard = ({
 
 	const renderCategories = () => {
 		if (!categories) {
-			return (
-				<div className="d-flex justify-content-center mt-5">
-					<div className="spinner-border" role="status">
-						<span className="sr-only">Loading...</span>
-					</div>
-				</div>
-			);
+			return <Spinner />;
 		} else if (categories.length > 0) {
 			return (
 				<div className="my-4">
@@ -65,49 +59,18 @@ const Dashboard = ({
 		}
 	};
 
-	const renderSortOptions = () => {
-		return (
-			<form className="form-inline">
-				<div className="form-group">
-					<label htmlFor="sort-by-method">Sort By:</label>
-					<Field
-						name="sortByMethod"
-						id="sort-by-method"
-						component="select"
-						className="form-control mx-2"
-					>
-						<option value="alphabetic">Alphabetic</option>
-						<option value="total-cards">Flash Card Total</option>
-						<option value="date-created">Date Created</option>
-						<option value="last-updated">Last Updated</option>
-					</Field>
-				</div>
-				<div className="form-group">
-					<label className="sr-only" htmlFor="direction" />
-					<Field
-						name="direction"
-						id="direction"
-						component="select"
-						className="form-control mx-2"
-					>
-						<option value="asc">Ascending</option>
-						<option value="desc">Descending</option>
-					</Field>
-				</div>
-			</form>
-		);
-	};
-
 	return (
 		<div className="d-flex flex-column mt-3">
-			<ModalNewCategory
-				newCategory={newCategory}
+			<ModalNewEditCategory
+				action={newCategory}
+				title="New"
 				show={modalNewShow}
 				setModalShow={setModalNewShow}
 			/>
-			<ModalEditCategory
+			<ModalNewEditCategory
 				modalInfo={modalInfo}
-				editCategory={editCategory}
+				action={editCategory}
+				title="Edit"
 				show={modalEditShow}
 				setModalShow={setModalEditShow}
 			/>
@@ -122,7 +85,7 @@ const Dashboard = ({
 				An easy to use online flash card maker!
 			</p>
 			<div className="d-flex justify-content-between">
-				{renderSortOptions()}
+				<SortCategoriesForm />
 				{renderButton()}
 			</div>
 			{renderCategories()}
@@ -130,53 +93,13 @@ const Dashboard = ({
 	);
 };
 
-const sort = (categories, formValues) => {
-	if (!categories) {
-		return null;
-	}
-
-	const sortBy = formValues.sortByMethod + "-" + formValues.direction;
-
-	switch (sortBy) {
-		case "alphabetic-asc":
-			return _.sortBy(categories, ["category"]);
-		case "alphabetic-desc":
-			return _.sortBy(categories, ["category"]).reverse();
-		case "total-cards-asc":
-			return _.sortBy(categories, ["cardsTotal", "category"]);
-		case "total-cards-desc":
-			return _.chain(categories)
-				.sortBy(["category"])
-				.reverse()
-				.sortBy(["cardsTotal"])
-				.reverse()
-				.value();
-		case "date-created-asc":
-			return categories;
-		case "date-created-desc":
-			return [...categories].reverse();
-		case "last-updated-asc":
-			return _.sortBy(categories, ["lastEdited"]);
-		case "last-updated-desc":
-			return _.sortBy(categories, ["lastEdited"]).reverse();
-		default:
-			return categories;
-	}
-};
-
 const mapStateToProps = ({ categories, form }) => {
 	return {
-		categories: sort(categories, form.categorySortBy.values)
+		categories: sortCategories(categories, form)
 	};
 };
 
-export default reduxForm({
-	form: "categorySortBy",
-	initialValues: { sortByMethod: "alphabetic", direction: "asc" },
-	destroyOnUnmount: false
-})(
-	connect(
-		mapStateToProps,
-		actions
-	)(Dashboard)
-);
+export default connect(
+	mapStateToProps,
+	actions
+)(Dashboard);
