@@ -7,6 +7,10 @@ export const filterCategories = (categories, form) => {
 		return null;
 	}
 
+	if (!form.categoriesFilter) {
+		return null;
+	}
+
 	if (!form.categoriesFilter.values) {
 		return categories;
 	}

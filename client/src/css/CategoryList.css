@@ -13,3 +13,7 @@
 button.close:focus {
 	outline: none;
 }
+
+li.border-bottom:last-child {
+	border-bottom: none !important;
+}

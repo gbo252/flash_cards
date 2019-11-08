@@ -3,7 +3,9 @@ import React from "react";
 export default ({ input, label, meta: { error, touched } }) => {
 	return (
 		<div className="form-group">
-			<label htmlFor={label}>{label}</label>
+			<label className="mr-2" htmlFor={label}>
+				{label}
+			</label>
 			<input
 				{...input}
 				id={label}
