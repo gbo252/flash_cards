@@ -1,6 +1,14 @@
 import React from "react";
 
-export default ({ input, label, meta: { error, touched } }) => {
+export const FormErrorMessage = ({ meta: { error } }) => {
+	return <small className="form-text text-danger">{error}</small>;
+};
+
+export const FormErrorMessageTouched = ({ meta: { error, touched } }) => {
+	return <small className="form-text text-danger">{touched && error}</small>;
+};
+
+export default ({ input, label }) => {
 	return (
 		<div className="form-group">
 			<label className="mr-2" htmlFor={label}>
@@ -12,7 +20,6 @@ export default ({ input, label, meta: { error, touched } }) => {
 				className="form-control"
 				autoComplete="off"
 			/>
-			<small className="form-text text-danger">{touched && error}</small>
 		</div>
 	);
 };

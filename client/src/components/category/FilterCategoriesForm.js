@@ -1,6 +1,6 @@
 import React from "react";
 import { reduxForm, Field } from "redux-form";
-import FormField from "../FormField";
+import FormField, { FormErrorMessage } from "../FormField";
 
 export const filterCategories = (categories, form) => {
 	if (!categories || !form) {
@@ -22,16 +22,30 @@ export const filterCategories = (categories, form) => {
 
 const FilterCategoriesForm = () => {
 	return (
-		<form className="form-inline">
-			<Field
-				component={FormField}
-				name="filter"
-				label="Filter Categories:"
-			/>
-		</form>
+		<div>
+			<form className="form-inline">
+				<Field
+					component={FormField}
+					name="filter"
+					label="Filter Categories:"
+				/>
+			</form>
+			<Field name="filter" component={FormErrorMessage} />
+		</div>
 	);
 };
 
+const validate = formValues => {
+	const errors = {};
+
+	if (formValues.filter) {
+		errors.filter = "FILTER: ON";
+	}
+
+	return errors;
+};
+
 export default reduxForm({
-	form: "categoriesFilter"
+	form: "categoriesFilter",
+	validate
 })(FilterCategoriesForm);

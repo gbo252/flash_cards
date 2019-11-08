@@ -1,12 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
-import FormField from "./FormField";
+import FormField, { FormErrorMessageTouched } from "./FormField";
 import FormColorField from "./FormColorField";
-
-const ErrorMessage = ({ meta: { error, touched } }) => {
-	return <small className="form-text text-danger">{touched && error}</small>;
-};
 
 const CategoryForm = ({ handleSubmit, onSubmit }) => {
 	const colors = [
@@ -20,15 +16,13 @@ const CategoryForm = ({ handleSubmit, onSubmit }) => {
 	];
 
 	return (
-		<form
-			id="category-form"
-			onSubmit={handleSubmit(onSubmit)}
-		>
+		<form id="category-form" onSubmit={handleSubmit(onSubmit)}>
 			<Field
 				component={FormField}
 				label="Category Name"
 				name="category"
 			/>
+			<Field name="category" component={FormErrorMessageTouched} />
 			<div className="color-group">
 				<label>Colour</label>
 				<div>
@@ -41,7 +35,7 @@ const CategoryForm = ({ handleSubmit, onSubmit }) => {
 							type="radio"
 						/>
 					))}
-					<Field name="color" component={ErrorMessage} />
+					<Field name="color" component={FormErrorMessageTouched} />
 				</div>
 			</div>
 		</form>
@@ -70,7 +64,7 @@ const validateCategory = (categories, category, initialValues) => {
 	return null;
 };
 
-const validate = (formValues, {categories, initialValues}) => {
+const validate = (formValues, { categories, initialValues }) => {
 	const errors = {};
 
 	if (categories) {
