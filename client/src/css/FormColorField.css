@@ -12,13 +12,10 @@ div.color-circle {
 }
 
 label.color-group-item div.color-circle {
-	border: 3px solid transparent;
+	border: 6px solid transparent;
 	background-clip: padding-box;
 }
 
-label.color-group-item div.color-circle:hover {
-	border: 3px solid rgb(153, 209, 255);
-}
-.color-group input.radio:checked + label.color-group-item div.color-circle {
-	border: 3px solid rgb(153, 209, 255);
+label.color-group-item div.color-circle:hover, .color-group input.radio:checked + label.color-group-item div.color-circle {
+	border: 6px solid rgba(173, 173, 173, 0.3);
 }

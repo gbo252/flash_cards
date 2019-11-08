@@ -14,7 +14,7 @@ export default ({
 				<div key={_id} className="d-flex my-4">
 					<div
 						className="category-card rounded-pill ml-5 w-100"
-						style={{ border: `3px solid ${color}` }}
+						style={{ borderColor: color }}
 					>
 						<Link
 							to={`/categories/${category}`}

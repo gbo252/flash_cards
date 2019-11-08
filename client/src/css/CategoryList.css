@@ -1,11 +1,13 @@
 .category-card {
 	transition: all 50ms linear;
-	box-shadow: 0 0 5px 1px rgba(146, 146, 146, 0.7);
+	border-width: 5px;
+	border-style: outset;
+	box-shadow: 3px 3px 5px 1px rgba(146, 146, 146, 0.7);
 }
 
 .category-card:hover {
 	transform: scale(1.02);
-	box-shadow: 0 0 10px 5px rgba(146, 146, 146, 0.3);
+	box-shadow: 5px 5px 10px 5px rgba(146, 146, 146, 0.3);
 }
 
 button.close:focus {

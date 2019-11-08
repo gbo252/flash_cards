@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 
 import CategoryList from "./CategoryList";
-import SortCategoriesForm from "./SortCategoriesForm";
 import Spinner from "../Spinner";
 import ModalDeleteCategory from "../modals/ModalDeleteCategory";
 import ModalNewEditCategory from "../modals/ModalNewEditCategory";
-import { sortCategories } from "./SortCategoriesForm";
+import SortCategoriesForm, { sortCategories } from "./SortCategoriesForm";
+import FilterCategoriesForm, { filterCategories } from "./FilterCategoriesForm";
 
 const Dashboard = ({
 	fetchCategories,
@@ -84,10 +84,11 @@ const Dashboard = ({
 			<p className="h4 mb-5 font-weight-light text-center">
 				An easy to use online flash card maker!
 			</p>
-			<div className="d-flex justify-content-between">
+			<div className="d-flex justify-content-between mb-3">
 				<SortCategoriesForm />
 				{renderButton()}
 			</div>
+			<FilterCategoriesForm />
 			{renderCategories()}
 		</div>
 	);
@@ -95,7 +96,7 @@ const Dashboard = ({
 
 const mapStateToProps = ({ categories, form }) => {
 	return {
-		categories: sortCategories(categories, form)
+		categories: sortCategories(filterCategories(categories, form), form)
 	};
 };
 
