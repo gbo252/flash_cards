@@ -52,6 +52,14 @@ export const deleteCategory = id => async dispatch => {
 	dispatch(fetchCategories());
 };
 
+export const deleteCategories = idArrayToDelete => async dispatch => {
+	await axios.delete("/category-routes/delete-many", {
+		data: idArrayToDelete
+	});
+
+	dispatch(fetchCategories());
+};
+
 export const deleteFlashCard = (id, category) => async dispatch => {
 	await axios.delete(`/flashcards/${category}/${id}`);
 

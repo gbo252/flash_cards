@@ -56,4 +56,10 @@ categoryRouter.delete("/delete/:id", requireLogin, async (req, res) => {
 	res.send({});
 });
 
+categoryRouter.delete("/delete-many", requireLogin, async (req, res) => {
+	await Category.remove({ _id: { $in: req.body } });
+
+	res.send({});
+});
+
 module.exports = categoryRouter;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 
@@ -13,16 +13,20 @@ const Dashboard = ({
 	fetchCategories,
 	clearFlashCards,
 	categories,
+	form,
 	deleteCategory,
+	deleteCategories,
 	editCategory,
-	newCategory
+	newCategory,
+	history
 }) => {
-	const [modalInfo, setModalInfo] = React.useState(null);
-	const [modalDeleteShow, setModalDeleteShow] = React.useState(false);
-	const [modalEditShow, setModalEditShow] = React.useState(false);
-	const [modalNewShow, setModalNewShow] = React.useState(false);
+	const [modalInfo, setModalInfo] = useState(null);
+	const [modalDeleteShow, setModalDeleteShow] = useState(false);
+	const [modalEditShow, setModalEditShow] = useState(false);
+	const [modalNewShow, setModalNewShow] = useState(false);
+	const [categoriesDelete, setCategoriesDelete] = useState(false);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		fetchCategories();
 		clearFlashCards();
 	}, [fetchCategories, clearFlashCards]);
@@ -40,6 +44,37 @@ const Dashboard = ({
 		}
 	};
 
+	const getSelectedCategories = () => {
+		const { values } = form.categoryDelete;
+		return Object.keys(values).filter(id => values[id]);
+	};
+
+	const renderSelectButton = () => {
+		return (
+			<div className="custom-control custom-switch">
+				<input
+					type="checkbox"
+					className="custom-control-input"
+					id="select-switch"
+					onClick={() => setCategoriesDelete(!categoriesDelete)}
+				/>
+				<label className="custom-control-label" htmlFor="select-switch">
+					Select Categories
+				</label>
+				<span>
+					<button
+						className="btn btn-danger rounded-pill ml-3"
+						onClick={() =>
+							deleteCategories(getSelectedCategories())
+						}
+					>
+						Delete Selected
+					</button>
+				</span>
+			</div>
+		);
+	};
+
 	const renderCategories = () => {
 		if (!categories) {
 			return <Spinner />;
@@ -47,7 +82,9 @@ const Dashboard = ({
 			return (
 				<div className="my-4">
 					<CategoryList
+						history={history}
 						categories={categories}
+						categoriesDelete={categoriesDelete}
 						setModalInfo={setModalInfo}
 						setModalDeleteShow={setModalDeleteShow}
 						setModalEditShow={setModalEditShow}
@@ -88,7 +125,10 @@ const Dashboard = ({
 				<SortCategoriesForm />
 				{renderButton()}
 			</div>
-			<FilterCategoriesForm />
+			<div className="d-flex justify-content-between mb-3">
+				<FilterCategoriesForm />
+				{renderSelectButton()}
+			</div>
 			{renderCategories()}
 		</div>
 	);
@@ -96,7 +136,8 @@ const Dashboard = ({
 
 const mapStateToProps = ({ categories, form }) => {
 	return {
-		categories: sortCategories(filterCategories(categories, form), form)
+		categories: sortCategories(filterCategories(categories, form), form),
+		form
 	};
 };
 
