@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { reduxForm, Field } from "redux-form";
 import * as actions from "../actions";
-import FormField from "./FormField";
+import FormField from "./forms/FormField";
 
 const NewFlashCard = ({
 	fetchFlashCards,

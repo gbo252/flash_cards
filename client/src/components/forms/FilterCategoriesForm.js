@@ -1,6 +1,6 @@
 import React from "react";
 import { reduxForm, Field } from "redux-form";
-import FormField, { FormErrorMessage } from "../FormField";
+import FormField, { FormErrorMessage } from "./FormField";
 
 export const filterCategories = (categories, form) => {
 	if (!categories || !form) {

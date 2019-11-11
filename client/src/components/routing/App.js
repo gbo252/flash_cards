@@ -6,7 +6,7 @@ import * as actions from "../../actions";
 import PrivateRoute from "./PrivateRoute";
 
 import Header from "../Header";
-import Login from "../Login";
+import Login from "./Login";
 import Dashboard from "../category/Dashboard";
 import Category from "../flashCards/Category";
 import NewFlashCard from "../NewFlashCard";

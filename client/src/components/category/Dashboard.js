@@ -6,8 +6,8 @@ import CategoryList from "./CategoryList";
 import Spinner from "../Spinner";
 import ModalDeleteCategory from "../modals/ModalDeleteCategory";
 import ModalNewEditCategory from "../modals/ModalNewEditCategory";
-import SortCategoriesForm, { sortCategories } from "./SortCategoriesForm";
-import FilterCategoriesForm, { filterCategories } from "./FilterCategoriesForm";
+import SortCategoriesForm, { sortCategories } from "../forms/SortCategoriesForm";
+import FilterCategoriesForm, { filterCategories } from "../forms/FilterCategoriesForm";
 
 const Dashboard = ({
 	fetchCategories,

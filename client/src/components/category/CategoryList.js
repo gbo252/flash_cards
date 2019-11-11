@@ -19,7 +19,7 @@ const CategoryList = ({
 		}
 	}, [categoriesDelete, reset]);
 
-	return categories.map(category => {
+	return categories.map(categ => {
 		const categoryComponent = ({ input }) => {
 			return (
 				<React.Fragment>
@@ -35,7 +35,7 @@ const CategoryList = ({
 						style={{ cursor: "pointer" }}
 					>
 						<Label
-							category={category}
+							category={categ}
 							categoriesDelete={categoriesDelete}
 						/>
 					</label>
@@ -43,11 +43,13 @@ const CategoryList = ({
 			);
 		};
 
+		const { _id, category, color } = categ;
+
 		return (
-			<div key={category._id} className="d-flex my-3">
+			<div key={_id} className="d-flex my-3">
 				<Field
 					component={categoryComponent}
-					name={category._id}
+					name={_id}
 					type="checkbox"
 				/>
 				<div className="d-flex flex-column justify-content-center ml-4">
@@ -55,20 +57,13 @@ const CategoryList = ({
 						action={setModalEditShow}
 						text="edit"
 						iconText="edit"
-						setModalInfo={() =>
-							setModalInfo({
-								category: category.category,
-								color: category.category
-							})
-						}
+						setModalInfo={() => setModalInfo({ category, color })}
 					/>
 					<IconEditDelete
 						action={setModalDeleteShow}
 						text="delete"
 						iconText="remove_circle_outline"
-						setModalInfo={() =>
-							setModalInfo({ _id: category._id, category })
-						}
+						setModalInfo={() => setModalInfo({ _id, category })}
 					/>
 				</div>
 			</div>

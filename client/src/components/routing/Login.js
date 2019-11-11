@@ -1,5 +1,5 @@
-import googleSignIn from "../images/google_signin.png";
-import facebookSignIn from "../images/facebook_signin.png";
+import googleSignIn from "../../images/google_signin.png";
+import facebookSignIn from "../../images/facebook_signin.png";
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
+
 import FormField, { FormErrorMessageTouched } from "./FormField";
 import FormColorField from "./FormColorField";
 

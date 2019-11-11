@@ -1,4 +1,4 @@
-import "../css/FormColorField.css";
+import "../../css/FormColorField.css";
 import React from "react";
 
 export default ({ input }) => {

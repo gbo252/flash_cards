@@ -1,5 +1,5 @@
 import React from "react";
-import CategoryForm from "../CategoryForm";
+import CategoryForm from "../forms/CategoryForm";
 import Modal from "./Modal";
 
 export default ({ modalInfo, action, title, show, setModalShow }) => {
