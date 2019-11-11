@@ -17,8 +17,7 @@ const Dashboard = ({
 	deleteCategory,
 	deleteCategories,
 	editCategory,
-	newCategory,
-	history
+	newCategory
 }) => {
 	const [modalInfo, setModalInfo] = useState(null);
 	const [modalDeleteShow, setModalDeleteShow] = useState(false);
@@ -81,7 +80,6 @@ const Dashboard = ({
 			return (
 				<div className="my-4">
 					<CategoryList
-						history={history}
 						categories={categories}
 						categoriesDelete={categoriesDelete}
 						setModalInfo={setModalInfo}
