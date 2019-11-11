@@ -10,8 +10,15 @@ const CategoryList = ({
 	categoriesDelete,
 	setModalInfo,
 	setModalDeleteShow,
-	setModalEditShow
+	setModalEditShow,
+	reset
 }) => {
+	React.useEffect(() => {
+		if (!categoriesDelete) {
+			reset("categoryDelete");
+		}
+	}, [categoriesDelete, reset]);
+
 	return categories.map(
 		({ _id, category, color, lastEdited, dateCreated, cardsTotal }) => {
 			const infoList = {
@@ -24,7 +31,7 @@ const CategoryList = ({
 				)
 			};
 
-			const labelContents = (
+			const label = (
 				<div
 					className={
 						"rounded-pill ml-5 w-100" +
@@ -35,7 +42,7 @@ const CategoryList = ({
 					style={{
 						borderColor: color,
 						borderWidth: "5px",
-						borderStyle: "outset"
+						userSelect: "none"
 					}}
 					onClick={() => {
 						if (!categoriesDelete) {
@@ -46,29 +53,36 @@ const CategoryList = ({
 					<div className="d-flex justify-content-between">
 						<div className="d-flex align-items-center">
 							<div
-								className="d-flex justify-content-center rounded-circle m-2"
+								className="d-flex justify-content-center align-items-center rounded-circle m-2"
 								style={{
 									width: "120px",
 									height: "120px",
-									backgroundColor: color
+									backgroundColor: categoriesDelete
+										? null
+										: color
 								}}
 							>
-								<button className="close">
-									{/* <i
-										className="text-black-50 material-icons"
-										style={{ fontSize: "4.5rem" }}
-									>
-										check_circle
-									</i> */}
-									<div
-										className="rounded-circle"
-										style={{
-											width: "70px",
-											height: "70px",
-											border: "5px solid gray"
-										}}
-									/>
-								</button>
+								<div
+									className="position-absolute rounded-circle"
+									style={{
+										width: "120px",
+										height: "120px",
+										borderWidth: "5px",
+										borderStyle: "solid",
+										borderColor: categoriesDelete
+											? color
+											: "transparent"
+									}}
+								/>
+								<i
+									className="text-black-50 material-icons d-none"
+									style={{
+										fontSize: "134px",
+										verticalAlign: "top"
+									}}
+								>
+									check_circle
+								</i>
 							</div>
 							<p
 								className="ml-3 h1 font-weight-light text-center"
@@ -82,7 +96,8 @@ const CategoryList = ({
 								className="text-muted border-left mb-0 pl-3"
 								style={{
 									listStyleType: "none",
-									borderWidth: "5px"
+									borderWidth: "5px",
+									marginRight: "45px"
 								}}
 							>
 								{Object.keys(infoList).map(info => {
@@ -100,7 +115,6 @@ const CategoryList = ({
 									);
 								})}
 							</ul>
-							<div style={{ width: "60px" }} />
 						</div>
 					</div>
 				</div>
@@ -112,15 +126,15 @@ const CategoryList = ({
 						<input
 							{...input}
 							id={input.name}
-							className="custom-control-input"
+							className="category-select custom-control-input"
 							type="checkbox"
 						/>
 						<label
-							className="custom-control-label mb-0 w-100"
+							className="label mb-0 w-100"
 							htmlFor={input.name}
 							style={{ cursor: "pointer" }}
 						>
-							{labelContents}
+							{label}
 						</label>
 					</React.Fragment>
 				);
@@ -133,7 +147,6 @@ const CategoryList = ({
 						name={_id}
 						type="checkbox"
 					/>
-					<div style={{ width: "60px" }} />
 					<div className="d-flex flex-column justify-content-center ml-4">
 						<IconEditDelete
 							action={setModalEditShow}

@@ -18,7 +18,12 @@ export default ({ action, text, setModalInfo, iconText }) => {
 				</Tooltip>
 			}
 		>
-			<button className="close" aria-label={text} onClick={handleClick}>
+			<button
+				className="close"
+				aria-label={text}
+				onClick={handleClick}
+				style={{ marginLeft: "50px" }}
+			>
 				<i
 					className="text-black-50 material-icons"
 					style={{ fontSize: "2.5rem" }}

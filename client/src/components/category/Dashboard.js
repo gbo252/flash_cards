@@ -44,9 +44,10 @@ const Dashboard = ({
 		}
 	};
 
-	const getSelectedCategories = () => {
+	const deleteSelected = () => {
 		const { values } = form.categoryDelete;
-		return Object.keys(values).filter(id => values[id]);
+		const toDelete = Object.keys(values).filter(id => values[id]);
+		deleteCategories(toDelete);
 	};
 
 	const renderSelectButton = () => {
@@ -64,9 +65,7 @@ const Dashboard = ({
 				<span>
 					<button
 						className="btn btn-danger rounded-pill ml-3"
-						onClick={() =>
-							deleteCategories(getSelectedCategories())
-						}
+						onClick={deleteSelected}
 					>
 						Delete Selected
 					</button>
