@@ -1,13 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
+import Overlay from "react-bootstrap/Overlay";
+import Tooltip from "../Tooltip";
 
 import CategoryList from "./CategoryList";
 import Spinner from "../Spinner";
 import ModalDeleteCategory from "../modals/ModalDeleteCategory";
 import ModalNewEditCategory from "../modals/ModalNewEditCategory";
-import SortCategoriesForm, { sortCategories } from "../forms/SortCategoriesForm";
-import FilterCategoriesForm, { filterCategories } from "../forms/FilterCategoriesForm";
+import SortCategoriesForm, {
+	sortCategories
+} from "../forms/SortCategoriesForm";
+import FilterCategoriesForm, {
+	filterCategories
+} from "../forms/FilterCategoriesForm";
 
 const Dashboard = ({
 	fetchCategories,
@@ -21,9 +27,12 @@ const Dashboard = ({
 }) => {
 	const [modalInfo, setModalInfo] = useState(null);
 	const [modalDeleteShow, setModalDeleteShow] = useState(false);
+	const [modalDeleteManyShow, setModalDeleteManyShow] = useState(false);
 	const [modalEditShow, setModalEditShow] = useState(false);
 	const [modalNewShow, setModalNewShow] = useState(false);
 	const [categoriesDelete, setCategoriesDelete] = useState(false);
+	const [dotsMenu, dotsMenuShow] = useState(false);
+	const dotsRef = useRef(null);
 
 	useEffect(() => {
 		fetchCategories();
@@ -32,45 +41,124 @@ const Dashboard = ({
 
 	const renderButton = () => {
 		if (categories) {
+			const atts = {};
+			if (form.categoryDelete) {
+				if (form.categoryDelete.values) {
+					const { values } = form.categoryDelete;
+					const checked = Object.keys(values).some(id => values[id]);
+					if (!checked) {
+						atts.disabled = true;
+					}
+				} else {
+					atts.disabled = true;
+				}
+			}
+
 			return (
-				<button
-					className="btn btn-outline-secondary rounded-pill"
-					onClick={() => setModalNewShow(true)}
-				>
-					Add Category
-				</button>
+				<div>
+					<Tooltip placement="top" text="New Category">
+						<button
+							className="btn btn-outline-danger rounded-circle"
+							aria-label="Add New Category"
+							onClick={e => {
+								setModalNewShow(true);
+								setCategoriesDelete(false);
+								e.currentTarget.blur();
+							}}
+							style={{ width: "70px", height: "70px" }}
+						>
+							<i
+								className="material-icons"
+								style={{
+									fontSize: "2.5rem",
+									verticalAlign: "top"
+								}}
+							>
+								add
+							</i>
+						</button>
+					</Tooltip>
+					<button
+						ref={dotsRef}
+						className="btn btn-outline-secondary rounded-circle ml-2"
+						onClick={e => {
+							dotsMenuShow(!dotsMenu);
+							e.currentTarget.blur();
+						}}
+						style={{ width: "70px", height: "70px" }}
+					>
+						<i
+							className="material-icons"
+							style={{
+								fontSize: "2.5rem",
+								verticalAlign: "top"
+							}}
+						>
+							more_horiz
+						</i>
+					</button>
+					<Overlay
+						target={dotsRef.current}
+						show={dotsMenu}
+						onHide={() => dotsMenuShow(false)}
+						placement="right"
+						rootClose
+					>
+						{({
+							placement,
+							scheduleUpdate,
+							arrowProps,
+							outOfBoundaries,
+							show: _show,
+							...props
+						}) => {
+							return (
+								<div
+									{...props}
+									className="d-flex flex-column justify-content-around rounded border bg-light ml-2 p-2"
+									style={{ ...props.style }}
+								>
+									<button
+										type="button"
+										className="btn btn-secondary rounded-pill mb-2"
+										onClick={() => {
+											dotsMenuShow(false);
+											setCategoriesDelete(
+												!categoriesDelete
+											);
+										}}
+									>
+										{categoriesDelete
+											? "Deselect Categories"
+											: "Select Categories"}
+									</button>
+									<button
+										type="button"
+										{...atts}
+										className="btn btn-danger rounded-pill"
+										onClick={deleteSelected}
+									>
+										Delete Selected
+									</button>
+								</div>
+							);
+						}}
+					</Overlay>
+				</div>
 			);
 		}
 	};
 
 	const deleteSelected = () => {
 		const { values } = form.categoryDelete;
-		const toDelete = Object.keys(values).filter(id => values[id]);
-		deleteCategories(toDelete);
-	};
-
-	const renderSelectButton = () => {
-		return (
-			<div className="custom-control custom-switch">
-				<input
-					type="checkbox"
-					className="custom-control-input"
-					id="select-switch"
-					onClick={() => setCategoriesDelete(!categoriesDelete)}
-				/>
-				<label className="custom-control-label" htmlFor="select-switch">
-					Select Categories
-				</label>
-				<span>
-					<button
-						className="btn btn-danger rounded-pill ml-3"
-						onClick={deleteSelected}
-					>
-						Delete Selected
-					</button>
-				</span>
-			</div>
-		);
+		const arrayOfIds = Object.keys(values).filter(id => values[id]);
+		const categoryNames = arrayOfIds.map(id => {
+			return categories.find(category => category._id === id).category;
+		});
+		setModalInfo({ categoryNames, arrayOfIds });
+		setModalDeleteManyShow(true);
+		dotsMenuShow(false);
+		setCategoriesDelete(false);
 	};
 
 	const renderCategories = () => {
@@ -78,7 +166,7 @@ const Dashboard = ({
 			return <Spinner />;
 		} else if (categories.length > 0) {
 			return (
-				<div className="my-4">
+				<div className="mb-4 mt-2">
 					<CategoryList
 						categories={categories}
 						categoriesDelete={categoriesDelete}
@@ -110,21 +198,24 @@ const Dashboard = ({
 			/>
 			<ModalDeleteCategory
 				modalInfo={modalInfo}
-				deleteCategory={deleteCategory}
+				action={deleteCategory}
 				show={modalDeleteShow}
 				setModalShow={setModalDeleteShow}
 			/>
-			<h1 className="display-4 text-center">Flash Cards Online</h1>
+			<ModalDeleteCategory
+				modalInfo={modalInfo}
+				action={deleteCategories}
+				show={modalDeleteManyShow}
+				setModalShow={setModalDeleteManyShow}
+			/>
+			<h1 className="display-3 text-center">Flash Cards Online</h1>
 			<p className="h4 mb-5 font-weight-light text-center">
 				An easy to use online flash card maker!
 			</p>
-			<div className="d-flex justify-content-between mb-3">
+			<div className="d-flex justify-content-between">
 				<SortCategoriesForm />
-				{renderButton()}
-			</div>
-			<div className="d-flex justify-content-between mb-3">
 				<FilterCategoriesForm />
-				{renderSelectButton()}
+				{renderButton()}
 			</div>
 			{renderCategories()}
 		</div>

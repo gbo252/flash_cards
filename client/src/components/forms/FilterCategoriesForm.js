@@ -22,16 +22,16 @@ export const filterCategories = (categories, form) => {
 
 const FilterCategoriesForm = () => {
 	return (
-		<div>
+		<React.Fragment>
 			<form className="form-inline">
 				<Field
 					component={FormField}
 					name="filter"
 					label="Filter Categories:"
 				/>
+				<Field name="filter" component={FormErrorMessage} />
 			</form>
-			<Field name="filter" component={FormErrorMessage} />
-		</div>
+		</React.Fragment>
 	);
 };
 

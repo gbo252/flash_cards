@@ -7,10 +7,7 @@ export const sortCategories = (categories, form) => {
 		return null;
 	}
 
-	const { values } = form.categorySortBy;
-	const sortBy = values.sortByMethod + "-" + values.direction;
-
-	switch (sortBy) {
+	switch (form.categorySortBy.values.sortByMethod) {
 		case "alphabetic-asc":
 			return _.sortBy(categories, ["category"]);
 		case "alphabetic-desc":
@@ -38,17 +35,21 @@ export const sortCategories = (categories, form) => {
 };
 
 const sortByOptions = {
-	Alphabetic: "alphabetic",
-	"Flash Card Total": "total-cards",
-	"Date Created": "date-created",
-	"Last Updated": "last-updated"
+	"Alphabetic - ascending": "alphabetic-asc",
+	"Alphabetic - descending": "alphabetic-desc",
+	"Flash Card Total - ascending": "total-cards-asc",
+	"Flash Card Total - descending": "total-cards-desc",
+	"Date Created - ascending": "date-created-asc",
+	"Date Created - descending": "date-created-desc",
+	"Last Updated - ascending": "last-updated-asc",
+	"Last Updated - descending": "last-updated-desc"
 };
 
 const SortCategoriesForm = () => {
 	return (
 		<form className="form-inline">
 			<div className="form-group">
-				<label htmlFor="sort-by-method">Sort By:</label>
+				<label htmlFor="sort-by-method">Sort:</label>
 				<Field
 					name="sortByMethod"
 					id="sort-by-method"
@@ -68,7 +69,7 @@ const SortCategoriesForm = () => {
 					})}
 				</Field>
 			</div>
-			<div className="form-group">
+			{/* <div className="form-group">
 				<label className="sr-only" htmlFor="direction" />
 				<Field
 					name="direction"
@@ -79,13 +80,13 @@ const SortCategoriesForm = () => {
 					<option value="asc">Ascending</option>
 					<option value="desc">Descending</option>
 				</Field>
-			</div>
+			</div> */}
 		</form>
 	);
 };
 
 export default reduxForm({
 	form: "categorySortBy",
-	initialValues: { sortByMethod: "alphabetic", direction: "asc" },
+	initialValues: { sortByMethod: "alphabetic-asc" },
 	destroyOnUnmount: false
 })(SortCategoriesForm);

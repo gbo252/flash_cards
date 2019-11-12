@@ -20,7 +20,7 @@ const Header = ({ auth }) => {
 	};
 
 	return (
-		<nav className="navbar navbar-light shadow">
+		<nav className="navbar fixed-top navbar-light bg-light border-bottom">
 			<Link to="/" className="navbar-brand">
 				Flash Cards Online
 			</Link>

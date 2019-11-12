@@ -21,6 +21,7 @@ const Label = ({
 			style={{
 				borderColor: color,
 				borderWidth: "5px",
+				backgroundClip: "padding-box",
 				userSelect: "none"
 			}}
 			onClick={() => {

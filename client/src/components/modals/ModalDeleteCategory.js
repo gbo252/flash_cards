@@ -1,11 +1,25 @@
 import React from "react";
 import Modal from "./Modal";
 
-export default ({ modalInfo, deleteCategory, show, setModalShow }) => {
+export default ({ modalInfo, action, show, setModalShow }) => {
 	const renderContent = () => {
-		return modalInfo
-			? `Are you sure want to delete the category: ${modalInfo.category}`
-			: null;
+		if (modalInfo) {
+			return (
+				<React.Fragment>
+					<p>Are you sure want to delete the following categories and any related flash cards:</p>
+					<ul>
+						{modalInfo.category ? (
+							<li>{modalInfo.category}</li>
+						) : (
+							modalInfo.categoryNames.map(name => (
+								<li key={name}>{name}</li>
+							))
+						)}
+					</ul>
+				</React.Fragment>
+			);
+		}
+		return null;
 	};
 
 	const renderActions = () => {
@@ -20,7 +34,11 @@ export default ({ modalInfo, deleteCategory, show, setModalShow }) => {
 				<button
 					className="btn btn-success mx-2"
 					onClick={() => {
-						deleteCategory(modalInfo._id);
+						action(
+							modalInfo.arrayOfIds
+								? modalInfo.arrayOfIds
+								: modalInfo._id
+						);
 						setModalShow(false);
 					}}
 				>
@@ -32,7 +50,7 @@ export default ({ modalInfo, deleteCategory, show, setModalShow }) => {
 
 	return (
 		<Modal
-			title="Delete Category"
+			title="Delete Categories"
 			content={renderContent()}
 			actions={renderActions()}
 			show={show}

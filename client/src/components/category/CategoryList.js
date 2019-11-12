@@ -55,13 +55,13 @@ const CategoryList = ({
 				<div className="d-flex flex-column justify-content-center ml-4">
 					<IconEditDelete
 						action={setModalEditShow}
-						text="edit"
+						text="Edit"
 						iconText="edit"
 						setModalInfo={() => setModalInfo({ category, color })}
 					/>
 					<IconEditDelete
 						action={setModalDeleteShow}
-						text="delete"
+						text="Delete"
 						iconText="remove_circle_outline"
 						setModalInfo={() => setModalInfo({ _id, category })}
 					/>

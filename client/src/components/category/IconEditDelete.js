@@ -1,6 +1,5 @@
 import React from "react";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip";
+import Tooltip from "../Tooltip";
 
 export default ({ action, text, setModalInfo, iconText }) => {
 	const handleClick = e => {
@@ -10,14 +9,7 @@ export default ({ action, text, setModalInfo, iconText }) => {
 	};
 
 	return (
-		<OverlayTrigger
-			placement="right"
-			overlay={
-				<Tooltip id={`${text}-category-tooltip`}>
-					{text.toUpperCase()}
-				</Tooltip>
-			}
-		>
+		<Tooltip placement="right" text={text}>
 			<button
 				className="close"
 				aria-label={text}
@@ -31,6 +23,6 @@ export default ({ action, text, setModalInfo, iconText }) => {
 					{iconText}
 				</i>
 			</button>
-		</OverlayTrigger>
+		</Tooltip>
 	);
 };

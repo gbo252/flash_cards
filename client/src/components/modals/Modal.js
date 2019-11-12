@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 
-export default ({ id, title, content, actions, ...rest }) => {
+export default ({ title, content, actions, ...rest }) => {
 	return (
 		<Modal
 			{...rest}
