@@ -17,7 +17,7 @@ export default ({ input, label }) => {
 			<input
 				{...input}
 				id={label}
-				className="form-control"
+				className="form-control mr-2"
 				autoComplete="off"
 			/>
 		</div>

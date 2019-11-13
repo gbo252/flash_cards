@@ -19,7 +19,7 @@ const CategoryList = ({
 		}
 	}, [categoriesDelete, reset]);
 
-	return categories.map(categ => {
+	return categories.map(cat => {
 		const categoryComponent = ({ input }) => {
 			return (
 				<React.Fragment>
@@ -28,6 +28,7 @@ const CategoryList = ({
 						id={input.name}
 						className="category-select custom-control-input"
 						type="checkbox"
+						onClick={e => e.currentTarget.blur()}
 					/>
 					<label
 						className="label mb-0 w-100"
@@ -35,7 +36,7 @@ const CategoryList = ({
 						style={{ cursor: "pointer" }}
 					>
 						<Label
-							category={categ}
+							category={cat}
 							categoriesDelete={categoriesDelete}
 						/>
 					</label>
@@ -43,7 +44,7 @@ const CategoryList = ({
 			);
 		};
 
-		const { _id, category, color } = categ;
+		const { _id, category, color } = cat;
 
 		return (
 			<div key={_id} className="d-flex my-3">

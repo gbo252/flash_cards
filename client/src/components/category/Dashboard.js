@@ -8,6 +8,7 @@ import CategoryList from "./CategoryList";
 import Spinner from "../Spinner";
 import ModalDeleteCategory from "../modals/ModalDeleteCategory";
 import ModalNewEditCategory from "../modals/ModalNewEditCategory";
+import Toast from "../Toast";
 import SortCategoriesForm, {
 	sortCategories
 } from "../forms/SortCategoriesForm";
@@ -26,18 +27,47 @@ const Dashboard = ({
 	newCategory
 }) => {
 	const [modalInfo, setModalInfo] = useState(null);
+
 	const [modalDeleteShow, setModalDeleteShow] = useState(false);
 	const [modalDeleteManyShow, setModalDeleteManyShow] = useState(false);
 	const [modalEditShow, setModalEditShow] = useState(false);
 	const [modalNewShow, setModalNewShow] = useState(false);
-	const [categoriesDelete, setCategoriesDelete] = useState(false);
+
+	const [toastNewShow, setToastNewShow] = useState(false);
+	const [toastEditShow, setToastEditShow] = useState(false);
+	const [toastDeleteShow, setToastDeleteShow] = useState(false);
+
 	const [dotsMenu, dotsMenuShow] = useState(false);
+	const [categoriesDelete, setCategoriesDelete] = useState(false);
 	const dotsRef = useRef(null);
 
 	useEffect(() => {
 		fetchCategories();
 		clearFlashCards();
 	}, [fetchCategories, clearFlashCards]);
+
+	const renderSelectedNumber = () => {
+		if (!categoriesDelete) {
+			return null;
+		}
+		if (form.categoryDelete) {
+			if (form.categoryDelete.values) {
+				const { values } = form.categoryDelete;
+				const total = Object.keys(values).filter(id => values[id])
+					.length;
+				return (
+					<small className="form-text text-danger">
+						{total} categories selected
+					</small>
+				);
+			}
+		}
+		return (
+			<small className="form-text text-danger">
+				0 categories selected
+			</small>
+		);
+	};
 
 	const renderButton = () => {
 		if (categories) {
@@ -186,35 +216,57 @@ const Dashboard = ({
 			<ModalNewEditCategory
 				action={newCategory}
 				title="New"
-				show={modalNewShow}
+				modalShow={modalNewShow}
 				setModalShow={setModalNewShow}
+				setToastShow={setToastNewShow}
 			/>
 			<ModalNewEditCategory
 				modalInfo={modalInfo}
 				action={editCategory}
 				title="Edit"
-				show={modalEditShow}
+				modalShow={modalEditShow}
 				setModalShow={setModalEditShow}
+				setToastShow={setToastEditShow}
 			/>
 			<ModalDeleteCategory
 				modalInfo={modalInfo}
 				action={deleteCategory}
-				show={modalDeleteShow}
+				modalShow={modalDeleteShow}
 				setModalShow={setModalDeleteShow}
+				setToastShow={setToastDeleteShow}
 			/>
 			<ModalDeleteCategory
 				modalInfo={modalInfo}
 				action={deleteCategories}
-				show={modalDeleteManyShow}
+				modalShow={modalDeleteManyShow}
 				setModalShow={setModalDeleteManyShow}
+				setToastShow={setToastDeleteShow}
+			/>
+			<Toast
+				content="New category created"
+				toastShow={toastNewShow}
+				setToastShow={setToastNewShow}
+			/>
+			<Toast
+				content="Category edited successfully"
+				toastShow={toastEditShow}
+				setToastShow={setToastEditShow}
+			/>
+			<Toast
+				content="Categories successfully deleted"
+				toastShow={toastDeleteShow}
+				setToastShow={setToastDeleteShow}
 			/>
 			<h1 className="display-3 text-center">Flash Cards Online</h1>
 			<p className="h4 mb-5 font-weight-light text-center">
 				An easy to use online flash card maker!
 			</p>
 			<div className="d-flex justify-content-between">
-				<SortCategoriesForm />
 				<FilterCategoriesForm />
+				{renderSelectedNumber()}
+			</div>
+			<div className="d-flex justify-content-between">
+				<SortCategoriesForm />
 				{renderButton()}
 			</div>
 			{renderCategories()}
@@ -229,7 +281,4 @@ const mapStateToProps = ({ categories, form }) => {
 	};
 };
 
-export default connect(
-	mapStateToProps,
-	actions
-)(Dashboard);
+export default connect(mapStateToProps, actions)(Dashboard);

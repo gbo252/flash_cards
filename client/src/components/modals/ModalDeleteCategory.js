@@ -1,12 +1,21 @@
 import React from "react";
 import Modal from "./Modal";
 
-export default ({ modalInfo, action, show, setModalShow }) => {
+export default ({
+	modalInfo,
+	action,
+	modalShow,
+	setModalShow,
+	setToastShow
+}) => {
 	const renderContent = () => {
 		if (modalInfo) {
 			return (
 				<React.Fragment>
-					<p>Are you sure want to delete the following categories and any related flash cards:</p>
+					<p>
+						Are you sure want to delete the following categories and
+						any related flash cards:
+					</p>
 					<ul>
 						{modalInfo.category ? (
 							<li>{modalInfo.category}</li>
@@ -40,6 +49,7 @@ export default ({ modalInfo, action, show, setModalShow }) => {
 								: modalInfo._id
 						);
 						setModalShow(false);
+						setToastShow(true);
 					}}
 				>
 					Submit
@@ -53,7 +63,7 @@ export default ({ modalInfo, action, show, setModalShow }) => {
 			title="Delete Categories"
 			content={renderContent()}
 			actions={renderActions()}
-			show={show}
+			show={modalShow}
 			onHide={() => setModalShow(false)}
 		/>
 	);

@@ -2,10 +2,18 @@ import React from "react";
 import CategoryForm from "../forms/CategoryForm";
 import Modal from "./Modal";
 
-export default ({ modalInfo, action, title, show, setModalShow }) => {
+export default ({
+	modalInfo,
+	action,
+	title,
+	modalShow,
+	setModalShow,
+	setToastShow
+}) => {
 	const onSubmit = formValues => {
 		action(formValues, modalInfo ? modalInfo.category : null);
 		setModalShow(false);
+		setToastShow(true);
 	};
 
 	const renderContent = () => {
@@ -41,7 +49,7 @@ export default ({ modalInfo, action, title, show, setModalShow }) => {
 			title={`${title} Category`}
 			content={renderContent()}
 			actions={renderActions()}
-			show={show}
+			show={modalShow}
 			onHide={() => setModalShow(false)}
 		/>
 	);
