@@ -46,7 +46,7 @@ export default ({
 						action(
 							modalInfo.arrayOfIds
 								? modalInfo.arrayOfIds
-								: modalInfo._id
+								: [modalInfo._id]
 						);
 						setModalShow(false);
 						setToastShow(true);

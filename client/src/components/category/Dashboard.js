@@ -21,17 +21,15 @@ const Dashboard = ({
 	clearFlashCards,
 	categories,
 	form,
-	deleteCategory,
 	deleteCategories,
 	editCategory,
 	newCategory
 }) => {
 	const [modalInfo, setModalInfo] = useState(null);
 
-	const [modalDeleteShow, setModalDeleteShow] = useState(false);
-	const [modalDeleteManyShow, setModalDeleteManyShow] = useState(false);
-	const [modalEditShow, setModalEditShow] = useState(false);
 	const [modalNewShow, setModalNewShow] = useState(false);
+	const [modalEditShow, setModalEditShow] = useState(false);
+	const [modalDeleteShow, setModalDeleteShow] = useState(false);
 
 	const [toastNewShow, setToastNewShow] = useState(false);
 	const [toastEditShow, setToastEditShow] = useState(false);
@@ -186,7 +184,7 @@ const Dashboard = ({
 			return categories.find(category => category._id === id).category;
 		});
 		setModalInfo({ categoryNames, arrayOfIds });
-		setModalDeleteManyShow(true);
+		setModalDeleteShow(true);
 		dotsMenuShow(false);
 		setCategoriesDelete(false);
 	};
@@ -230,16 +228,9 @@ const Dashboard = ({
 			/>
 			<ModalDeleteCategory
 				modalInfo={modalInfo}
-				action={deleteCategory}
+				action={deleteCategories}
 				modalShow={modalDeleteShow}
 				setModalShow={setModalDeleteShow}
-				setToastShow={setToastDeleteShow}
-			/>
-			<ModalDeleteCategory
-				modalInfo={modalInfo}
-				action={deleteCategories}
-				modalShow={modalDeleteManyShow}
-				setModalShow={setModalDeleteManyShow}
 				setToastShow={setToastDeleteShow}
 			/>
 			<Toast

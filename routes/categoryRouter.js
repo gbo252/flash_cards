@@ -50,13 +50,7 @@ categoryRouter.patch("/edit/:category", requireLogin, async (req, res) => {
 	res.send({});
 });
 
-categoryRouter.delete("/delete/:id", requireLogin, async (req, res) => {
-	await Category.deleteOne({ _id: req.params.id });
-
-	res.send({});
-});
-
-categoryRouter.delete("/delete-many", requireLogin, async (req, res) => {
+categoryRouter.delete("/delete", requireLogin, async (req, res) => {
 	await Category.remove({ _id: { $in: req.body } });
 
 	res.send({});
