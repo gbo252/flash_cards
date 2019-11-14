@@ -87,7 +87,7 @@ const Label = ({
 					<div className="d-lg-none close mr-4 mt-3">
 						<i
 							className="text-black-50 material-icons"
-							style={{ fontSize: "2.5rem" }}
+							style={{ fontSize: "2rem" }}
 						>
 							info_outline
 						</i>

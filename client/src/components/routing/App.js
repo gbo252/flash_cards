@@ -28,7 +28,7 @@ const App = ({ fetchUser }) => {
 			<ModalNewEditCategory title="Edit" />
 			<ModalDeleteCategory />
 			<ToastComponent />
-			<div className="container">
+			<div className="container px-1 p-sm-3">
 				<Switch>
 					<Route exact path="/login" component={Login} />
 					<PrivateRoute exact path="/" component={Dashboard} />
