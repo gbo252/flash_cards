@@ -22,18 +22,17 @@ const IconEditDelete = ({
 	};
 
 	return (
-		<Tooltip placement="right" text={text}>
+		<Tooltip placement="top" text={text}>
 			<button
 				className="close"
 				aria-label={text}
 				onClick={handleClick}
-				style={{ marginLeft: "50px" }}
 			>
 				<i
 					className="text-black-50 material-icons"
 					style={{ fontSize: "2.5rem" }}
 				>
-					{text === "Edit" ? "edit" : "remove_circle_outline"}
+					{text === "Edit" ? "edit" : "cancel"}
 				</i>
 			</button>
 		</Tooltip>

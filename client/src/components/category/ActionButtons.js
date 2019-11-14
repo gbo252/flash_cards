@@ -9,12 +9,13 @@ const ActionButtons = ({
 	categories,
 	form,
 	categoriesDelete,
-	dotsMenuShow,
 	setCategoriesDelete,
 	setModalInfo,
 	setModalNewShow,
 	setModalDeleteShow,
-	setDotsMenuShow
+	dotsMenuShow,
+	setDotsMenuShow,
+	screen
 }) => {
 	const dotsRef = React.useRef(null);
 
@@ -47,7 +48,7 @@ const ActionButtons = ({
 		<React.Fragment>
 			<Tooltip placement="top" text="New Category">
 				<button
-					className="btn btn-outline-danger rounded-circle"
+					className="btn btn-outline-danger rounded-circle m-1"
 					aria-label="Add New Category"
 					onClick={e => {
 						setModalInfo(null);
@@ -55,12 +56,12 @@ const ActionButtons = ({
 						setCategoriesDelete(false);
 						e.currentTarget.blur();
 					}}
-					style={{ width: "70px", height: "70px" }}
+					style={{ width: "4rem", height: "4rem" }}
 				>
 					<i
 						className="material-icons"
 						style={{
-							fontSize: "2.5rem",
+							fontSize: "2.3rem",
 							verticalAlign: "top"
 						}}
 					>
@@ -70,17 +71,17 @@ const ActionButtons = ({
 			</Tooltip>
 			<button
 				ref={dotsRef}
-				className="btn btn-outline-secondary rounded-circle ml-2"
+				className="btn btn-outline-secondary rounded-circle m-1"
 				onClick={e => {
 					setDotsMenuShow(!dotsMenuShow);
 					e.currentTarget.blur();
 				}}
-				style={{ width: "70px", height: "70px" }}
+				style={{ width: "4rem", height: "4rem" }}
 			>
 				<i
 					className="material-icons"
 					style={{
-						fontSize: "2.5rem",
+						fontSize: "2.3rem",
 						verticalAlign: "top"
 					}}
 				>
@@ -105,7 +106,7 @@ const ActionButtons = ({
 					return (
 						<div
 							{...props}
-							className="d-flex flex-column justify-content-around rounded border bg-light ml-2 p-2"
+							className={`d-flex flex-column justify-content-around rounded border bg-light ml-2 p-2 ${screen}`}
 							style={{ ...props.style }}
 						>
 							<button

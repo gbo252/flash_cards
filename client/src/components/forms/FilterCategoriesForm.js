@@ -3,29 +3,25 @@ import { reduxForm, Field } from "redux-form";
 import FormField from "./FormField";
 
 export const filterCategories = (categories, form) => {
-	if (!categories || !form) {
+	if (form && categories) {
+		if (form.categoriesFilter) {
+			if (form.categoriesFilter.values) {
+				const { filter } = form.categoriesFilter.values;
+				const regex = new RegExp(filter, "gi");
+				return categories.filter(({ category }) =>
+					category.match(regex)
+				);
+			}
+			return categories;
+		}
 		return null;
 	}
-
-	if (!form.categoriesFilter) {
-		return null;
-	}
-
-	if (!form.categoriesFilter.values) {
-		return categories;
-	}
-
-	const { filter } = form.categoriesFilter.values;
-	const regex = new RegExp(filter, "gi");
-	return categories.filter(({ category }) => category.match(regex));
+	return null;
 };
 
 const FilterCategoriesForm = () => {
 	return (
-		<form
-			className="py-2 form-inline d-flex flex-column align-items-end"
-			style={{ flex: "1 1 0px" }}
-		>
+		<form className="form-inline d-flex flex-column align-items-lg-end">
 			<Field component={FormField} name="filter" label="Filter:" />
 		</form>
 	);

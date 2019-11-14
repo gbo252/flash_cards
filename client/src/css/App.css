@@ -2,26 +2,104 @@ html,
 body {
 	font-size: 16px;
 	font-family: Exo;
-	margin-top: 40px;
+}
+
+label,
+li {
+	font-size: 1rem;
+}
+
+.cat-circle {
+	width: 7rem;
+	height: 7rem;
+}
+
+.check-circle {
+	font-size: 7.7rem;
 }
 
 @media only screen and (max-width: 1199px) {
 	p.h1 {
 		font-size: 1.6rem;
 	}
+	h1.display-3 {
+		font-size: 3.5rem;
+	}
 }
 
 @media only screen and (max-width: 991px) {
+	html {
+		font-size: 15px;
+	}
 }
 
 @media only screen and (max-width: 767px) {
 	html {
 		font-size: 14px;
 	}
+	body
+		> div.fade.d-flex.flex-column.justify-content-around.rounded.border.bg-light.ml-2.p-2.large.show {
+		visibility: hidden !important;
+	}
+}
+
+/* MIN WIDTH */
+@media only screen and (min-width: 768px) {
+	body
+		> div.fade.d-flex.flex-column.justify-content-around.rounded.border.bg-light.ml-2.p-2.small.show {
+		visibility: hidden !important;
+	}
 }
 
 @media only screen and (max-width: 575px) {
 	html {
 		font-size: 12px;
+	}
+	h1.display-3 {
+		font-size: 3rem;
+	}
+	p.h1 {
+		font-size: 16px;
+	}
+	.cat-circle {
+		width: 50px;
+		height: 50px;
+	}
+	.check-circle {
+		font-size: 4rem;
+	}
+	.form-inline label {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 0;
+	}
+	.form-inline .form-group {
+		display: flex;
+		flex: 0 0 auto;
+		flex-flow: row wrap;
+		align-items: center;
+		margin-bottom: 0;
+	}
+	.form-inline .form-control {
+		display: inline-block;
+		width: auto;
+		vertical-align: middle;
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	h1.display-3 {
+		font-size: 2.5rem;
+	}
+	p.h1 {
+		font-size: 12px;
+	}
+	.cat-circle {
+		width: 40px;
+		height: 40px;
+	}
+	.check-circle {
+		font-size: 3rem;
 	}
 }
