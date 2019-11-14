@@ -3,11 +3,16 @@ import { reduxForm, Field } from "redux-form";
 import FormField from "./FormField";
 
 export const filterCategories = (categories, form) => {
+	const regexEscape = text => {
+		// eslint-disable-next-line
+		return text.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
+	};
+
 	if (form && categories) {
 		if (form.categoriesFilter) {
 			if (form.categoriesFilter.values) {
 				const { filter } = form.categoriesFilter.values;
-				const regex = new RegExp(filter, "gi");
+				const regex = new RegExp(regexEscape(filter), "gi");
 				return categories.filter(({ category }) =>
 					category.match(regex)
 				);

@@ -17,7 +17,10 @@ const ToastComponent = ({ toastContent, toastShow, setToastShow }) => {
 				position: "fixed",
 				bottom: "20px",
 				right: "20px",
-				minWidth: "250px"
+				minWidth: "250px",
+				zIndex: "10",
+				borderWidth: "4px",
+				borderColor: "rgba(0, 0, 0, 0.2)"
 			}}
 		>
 			<Toast.Header>

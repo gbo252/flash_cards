@@ -18,7 +18,7 @@ const Label = ({
 		return Object.keys(infoList).map(info => {
 			const infoContent = infoList[info];
 			return (
-				<li key={info} className="border-bottom py-1 px-3">
+				<li key={info} className="info-items border-bottom py-1 px-3">
 					{info}: <span className="h6">{infoContent}</span>
 				</li>
 			);

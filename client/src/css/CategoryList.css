@@ -42,6 +42,13 @@ input[type="checkbox"].category-select:checked
 	color: red;
 }
 
+input[type="checkbox"].category-select:checked
+	+ label.label
+	> div.category-delete
+	li.info-items {
+	color: red;
+}
+
 input[type="checkbox"].category-select:focus + label.label > div.category-card {
 	transform: scale(1.02);
 	box-shadow: 5px 5px 10px 5px rgba(146, 146, 146, 0.3);
