@@ -94,6 +94,7 @@ li {
 	}
 	p.h1 {
 		font-size: 12px;
+		font-weight: bold !important;
 	}
 	.cat-circle {
 		width: 40px;

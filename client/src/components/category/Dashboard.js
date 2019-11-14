@@ -36,8 +36,8 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories }) => {
 					key={color}
 					className="mx-2"
 					style={{
-						width: "30px",
-						height: "30px",
+						width: "2rem",
+						height: "2rem",
 						borderRadius: "5px",
 						backgroundColor: color
 					}}
