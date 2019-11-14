@@ -63,13 +63,13 @@ const Label = ({
 						</i>
 					</div>
 					<p
-						className="ml-3 h1 font-weight-light text-center"
+						className="mx-3 h1 font-weight-light text-center text-break"
 						style={{ letterSpacing: "2px" }}
 					>
 						{category}
 					</p>
 				</div>
-				<div className="d-flex align-items-center">
+				<div className="d-flex align-items-center text-nowrap">
 					<ul
 						className="text-muted border-left mb-0 pl-3"
 						style={{

@@ -43,10 +43,6 @@ const validateCategory = (categories, category, initialValues) => {
 		);
 
 		categoryNames.splice(index, 1);
-
-		if (categoryNames.includes(category.toLowerCase())) {
-			return `There is already a category called ${category}`;
-		}
 	}
 
 	if (categoryNames.includes(category.toLowerCase())) {
@@ -65,6 +61,12 @@ const validate = (formValues, { categories, initialValues }) => {
 			formValues.category || "",
 			initialValues
 		);
+	}
+
+	if (formValues.category) {
+		if (formValues.category.length > 18) {
+			errors.category = "Category name must be 18 characters or less";
+		}
 	}
 
 	if (!formValues.category) {
