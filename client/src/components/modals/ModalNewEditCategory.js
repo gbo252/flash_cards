@@ -1,18 +1,36 @@
 import React from "react";
-import CategoryForm from "../forms/CategoryForm";
-import Modal from "./Modal";
+import { connect } from "react-redux";
+import * as actions from "../../actions";
 
-export default ({
-	modalInfo,
-	action,
+import Modal from "react-bootstrap/Modal";
+import CategoryForm from "../forms/CategoryForm";
+
+const ModalNewEditCategory = ({
+	newCategory,
+	editCategory,
 	title,
-	modalShow,
-	setModalShow,
-	setToastShow
+	modalInfo,
+	modalNewShow,
+	modalEditShow,
+	setModalNewShow,
+	setModalEditShow,
+	setToastShow,
+	setToastContent
 }) => {
+	const setModalShow = title === "New" ? setModalNewShow : setModalEditShow;
+
 	const onSubmit = formValues => {
-		action(formValues, modalInfo ? modalInfo.category : null);
+		if (title === "New") {
+			newCategory(formValues);
+		} else {
+			editCategory(formValues, modalInfo.category);
+		}
 		setModalShow(false);
+		setToastContent(
+			title === "New"
+				? "Category added successfully"
+				: "Category edited successfully"
+		);
 		setToastShow(true);
 	};
 
@@ -46,11 +64,25 @@ export default ({
 
 	return (
 		<Modal
-			title={`${title} Category`}
-			content={renderContent()}
-			actions={renderActions()}
-			show={modalShow}
+			show={title === "New" ? modalNewShow : modalEditShow}
 			onHide={() => setModalShow(false)}
-		/>
+			size="lg"
+			aria-labelledby="contained-modal-title-vcenter"
+			centered
+		>
+			<Modal.Header closeButton>
+				<Modal.Title id="contained-modal-title-vcenter">
+					{`${title} Category`}
+				</Modal.Title>
+			</Modal.Header>
+			<Modal.Body>{renderContent()}</Modal.Body>
+			<Modal.Footer>{renderActions()}</Modal.Footer>
+		</Modal>
 	);
 };
+
+const mapStateToProps = ({ modalInfo, modalNewShow, modalEditShow }) => {
+	return { modalInfo, modalNewShow, modalEditShow };
+};
+
+export default connect(mapStateToProps, actions)(ModalNewEditCategory);

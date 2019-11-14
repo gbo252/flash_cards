@@ -1,7 +1,7 @@
 import React from "react";
 
 export const FormErrorMessage = ({ meta: { error } }) => {
-	return <small className="form-text text-danger">{error}</small>;
+	return <small className="form-text text-danger ml-5 pl-2">{error}</small>;
 };
 
 export const FormErrorMessageTouched = ({ meta: { error, touched } }) => {

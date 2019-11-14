@@ -9,26 +9,37 @@ export const sortCategories = (categories, form) => {
 
 	switch (form.categorySortBy.values.sortByMethod) {
 		case "alphabetic-asc":
-			return _.sortBy(categories, ["category"]);
+			return _.orderBy(
+				categories,
+				[category => category.category.toLowerCase()],
+				["asc"]
+			);
 		case "alphabetic-desc":
-			return _.sortBy(categories, ["category"]).reverse();
+			return _.orderBy(
+				categories,
+				[category => category.category.toLowerCase()],
+				["desc"]
+			);
 		case "total-cards-asc":
-			return _.sortBy(categories, ["cardsTotal", "category"]);
+			return _.orderBy(
+				categories,
+				["cardsTotal", category => category.category.toLowerCase()],
+				["asc", "asc"]
+			);
 		case "total-cards-desc":
-			return _.chain(categories)
-				.sortBy(["category"])
-				.reverse()
-				.sortBy(["cardsTotal"])
-				.reverse()
-				.value();
+			return _.orderBy(
+				categories,
+				["cardsTotal", category => category.category.toLowerCase()],
+				["desc", "asc"]
+			);
 		case "date-created-asc":
-			return categories;
+			return _.orderBy(categories, ["dateCreated"], ["asc"]);
 		case "date-created-desc":
-			return [...categories].reverse();
+			return _.orderBy(categories, ["dateCreated"], ["desc"]);
 		case "last-updated-asc":
-			return _.sortBy(categories, ["lastEdited"]);
+			return _.orderBy(categories, ["lastEdited"], ["asc"]);
 		case "last-updated-desc":
-			return _.sortBy(categories, ["lastEdited"]).reverse();
+			return _.orderBy(categories, ["lastEdited"], ["desc"]);
 		default:
 			return categories;
 	}
@@ -69,18 +80,6 @@ const SortCategoriesForm = () => {
 					})}
 				</Field>
 			</div>
-			{/* <div className="form-group">
-				<label className="sr-only" htmlFor="direction" />
-				<Field
-					name="direction"
-					id="direction"
-					component="select"
-					className="form-control mx-2"
-				>
-					<option value="asc">Ascending</option>
-					<option value="desc">Descending</option>
-				</Field>
-			</div> */}
 		</form>
 	);
 };

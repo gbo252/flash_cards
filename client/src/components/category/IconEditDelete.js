@@ -1,9 +1,22 @@
 import React from "react";
-import Tooltip from "../Tooltip";
+import { connect } from "react-redux";
+import * as actions from "../../actions";
 
-export default ({ action, text, setModalInfo, iconText }) => {
+import Tooltip from "../generic/Tooltip";
+
+const IconEditDelete = ({
+	text,
+	setModalInfo,
+	modalInfo,
+	setModalEditShow,
+	setModalDeleteShow,
+	setCategoriesDelete
+}) => {
+	const action = text === "Edit" ? setModalEditShow : setModalDeleteShow;
+
 	const handleClick = e => {
-		setModalInfo();
+		setModalInfo(modalInfo);
+		setCategoriesDelete(false);
 		action(true);
 		e.currentTarget.blur();
 	};
@@ -20,9 +33,11 @@ export default ({ action, text, setModalInfo, iconText }) => {
 					className="text-black-50 material-icons"
 					style={{ fontSize: "2.5rem" }}
 				>
-					{iconText}
+					{text === "Edit" ? "edit" : "remove_circle_outline"}
 				</i>
 			</button>
 		</Tooltip>
 	);
 };
+
+export default connect(null, actions)(IconEditDelete);

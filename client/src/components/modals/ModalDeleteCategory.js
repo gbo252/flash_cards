@@ -1,13 +1,26 @@
 import React from "react";
-import Modal from "./Modal";
+import { connect } from "react-redux";
+import * as actions from "../../actions";
 
-export default ({
+import Modal from "react-bootstrap/Modal";
+
+const ModalDeleteCategory = ({
 	modalInfo,
-	action,
-	modalShow,
-	setModalShow,
-	setToastShow
+	modalDeleteShow,
+	deleteCategories,
+	setModalDeleteShow,
+	setToastShow,
+	setToastContent
 }) => {
+	const renderTitle = () => {
+		if (modalInfo) {
+			return modalInfo.arrayOfIds
+				? "Delete Categories"
+				: "Delete Category";
+		}
+		return null;
+	};
+
 	const renderContent = () => {
 		if (modalInfo) {
 			return (
@@ -36,19 +49,24 @@ export default ({
 			<div>
 				<button
 					className="btn btn-danger mx-2"
-					onClick={() => setModalShow(false)}
+					onClick={() => setModalDeleteShow(false)}
 				>
 					Cancel
 				</button>
 				<button
 					className="btn btn-success mx-2"
 					onClick={() => {
-						action(
+						deleteCategories(
 							modalInfo.arrayOfIds
 								? modalInfo.arrayOfIds
 								: [modalInfo._id]
 						);
-						setModalShow(false);
+						setModalDeleteShow(false);
+						setToastContent(
+							modalInfo.arrayOfIds
+								? "Categories deleted successfully"
+								: "Category deleted successfully"
+						);
 						setToastShow(true);
 					}}
 				>
@@ -60,11 +78,25 @@ export default ({
 
 	return (
 		<Modal
-			title="Delete Categories"
-			content={renderContent()}
-			actions={renderActions()}
-			show={modalShow}
-			onHide={() => setModalShow(false)}
-		/>
+			show={modalDeleteShow}
+			onHide={() => setModalDeleteShow(false)}
+			size="lg"
+			aria-labelledby="contained-modal-title-vcenter"
+			centered
+		>
+			<Modal.Header closeButton>
+				<Modal.Title id="contained-modal-title-vcenter">
+					{renderTitle()}
+				</Modal.Title>
+			</Modal.Header>
+			<Modal.Body>{renderContent()}</Modal.Body>
+			<Modal.Footer>{renderActions()}</Modal.Footer>
+		</Modal>
 	);
 };
+
+const mapStateToProps = ({ modalInfo, modalDeleteShow }) => {
+	return { modalInfo, modalDeleteShow };
+};
+
+export default connect(mapStateToProps, actions)(ModalDeleteCategory);

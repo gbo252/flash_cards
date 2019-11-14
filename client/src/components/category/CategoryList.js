@@ -1,18 +1,12 @@
 import "../../css/CategoryList.css";
 import React from "react";
+import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
 
 import Label from "./Label";
 import IconEditDelete from "./IconEditDelete";
 
-const CategoryList = ({
-	categories,
-	categoriesDelete,
-	setModalInfo,
-	setModalDeleteShow,
-	setModalEditShow,
-	reset
-}) => {
+const CategoryList = ({ categories, categoriesDelete, reset }) => {
 	React.useEffect(() => {
 		if (!categoriesDelete) {
 			reset("categoryDelete");
@@ -55,16 +49,12 @@ const CategoryList = ({
 				/>
 				<div className="d-flex flex-column justify-content-center ml-4">
 					<IconEditDelete
-						action={setModalEditShow}
 						text="Edit"
-						iconText="edit"
-						setModalInfo={() => setModalInfo({ category, color })}
+						modalInfo={{ category, color }}
 					/>
 					<IconEditDelete
-						action={setModalDeleteShow}
 						text="Delete"
-						iconText="remove_circle_outline"
-						setModalInfo={() => setModalInfo({ _id, category })}
+						modalInfo={{ _id, category }}
 					/>
 				</div>
 			</div>
@@ -72,6 +62,10 @@ const CategoryList = ({
 	});
 };
 
+const mapStateToProps = ({ categoriesDelete }) => {
+	return { categoriesDelete };
+};
+
 export default reduxForm({
 	form: "categoryDelete"
-})(CategoryList);
+})(connect(mapStateToProps)(CategoryList));

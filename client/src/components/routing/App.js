@@ -6,12 +6,15 @@ import * as actions from "../../actions";
 
 import PrivateRoute from "./PrivateRoute";
 
-import Header from "../Header";
+import Header from "../generic/Header";
 import Login from "./Login";
 import Dashboard from "../category/Dashboard";
 import Category from "../flashCards/Category";
-import NewFlashCard from "../NewFlashCard";
+import NewFlashCard from "../forms/NewFlashCard";
 import NotFound from "./NotFound";
+import ModalDeleteCategory from "../modals/ModalDeleteCategory";
+import ModalNewEditCategory from "../modals/ModalNewEditCategory";
+import ToastComponent from "../generic/Toast";
 
 const App = ({ fetchUser }) => {
 	React.useEffect(() => {
@@ -21,6 +24,10 @@ const App = ({ fetchUser }) => {
 	return (
 		<BrowserRouter>
 			<Header />
+			<ModalNewEditCategory title="New" />
+			<ModalNewEditCategory title="Edit" />
+			<ModalDeleteCategory />
+			<ToastComponent />
 			<div className="container">
 				<Switch>
 					<Route exact path="/login" component={Login} />
@@ -43,7 +50,4 @@ const App = ({ fetchUser }) => {
 	);
 };
 
-export default connect(
-	null,
-	actions
-)(App);
+export default connect(null, actions)(App);

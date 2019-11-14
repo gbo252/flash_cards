@@ -1,12 +1,17 @@
+import _ from "lodash";
 import React from "react";
+import { connect } from "react-redux";
+import * as actions from "../../actions";
+
+import { colors } from "./colors";
 import Toast from "react-bootstrap/Toast";
 
-export default ({ content, toastShow, setToastShow }) => {
+const ToastComponent = ({ toastContent, toastShow, setToastShow }) => {
 	return (
 		<Toast
 			onClose={() => setToastShow(false)}
 			show={toastShow}
-			delay={2000}
+			delay={3000}
 			autohide
 			style={{
 				position: "fixed",
@@ -18,7 +23,7 @@ export default ({ content, toastShow, setToastShow }) => {
 			<Toast.Header>
 				<div
 					style={{
-						backgroundColor: "gray",
+						backgroundColor: _.sample(colors),
 						width: "20px",
 						height: "20px",
 						borderRadius: "5px"
@@ -26,7 +31,13 @@ export default ({ content, toastShow, setToastShow }) => {
 				/>
 				<strong className="ml-2 mr-auto">Flash Cards Online</strong>
 			</Toast.Header>
-			<Toast.Body>{content}</Toast.Body>
+			<Toast.Body>{toastContent}</Toast.Body>
 		</Toast>
 	);
 };
+
+const mapStateToProps = ({ toastContent, toastShow }) => {
+	return { toastContent, toastShow };
+};
+
+export default connect(mapStateToProps, actions)(ToastComponent);

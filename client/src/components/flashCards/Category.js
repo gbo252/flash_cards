@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import * as actions from "../../actions";
 
 import FlashCardList from "./FlashCardList";
-import Spinner from "../Spinner";
+import Spinner from "../generic/Spinner";
 
 const Category = ({
 	match: {

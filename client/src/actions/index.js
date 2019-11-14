@@ -2,8 +2,16 @@ import axios from "axios";
 import {
 	FETCH_USER,
 	FETCH_CATEGORIES,
+	SET_CATEGORIES_DELETE,
 	FETCH_FLASH_CARDS,
-	CLEAR_FLASH_CARDS
+	CLEAR_FLASH_CARDS,
+	SET_MODAL_INFO,
+	SET_MODAL_NEW_SHOW,
+	SET_MODAL_EDIT_SHOW,
+	SET_MODAL_DELETE_SHOW,
+	SET_TOAST_CONTENT,
+	SET_TOAST_SHOW,
+	SET_DOTS_MENU_SHOW
 } from "./types";
 
 // USER
@@ -42,6 +50,10 @@ export const deleteCategories = idArrayToDelete => async dispatch => {
 	dispatch(fetchCategories());
 };
 
+export const setCategoriesDelete = set => {
+	return { type: SET_CATEGORIES_DELETE, payload: set };
+};
+
 // FLASH CARDS
 
 export const fetchFlashCards = category => async dispatch => {
@@ -64,4 +76,38 @@ export const deleteFlashCard = (id, category) => async dispatch => {
 	await axios.delete(`/flashcards/${category}/${id}`);
 
 	dispatch(fetchFlashCards(category));
+};
+
+// MODALS
+
+export const setModalInfo = info => {
+	return { type: SET_MODAL_INFO, payload: info };
+};
+
+export const setModalNewShow = show => {
+	return { type: SET_MODAL_NEW_SHOW, payload: show };
+};
+
+export const setModalEditShow = show => {
+	return { type: SET_MODAL_EDIT_SHOW, payload: show };
+};
+
+export const setModalDeleteShow = show => {
+	return { type: SET_MODAL_DELETE_SHOW, payload: show };
+};
+
+// TOASTS
+
+export const setToastContent = content => {
+	return { type: SET_TOAST_CONTENT, payload: content };
+};
+
+export const setToastShow = show => {
+	return { type: SET_TOAST_SHOW, payload: show };
+};
+
+// DOTS MENU
+
+export const setDotsMenuShow = show => {
+	return { type: SET_DOTS_MENU_SHOW, payload: show };
 };
