@@ -1,6 +1,6 @@
 import React from "react";
 import { reduxForm, Field } from "redux-form";
-import FormField, { FormErrorMessage } from "./FormField";
+import FormField from "./FormField";
 
 export const filterCategories = (categories, form) => {
 	if (!categories || !form) {
@@ -22,12 +22,12 @@ export const filterCategories = (categories, form) => {
 
 const FilterCategoriesForm = () => {
 	return (
-		<div>
-			<form className="form-inline">
-				<Field component={FormField} name="filter" label="Filter:" />
-			</form>
-			<Field name="filter" component={FormErrorMessage} />
-		</div>
+		<form
+			className="py-2 form-inline d-flex flex-column align-items-end"
+			style={{ flex: "1 1 0px" }}
+		>
+			<Field component={FormField} name="filter" label="Filter:" />
+		</form>
 	);
 };
 
@@ -35,7 +35,7 @@ const validate = formValues => {
 	const errors = {};
 
 	if (formValues.filter) {
-		errors.filter = "FILTER: ON";
+		errors.filter = "filter ON";
 	}
 
 	return errors;

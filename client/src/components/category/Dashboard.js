@@ -1,6 +1,8 @@
 import _ from "lodash";
 import React from "react";
 import { connect } from "react-redux";
+import { reduxForm, Field } from "redux-form";
+import { FormErrorMessage } from "../forms/FormField";
 import * as actions from "../../actions";
 
 import CategoryList from "./CategoryList";
@@ -65,16 +67,15 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories }) => {
 			<p className="h4 mb-3 font-weight-light text-center">
 				A simple online flash card maker!
 			</p>
-			<div className="d-flex flex-column justify-content-center">
-				<div className="d-flex justify-content-center">
-					{renderSquares()}
-				</div>
-				<div className="text-center">
-					<NumberSelected />
-				</div>
+			<div className="d-flex justify-content-center">
+				{renderSquares()}
 			</div>
 			<div className="d-flex justify-content-between">
 				<SortCategoriesForm />
+				<div className="text-center" style={{ flex: "1 1 0px" }}>
+					<NumberSelected />
+					<Field name="filter" component={FormErrorMessage} />
+				</div>
 				<FilterCategoriesForm />
 			</div>
 			<div className="mb-4 mt-2">{renderCategories()}</div>
@@ -88,4 +89,6 @@ const mapStateToProps = ({ categories, form }) => {
 	};
 };
 
-export default connect(mapStateToProps, actions)(Dashboard);
+export default reduxForm({
+	form: "categoriesFilter"
+})(connect(mapStateToProps, actions)(Dashboard));

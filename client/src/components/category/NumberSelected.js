@@ -3,11 +3,7 @@ import { connect } from "react-redux";
 
 const NumberSelected = ({ form, categoriesDelete }) => {
 	if (!categoriesDelete) {
-		return (
-			<small className="form-text text-white">
-				0 categories selected
-			</small>
-		);
+		return null;
 	}
 	if (form.categoryDelete) {
 		if (form.categoryDelete.values) {

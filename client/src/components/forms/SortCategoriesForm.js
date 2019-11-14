@@ -58,7 +58,7 @@ const sortByOptions = {
 
 const SortCategoriesForm = () => {
 	return (
-		<form className="form-inline">
+		<form className="form-inline py-2" style={{ flex: "1 1 0px" }}>
 			<div className="form-group">
 				<label htmlFor="sort-by-method">Sort:</label>
 				<Field

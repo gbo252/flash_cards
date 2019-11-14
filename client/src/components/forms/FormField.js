@@ -1,7 +1,7 @@
 import React from "react";
 
 export const FormErrorMessage = ({ meta: { error } }) => {
-	return <small className="form-text text-danger ml-5 pl-2">{error}</small>;
+	return <small className="form-text text-danger">{error}</small>;
 };
 
 export const FormErrorMessageTouched = ({ meta: { error, touched } }) => {
@@ -17,7 +17,7 @@ export default ({ input, label }) => {
 			<input
 				{...input}
 				id={label}
-				className="form-control mr-2"
+				className="form-control"
 				autoComplete="off"
 			/>
 		</div>
