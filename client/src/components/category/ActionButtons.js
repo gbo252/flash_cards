@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 
 import Overlay from "react-bootstrap/Overlay";
-import Tooltip from "../generic/Tooltip";
 
 const ActionButtons = ({
 	categories,
@@ -46,29 +45,27 @@ const ActionButtons = ({
 
 	return (
 		<React.Fragment>
-			<Tooltip placement="top" text="New Category">
-				<button
-					className="btn btn-outline-danger rounded-circle m-1"
-					aria-label="Add New Category"
-					onClick={e => {
-						setModalInfo(null);
-						setModalNewShow(true);
-						setCategoriesDelete(false);
-						e.currentTarget.blur();
+			<button
+				className="btn btn-outline-danger rounded-circle m-1"
+				aria-label="Add New Category"
+				onClick={e => {
+					setModalInfo(null);
+					setModalNewShow(true);
+					setCategoriesDelete(false);
+					e.currentTarget.blur();
+				}}
+				style={{ width: "4rem", height: "4rem" }}
+			>
+				<i
+					className="material-icons"
+					style={{
+						fontSize: "2.3rem",
+						verticalAlign: "top"
 					}}
-					style={{ width: "4rem", height: "4rem" }}
 				>
-					<i
-						className="material-icons"
-						style={{
-							fontSize: "2.3rem",
-							verticalAlign: "top"
-						}}
-					>
-						add
-					</i>
-				</button>
-			</Tooltip>
+					add
+				</i>
+			</button>
 			<button
 				ref={dotsRef}
 				className="btn btn-outline-secondary rounded-circle m-1"

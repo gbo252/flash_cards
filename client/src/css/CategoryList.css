@@ -1,15 +1,17 @@
 .category-card {
+	width: 99%;
 	transition: all 50ms linear;
 	border-style: outset;
 	box-shadow: 3px 3px 5px 1px rgba(146, 146, 146, 0.7);
 }
 
 .category-card:hover {
-	transform: scale(1.02);
+	width: 100%;
 	box-shadow: 5px 5px 10px 5px rgba(146, 146, 146, 0.3);
 }
 
 .category-delete {
+	width: 99%;
 	box-shadow: none;
 	border-style: dashed;
 }
@@ -50,7 +52,7 @@ input[type="checkbox"].category-select:checked
 }
 
 input[type="checkbox"].category-select:focus + label.label > div.category-card {
-	transform: scale(1.02);
+	width: 100%;
 	box-shadow: 5px 5px 10px 5px rgba(146, 146, 146, 0.3);
 }
 

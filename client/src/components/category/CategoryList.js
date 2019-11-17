@@ -24,7 +24,7 @@ const CategoryList = ({ categories, categoriesDelete, reset }) => {
 						onClick={e => e.currentTarget.blur()}
 					/>
 					<label
-						className="label mb-0 w-100"
+						className="label d-flex justify-content-center mb-0 w-100"
 						htmlFor={input.name}
 						style={{ cursor: "pointer" }}
 					>
