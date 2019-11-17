@@ -19,15 +19,12 @@ const IconEditDelete = ({
 		setCategoriesDelete(false);
 		action(true);
 		e.currentTarget.blur();
+		e.stopPropagation();
 	};
 
 	return (
-		<Tooltip placement="top" text={text}>
-			<button
-				className="close"
-				aria-label={text}
-				onClick={handleClick}
-			>
+		<Tooltip placement="left" text={text}>
+			<button className="close" aria-label={text} onClick={handleClick}>
 				<i
 					className="text-black-50 material-icons"
 					style={{ fontSize: "2.5rem" }}

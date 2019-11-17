@@ -2,11 +2,12 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import IconEditDelete from "./IconEditDelete";
 
 const Label = ({
 	history,
 	categoriesDelete,
-	category: { category, color, lastEdited, dateCreated, cardsTotal }
+	category: { _id, category, color, lastEdited, dateCreated, cardsTotal }
 }) => {
 	const infoList = {
 		"Total Cards": cardsTotal,
@@ -77,14 +78,17 @@ const Label = ({
 						</i>
 					</div>
 					<p
-						className="mx-0 mx-sm-3 h1 font-weight-light text-left text-wrap text-break"
+						className="mx-0 mx-sm-3 h1 font-weight-light text-wrap text-break"
 						style={{ letterSpacing: "2px" }}
 					>
 						{category}
 					</p>
 				</div>
 				<OverlayTrigger placement="top" overlay={infoPopover}>
-					<div className="d-lg-none close mr-4 mt-3">
+					<div
+						className="d-lg-none close mr-4 mt-3"
+						onClick={e => e.stopPropagation()}
+					>
 						<i
 							className="text-black-50 material-icons"
 							style={{ fontSize: "2rem" }}
@@ -93,16 +97,25 @@ const Label = ({
 						</i>
 					</div>
 				</OverlayTrigger>
-				<div className="d-none d-lg-flex align-items-center text-nowrap">
-					<ul
-						className="list-unstyled text-muted border-left mb-0 pl-2"
-						style={{
-							borderWidth: "5px",
-							marginRight: "35px"
-						}}
-					>
-						{renderInfoList()}
-					</ul>
+				<div className="d-flex">
+					<div className="mr-2 d-none d-lg-flex align-items-center text-nowrap">
+						<ul
+							className="list-unstyled text-muted border-left border-right mb-0 px-2"
+							style={{ borderWidth: "5px" }}
+						>
+							{renderInfoList()}
+						</ul>
+					</div>
+					<div className="mr-4 d-flex flex-column justify-content-center">
+						<IconEditDelete
+							text="Edit"
+							modalInfo={{ category, color }}
+						/>
+						<IconEditDelete
+							text="Delete"
+							modalInfo={{ _id, category }}
+						/>
+					</div>
 				</div>
 			</div>
 		</div>

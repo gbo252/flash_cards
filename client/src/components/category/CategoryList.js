@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
 
 import Label from "./Label";
-import IconEditDelete from "./IconEditDelete";
 
 const CategoryList = ({ categories, categoriesDelete, reset }) => {
 	React.useEffect(() => {
@@ -25,9 +24,9 @@ const CategoryList = ({ categories, categoriesDelete, reset }) => {
 						onClick={e => e.currentTarget.blur()}
 					/>
 					<label
-						className="label mb-0"
+						className="label mb-0 w-100"
 						htmlFor={input.name}
-						style={{ cursor: "pointer", width: "85%" }}
+						style={{ cursor: "pointer" }}
 					>
 						<Label
 							category={cat}
@@ -38,30 +37,13 @@ const CategoryList = ({ categories, categoriesDelete, reset }) => {
 			);
 		};
 
-		const { _id, category, color } = cat;
-
 		return (
-			<div
-				key={_id}
-				className="position-relative text-center my-3 mr-5 mr-sm-0"
-			>
+			<div key={cat._id} className="d-flex justify-content-center my-3">
 				<Field
 					component={categoryComponent}
-					name={_id}
+					name={cat._id}
 					type="checkbox"
 				/>
-				<span className="position-absolute d-inline-block h-100 ml-4">
-					<div className="d-flex flex-column justify-content-center h-100">
-						<IconEditDelete
-							text="Edit"
-							modalInfo={{ category, color }}
-						/>
-						<IconEditDelete
-							text="Delete"
-							modalInfo={{ _id, category }}
-						/>
-					</div>
-				</span>
 			</div>
 		);
 	});

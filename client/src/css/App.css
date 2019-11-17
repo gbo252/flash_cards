@@ -50,6 +50,7 @@ li {
 		visibility: hidden !important;
 	}
 }
+/* MIN WIDTH */
 
 @media only screen and (max-width: 575px) {
 	html {
@@ -94,7 +95,6 @@ li {
 	}
 	p.h1 {
 		font-size: 12px;
-		font-weight: bold !important;
 	}
 	.cat-circle {
 		width: 40px;
