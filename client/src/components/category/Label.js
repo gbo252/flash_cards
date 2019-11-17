@@ -79,6 +79,7 @@ const Label = ({
 					<div
 						className="dropdown-menu"
 						aria-labelledby="dropdownMenuButton"
+						onClick={e => e.stopPropagation()}
 					>
 						<ButtonEditDelete
 							type="menu"

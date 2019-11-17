@@ -14,7 +14,6 @@ import NewFlashCard from "../forms/NewFlashCard";
 import NotFound from "./NotFound";
 import ModalDeleteCategory from "../modals/ModalDeleteCategory";
 import ModalNewEditCategory from "../modals/ModalNewEditCategory";
-import ToastComponent from "../generic/Toast";
 
 const App = ({ fetchUser }) => {
 	React.useEffect(() => {
@@ -27,7 +26,6 @@ const App = ({ fetchUser }) => {
 			<ModalNewEditCategory title="New" />
 			<ModalNewEditCategory title="Edit" />
 			<ModalDeleteCategory />
-			<ToastComponent />
 			<div className="container">
 				<Switch>
 					<Route exact path="/login" component={Login} />

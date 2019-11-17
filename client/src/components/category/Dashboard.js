@@ -58,40 +58,33 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories }) => {
 
 	return (
 		<div className="d-flex flex-column mt-4 mt-xl-5 pt-5">
-			<h1 className="position-relative display-3 text-center mb-0">
-				Flash Cards Online
-				<span className="d-none d-md-inline-block position-absolute ml-2 ml-md-5">
-					<ActionButtons screen="large" />
-				</span>
-			</h1>
+			<h1 className="display-3 text-center mb-0">Flash Cards Online</h1>
 			<p className="h4 mb-2 font-weight-light text-center">
 				A simple online flash card maker!
 			</p>
-			<div className="d-flex justify-content-center">
+			<div className="d-flex justify-content-center mb-2">
 				{renderSquares()}
 			</div>
-			<div className="row mt-4 mt-lg-2">
-				<div className="col-12 col-md mb-1 mb-sm-0 py-0 py-sm-2">
+			<div className="d-flex flex-wrap justify-content-center justify-content-sm-between">
+				<div className="d-flex flex-column">
 					<SortCategoriesForm />
-				</div>
-				<div className="col d-none d-lg-block text-center">
-					<NumberSelected />
-					<Field name="filter" component={FormErrorMessage} />
-				</div>
-				<div className="col-12 col-md py-0 py-sm-2">
 					<FilterCategoriesForm />
+					<div
+						className="align-self-center"
+						style={{ height: "23px" }}
+					>
+						<Field name="filter" component={FormErrorMessage} />
+					</div>
 				</div>
-			</div>
-			<div className="d-lg-none clearfix" style={{ height: "23px" }}>
-				<div className="float-left mx-3">
-					<NumberSelected />
+				<div className="action-buttons d-flex">
+					<ActionButtons />
+					<div
+						className="align-self-center"
+						style={{ height: "23px" }}
+					>
+						<NumberSelected />
+					</div>
 				</div>
-				<div className="float-right mx-3 mr-sm-5">
-					<Field name="filter" component={FormErrorMessage} />
-				</div>
-			</div>
-			<div className="d-flex d-md-none justify-content-center">
-				<ActionButtons screen="small" />
 			</div>
 			<div className="mb-4 mt-lg-2">{renderCategories()}</div>
 		</div>

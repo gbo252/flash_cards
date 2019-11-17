@@ -2,8 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 
-import Overlay from "react-bootstrap/Overlay";
-
 const ActionButtons = ({
 	categories,
 	form,
@@ -11,15 +9,11 @@ const ActionButtons = ({
 	setCategoriesDelete,
 	setModalInfo,
 	setModalNewShow,
-	setModalDeleteShow,
-	dotsMenuShow,
-	setDotsMenuShow,
-	screen
+	setModalDeleteShow
 }) => {
-	const dotsRef = React.useRef(null);
-
 	const atts = {};
-	if (form.categoryDelete) {
+
+	if (form.categoryDelete && categoriesDelete) {
 		if (form.categoryDelete.values) {
 			const { values } = form.categoryDelete;
 			const checked = Object.keys(values).some(id => values[id]);
@@ -39,108 +33,45 @@ const ActionButtons = ({
 		});
 		setModalInfo({ categoryNames, arrayOfIds });
 		setModalDeleteShow(true);
-		setDotsMenuShow(false);
-		setCategoriesDelete(false);
 	};
 
 	return (
 		<React.Fragment>
 			<button
-				className="btn btn-outline-danger rounded-circle m-1"
-				aria-label="Add New Category"
+				{...atts}
+				className={
+					"btn rounded-pill m-1 " +
+					(categoriesDelete
+						? "btn-outline-danger"
+						: "btn-outline-success")
+				}
 				onClick={e => {
-					setModalInfo(null);
-					setModalNewShow(true);
-					setCategoriesDelete(false);
-					e.currentTarget.blur();
+					if (!categoriesDelete) {
+						setModalInfo(null);
+						setModalNewShow(true);
+						e.currentTarget.blur();
+					} else {
+						deleteSelected();
+					}
 				}}
-				style={{ width: "4rem", height: "4rem" }}
 			>
-				<i
-					className="material-icons"
-					style={{
-						fontSize: "2.3rem",
-						verticalAlign: "top"
-					}}
-				>
-					add
-				</i>
+				{categoriesDelete ? "Delete Selected" : "Add Category"}
 			</button>
 			<button
-				ref={dotsRef}
-				className="btn btn-outline-secondary rounded-circle m-1"
+				className="btn btn-outline-secondary rounded-pill m-1"
 				onClick={e => {
-					setDotsMenuShow(!dotsMenuShow);
+					setCategoriesDelete(!categoriesDelete);
 					e.currentTarget.blur();
 				}}
-				style={{ width: "4rem", height: "4rem" }}
 			>
-				<i
-					className="material-icons"
-					style={{
-						fontSize: "2.3rem",
-						verticalAlign: "top"
-					}}
-				>
-					more_horiz
-				</i>
+				{categoriesDelete ? "Deselect Categories" : "Select Categories"}
 			</button>
-			<Overlay
-				target={dotsRef.current}
-				show={dotsMenuShow}
-				onHide={() => setDotsMenuShow(false)}
-				placement="right"
-				rootClose
-			>
-				{({
-					placement,
-					scheduleUpdate,
-					arrowProps,
-					outOfBoundaries,
-					show: _show,
-					...props
-				}) => {
-					return (
-						<div
-							{...props}
-							className={`d-flex flex-column justify-content-around rounded border bg-light ml-2 p-2 ${screen}`}
-							style={{ ...props.style }}
-						>
-							<button
-								type="button"
-								className="btn btn-secondary rounded-pill mb-2"
-								onClick={() => {
-									setDotsMenuShow(false);
-									setCategoriesDelete(!categoriesDelete);
-								}}
-							>
-								{categoriesDelete
-									? "Deselect Categories"
-									: "Select Categories"}
-							</button>
-							<button
-								type="button"
-								{...atts}
-								className="btn btn-danger rounded-pill"
-								onClick={deleteSelected}
-							>
-								Delete Selected
-							</button>
-						</div>
-					);
-				}}
-			</Overlay>
 		</React.Fragment>
 	);
 };
 
-const mapStateToProps = ({
-	dotsMenuShow,
-	categories,
-	form,
-	categoriesDelete
-}) => {
-	return { dotsMenuShow, categories, form, categoriesDelete };
+const mapStateToProps = ({ categories, form, categoriesDelete }) => {
+	return { categories, form, categoriesDelete };
 };
 
 export default connect(mapStateToProps, actions)(ActionButtons);

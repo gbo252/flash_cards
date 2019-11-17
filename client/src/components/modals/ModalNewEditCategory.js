@@ -13,9 +13,7 @@ const ModalNewEditCategory = ({
 	modalNewShow,
 	modalEditShow,
 	setModalNewShow,
-	setModalEditShow,
-	setToastShow,
-	setToastContent
+	setModalEditShow
 }) => {
 	const setModalShow = title === "New" ? setModalNewShow : setModalEditShow;
 
@@ -26,12 +24,6 @@ const ModalNewEditCategory = ({
 			editCategory(formValues, modalInfo.category);
 		}
 		setModalShow(false);
-		setToastContent(
-			title === "New"
-				? "Category added successfully"
-				: "Category edited successfully"
-		);
-		setToastShow(true);
 	};
 
 	const renderContent = () => {

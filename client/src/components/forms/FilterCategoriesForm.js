@@ -26,7 +26,7 @@ export const filterCategories = (categories, form) => {
 
 const FilterCategoriesForm = () => {
 	return (
-		<form className="form-inline d-flex flex-column align-items-lg-end">
+		<form className="form-inline my-1">
 			<Field component={FormField} name="filter" label="Filter:" />
 		</form>
 	);

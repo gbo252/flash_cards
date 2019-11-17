@@ -18,6 +18,10 @@ li {
 	font-size: 7.7rem;
 }
 
+.action-buttons {
+	flex-direction: column;
+}
+
 @media only screen and (max-width: 1199px) {
 	p.h1 {
 		font-size: 1.6rem;
@@ -37,20 +41,7 @@ li {
 	html {
 		font-size: 14px;
 	}
-	body
-		> div.fade.d-flex.flex-column.justify-content-around.rounded.border.bg-light.ml-2.p-2.large.show {
-		visibility: hidden !important;
-	}
 }
-
-/* MIN WIDTH */
-@media only screen and (min-width: 768px) {
-	body
-		> div.fade.d-flex.flex-column.justify-content-around.rounded.border.bg-light.ml-2.p-2.small.show {
-		visibility: hidden !important;
-	}
-}
-/* MIN WIDTH */
 
 @media only screen and (max-width: 575px) {
 	html {
@@ -89,7 +80,7 @@ li {
 	}
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 411px) {
 	h1.display-3 {
 		font-size: 2.5rem;
 	}
@@ -103,4 +94,19 @@ li {
 	.check-circle {
 		font-size: 3rem;
 	}
+	.action-buttons {
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
 }
+
+/* .colors {
+	color: rgba(248, 91, 91, 0.8);
+	color: rgba(253, 244, 77, 0.8);
+	color: rgba(91, 167, 255, 0.8);
+	color: rgba(128, 255, 111, 0.8);
+	color: rgba(247, 125, 226, 0.8);
+	color: rgba(250, 165, 85, 0.8);
+	color: rgba(156, 121, 253, 0.8);
+} */

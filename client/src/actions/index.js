@@ -8,10 +8,7 @@ import {
 	SET_MODAL_INFO,
 	SET_MODAL_NEW_SHOW,
 	SET_MODAL_EDIT_SHOW,
-	SET_MODAL_DELETE_SHOW,
-	SET_TOAST_CONTENT,
-	SET_TOAST_SHOW,
-	SET_DOTS_MENU_SHOW
+	SET_MODAL_DELETE_SHOW
 } from "./types";
 
 // USER
@@ -94,20 +91,4 @@ export const setModalEditShow = show => {
 
 export const setModalDeleteShow = show => {
 	return { type: SET_MODAL_DELETE_SHOW, payload: show };
-};
-
-// TOASTS
-
-export const setToastContent = content => {
-	return { type: SET_TOAST_CONTENT, payload: content };
-};
-
-export const setToastShow = show => {
-	return { type: SET_TOAST_SHOW, payload: show };
-};
-
-// DOTS MENU
-
-export const setDotsMenuShow = show => {
-	return { type: SET_DOTS_MENU_SHOW, payload: show };
 };

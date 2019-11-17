@@ -58,7 +58,7 @@ const sortByOptions = {
 
 const SortCategoriesForm = () => {
 	return (
-		<form className="form-inline d-flex justify-content-center">
+		<form className="form-inline my-1">
 			<div className="form-group">
 				<label htmlFor="sort-by-method">Sort:</label>
 				<Field
