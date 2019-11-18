@@ -1,7 +1,8 @@
 .category-card {
 	width: 99%;
-	transition: all 50ms linear;
+	transition: width 50ms linear;
 	border-style: outset;
+	border-width: 5px;
 	box-shadow: 3px 3px 5px 1px rgba(146, 146, 146, 0.7);
 }
 
@@ -14,6 +15,17 @@
 	width: 99%;
 	box-shadow: none;
 	border-style: dashed;
+	border-width: 5px;
+}
+
+.cat-circle {
+	border-width: 5px;
+	width: 7rem;
+	height: 7rem;
+}
+
+.check-circle {
+	font-size: 7.7rem;
 }
 
 button.close:focus {
@@ -27,7 +39,7 @@ li.border-bottom:last-child {
 input[type="checkbox"].category-select:checked
 	+ label.label
 	> div.category-delete
-	i.material-icons {
+	i.check-circle {
 	display: block !important;
 }
 
@@ -41,14 +53,14 @@ input[type="checkbox"].category-select:checked
 	+ label.label
 	> div.category-delete {
 	background-color: rgba(156, 156, 156, 0.2);
-	color: red;
+	color: #dc3545;
 }
 
 input[type="checkbox"].category-select:checked
 	+ label.label
 	> div.category-delete
 	li.info-items {
-	color: red;
+	color: #dc3545;
 }
 
 input[type="checkbox"].category-select:focus + label.label > div.category-card {
@@ -60,4 +72,30 @@ input[type="checkbox"].category-select:focus
 	+ label.label
 	> div.category-delete {
 	background-color: rgba(156, 156, 156, 0.2);
+}
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 575px) {
+	.category-card,
+	.category-delete {
+		border-width: 3px;
+	}
+	.cat-circle {
+		width: 50px;
+		height: 50px;
+		border-width: 3px;
+	}
+	.check-circle {
+		font-size: 4.4rem;
+	}
+}
+
+@media only screen and (max-width: 411px) {
+	.cat-circle {
+		width: 40px;
+		height: 40px;
+	}
+	.check-circle {
+		font-size: 3.5rem;
+	}
 }

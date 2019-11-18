@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 
-const ActionButtons = ({
+const ButtonsAddSelect = ({
 	categories,
 	form,
 	categoriesDelete,
@@ -12,11 +12,13 @@ const ActionButtons = ({
 	setModalDeleteShow
 }) => {
 	const atts = {};
+	let total = 0;
 
 	if (form.categoryDelete && categoriesDelete) {
 		if (form.categoryDelete.values) {
 			const { values } = form.categoryDelete;
 			const checked = Object.keys(values).some(id => values[id]);
+			total = Object.keys(values).filter(id => values[id]).length;
 			if (!checked) {
 				atts.disabled = true;
 			}
@@ -40,7 +42,7 @@ const ActionButtons = ({
 			<button
 				{...atts}
 				className={
-					"btn rounded-pill m-1 " +
+					"btn rounded-pill align-self-center m-1 " +
 					(categoriesDelete
 						? "btn-outline-danger"
 						: "btn-outline-success")
@@ -57,15 +59,34 @@ const ActionButtons = ({
 			>
 				{categoriesDelete ? "Delete Selected" : "Add Category"}
 			</button>
-			<button
-				className="btn btn-outline-secondary rounded-pill m-1"
-				onClick={e => {
-					setCategoriesDelete(!categoriesDelete);
-					e.currentTarget.blur();
-				}}
-			>
-				{categoriesDelete ? "Deselect Categories" : "Select Categories"}
-			</button>
+			<div className="d-flex">
+				<button
+					className="btn btn-outline-secondary align-self-center rounded-pill m-1"
+					onClick={e => {
+						setCategoriesDelete(!categoriesDelete);
+						e.currentTarget.blur();
+					}}
+				>
+					{categoriesDelete
+						? "Deselect Categories"
+						: "Select Categories"}
+				</button>
+				<div
+					className={
+						"rounded-circle justify-content-center align-self-center align-top m-1 " +
+						(categoriesDelete ? "d-flex" : "d-none")
+					}
+					style={{
+						width: "2.5rem",
+						height: "2.5rem",
+						border: "1px solid #dc3545"
+					}}
+				>
+					<p className="m-0 my-auto" style={{ color: "#dc3545" }}>
+						{total}
+					</p>
+				</div>
+			</div>
 		</React.Fragment>
 	);
 };
@@ -74,4 +95,4 @@ const mapStateToProps = ({ categories, form, categoriesDelete }) => {
 	return { categories, form, categoriesDelete };
 };
 
-export default connect(mapStateToProps, actions)(ActionButtons);
+export default connect(mapStateToProps, actions)(ButtonsAddSelect);

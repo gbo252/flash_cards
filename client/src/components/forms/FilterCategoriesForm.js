@@ -24,10 +24,23 @@ export const filterCategories = (categories, form) => {
 	return null;
 };
 
-const FilterCategoriesForm = () => {
+const FilterCategoriesForm = ({ forms }) => {
+	const inputStyle = () => {
+		if (forms.categoriesFilter) {
+			if (forms.categoriesFilter.values) {
+				return "#dc3545";
+			}
+		}
+	};
+
 	return (
 		<form className="form-inline my-1">
-			<Field component={FormField} name="filter" label="Filter:" />
+			<Field
+				component={FormField}
+				style={inputStyle()}
+				name="filter"
+				label="Filter:"
+			/>
 		</form>
 	);
 };

@@ -1,14 +1,12 @@
 import _ from "lodash";
 import React from "react";
 import { connect } from "react-redux";
-import { reduxForm, Field } from "redux-form";
-import { FormErrorMessage } from "../forms/FormField";
+import { reduxForm } from "redux-form";
 import * as actions from "../../actions";
 
 import CategoryList from "./CategoryList";
-import ActionButtons from "./ActionButtons";
+import ButtonsAddSelect from "./ButtonsAddSelect";
 import Spinner from "../generic/Spinner";
-import NumberSelected from "./NumberSelected";
 import { colors } from "../generic/colors";
 import SortCategoriesForm, {
 	sortCategories
@@ -17,7 +15,7 @@ import FilterCategoriesForm, {
 	filterCategories
 } from "../forms/FilterCategoriesForm";
 
-const Dashboard = ({ fetchCategories, clearFlashCards, categories }) => {
+const Dashboard = ({ fetchCategories, clearFlashCards, categories, form }) => {
 	React.useEffect(() => {
 		fetchCategories();
 		clearFlashCards();
@@ -68,22 +66,10 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories }) => {
 			<div className="d-flex flex-wrap justify-content-center justify-content-sm-between">
 				<div className="d-flex flex-column">
 					<SortCategoriesForm />
-					<FilterCategoriesForm />
-					<div
-						className="align-self-center"
-						style={{ height: "23px" }}
-					>
-						<Field name="filter" component={FormErrorMessage} />
-					</div>
+					<FilterCategoriesForm forms={form} />
 				</div>
 				<div className="action-buttons d-flex">
-					<ActionButtons />
-					<div
-						className="align-self-center"
-						style={{ height: "23px" }}
-					>
-						<NumberSelected />
-					</div>
+					<ButtonsAddSelect />
 				</div>
 			</div>
 			<div className="mb-4 mt-lg-2">{renderCategories()}</div>
@@ -93,7 +79,8 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories }) => {
 
 const mapStateToProps = ({ categories, form }) => {
 	return {
-		categories: sortCategories(filterCategories(categories, form), form)
+		categories: sortCategories(filterCategories(categories, form), form),
+		form
 	};
 };
 

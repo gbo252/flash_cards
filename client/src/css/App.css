@@ -9,15 +9,6 @@ li {
 	font-size: 1rem;
 }
 
-.cat-circle {
-	width: 7rem;
-	height: 7rem;
-}
-
-.check-circle {
-	font-size: 7.7rem;
-}
-
 .action-buttons {
 	flex-direction: column;
 }
@@ -53,13 +44,6 @@ li {
 	p.h1 {
 		font-size: 16px;
 	}
-	.cat-circle {
-		width: 50px;
-		height: 50px;
-	}
-	.check-circle {
-		font-size: 4rem;
-	}
 	.form-inline label {
 		display: flex;
 		align-items: center;
@@ -86,13 +70,6 @@ li {
 	}
 	p.h1 {
 		font-size: 13px;
-	}
-	.cat-circle {
-		width: 40px;
-		height: 40px;
-	}
-	.check-circle {
-		font-size: 3rem;
 	}
 	.action-buttons {
 		flex-direction: row;

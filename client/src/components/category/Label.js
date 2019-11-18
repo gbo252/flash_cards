@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-import ButtonEditDelete from "./ButtonEditDelete";
+import ButtonsEditDelete from "./ButtonsEditDelete";
 
 const Label = ({
 	history,
@@ -17,12 +17,11 @@ const Label = ({
 	return (
 		<div
 			className={
-				"rounded-pill" +
-				(categoriesDelete ? " category-delete" : " category-card")
+				"rounded-pill " +
+				(categoriesDelete ? "category-delete" : "category-card")
 			}
 			style={{
 				borderColor: color,
-				borderWidth: "5px",
 				backgroundClip: "padding-box",
 				userSelect: "none"
 			}}
@@ -38,7 +37,6 @@ const Label = ({
 						className="cat-circle d-flex flex-shrink-0 justify-content-center align-items-center rounded-circle m-2"
 						style={{
 							backgroundColor: categoriesDelete ? null : color,
-							borderWidth: "5px",
 							borderStyle: "solid",
 							borderColor: categoriesDelete
 								? color
@@ -81,12 +79,12 @@ const Label = ({
 						aria-labelledby="dropdownMenuButton"
 						onClick={e => e.stopPropagation()}
 					>
-						<ButtonEditDelete
+						<ButtonsEditDelete
 							type="menu"
 							text="Edit"
 							modalInfo={{ category, color }}
 						/>
-						<ButtonEditDelete
+						<ButtonsEditDelete
 							type="menu"
 							text="Delete"
 							modalInfo={{ _id, category }}
@@ -130,12 +128,12 @@ const Label = ({
 						</ul>
 					</div>
 					<div className="mr-4 d-flex flex-column justify-content-center">
-						<ButtonEditDelete
+						<ButtonsEditDelete
 							type="button"
 							text="Edit"
 							modalInfo={{ category, color }}
 						/>
-						<ButtonEditDelete
+						<ButtonsEditDelete
 							type="button"
 							text="Delete"
 							modalInfo={{ _id, category }}
