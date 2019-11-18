@@ -19,7 +19,7 @@ const Toast = ({ toastInfo, toastShow, toastInc, setToastShow }) => {
 	const color = _.sample(colors);
 
 	const isShow = () => {
-		return toastShow ? { display: "block" } : { display: "none" };
+		return toastShow ? { right: "15px" } : { right: "-300px" };
 	};
 
 	return ReactDOM.createPortal(
@@ -32,7 +32,7 @@ const Toast = ({ toastInfo, toastShow, toastInc, setToastShow }) => {
 				style={{
 					opacity: "1",
 					top: "70px",
-					right: "15px",
+					transition: "right 100ms ease-in",
 					...isShow()
 				}}
 			>
