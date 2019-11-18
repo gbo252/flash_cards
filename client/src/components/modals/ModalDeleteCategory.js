@@ -67,7 +67,10 @@ const ModalDeleteCategory = ({
 						setToastInfo(
 							modalInfo.arrayOfIds
 								? "Categories deleted successfully!"
-								: "Category deleted successfully!"
+								: "Category deleted successfully!",
+							modalInfo.arrayOfIds
+								? "rgb(248, 191, 191)"
+								: modalInfo.color
 						);
 						setToastShow(true);
 					}}

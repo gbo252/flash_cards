@@ -9,6 +9,7 @@ const ModalNewEditCategory = ({
 	newCategory,
 	editCategory,
 	title,
+	form,
 	modalInfo,
 	modalNewShow,
 	modalEditShow,
@@ -19,13 +20,23 @@ const ModalNewEditCategory = ({
 }) => {
 	const setModalShow = title === "New" ? setModalNewShow : setModalEditShow;
 
+	const getColor = () => {
+		if (form.category) {
+			if (form.category.values) {
+				if (form.category.values.color) {
+					return form.category.values.color;
+				}
+			}
+		}
+	};
+
 	const onSubmit = formValues => {
 		if (title === "New") {
 			newCategory(formValues);
-			setToastInfo("New category created!");
+			setToastInfo("New category created!", getColor());
 		} else {
 			editCategory(formValues, modalInfo.category);
-			setToastInfo("Category edited successfully!");
+			setToastInfo("Category edited successfully!", getColor());
 		}
 		setModalShow(false);
 		setToastShow(true);
@@ -78,8 +89,8 @@ const ModalNewEditCategory = ({
 	);
 };
 
-const mapStateToProps = ({ modalInfo, modalNewShow, modalEditShow }) => {
-	return { modalInfo, modalNewShow, modalEditShow };
+const mapStateToProps = ({ modalInfo, modalNewShow, modalEditShow, form }) => {
+	return { modalInfo, modalNewShow, modalEditShow, form };
 };
 
 export default connect(mapStateToProps, actions)(ModalNewEditCategory);

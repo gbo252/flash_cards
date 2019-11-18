@@ -87,7 +87,7 @@ const Label = ({
 						<ButtonsEditDelete
 							type="menu"
 							text="Delete"
-							modalInfo={{ _id, category }}
+							modalInfo={{ _id, category, color }}
 						/>
 						<div className="dropdown-divider"></div>
 						<span className="dropdown-item-text px-2">
@@ -136,7 +136,7 @@ const Label = ({
 						<ButtonsEditDelete
 							type="button"
 							text="Delete"
-							modalInfo={{ _id, category }}
+							modalInfo={{ _id, category, color }}
 						/>
 					</div>
 				</div>

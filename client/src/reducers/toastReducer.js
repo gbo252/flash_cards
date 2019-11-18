@@ -1,9 +1,13 @@
 import { SET_TOAST_INFO, SET_TOAST_SHOW } from "../actions/types";
 
-export const toastInfo = (state = null, action) => {
+export const toastInfo = (state = { text: "", color: "" }, action) => {
 	switch (action.type) {
 		case SET_TOAST_INFO:
-			return action.payload;
+			return {
+				...state,
+				text: action.payload.text,
+				color: action.payload.color
+			};
 		default:
 			return state;
 	}

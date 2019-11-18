@@ -97,8 +97,8 @@ export const setModalDeleteShow = show => {
 
 // TOASTS
 
-export const setToastInfo = info => {
-	return { type: SET_TOAST_INFO, payload: info };
+export const setToastInfo = (text, color) => {
+	return { type: SET_TOAST_INFO, payload: { text, color } };
 };
 
 export const setToastShow = show => {

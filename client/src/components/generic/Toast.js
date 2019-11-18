@@ -1,10 +1,7 @@
-import _ from "lodash";
 import React from "react";
 import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
-
-import { colors } from "../generic/colors";
 
 const Toast = ({ toastInfo, toastShow, toastInc, setToastShow }) => {
 	React.useEffect(() => {
@@ -15,8 +12,6 @@ const Toast = ({ toastInfo, toastShow, toastInc, setToastShow }) => {
 			clearTimeout(timer);
 		};
 	}, [toastInc, setToastShow]);
-
-	const color = _.sample(colors);
 
 	const isShow = () => {
 		return toastShow ? { right: "15px" } : { right: "-300px" };
@@ -43,7 +38,7 @@ const Toast = ({ toastInfo, toastShow, toastInc, setToastShow }) => {
 							width: "1.3rem",
 							height: "1.3rem",
 							borderRadius: "4px",
-							backgroundColor: color
+							backgroundColor: toastInfo.color
 						}}
 					/>
 					<strong className="mr-auto">Flash Cards Online</strong>
@@ -56,7 +51,7 @@ const Toast = ({ toastInfo, toastShow, toastInc, setToastShow }) => {
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div className="toast-body">{toastInfo}</div>
+				<div className="toast-body">{toastInfo.text}</div>
 			</div>
 		</div>,
 		document.querySelector("#toast")
