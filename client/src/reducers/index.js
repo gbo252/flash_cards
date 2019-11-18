@@ -9,6 +9,7 @@ import {
 	modalEditShow,
 	modalDeleteShow
 } from "./modalReducer";
+import { toastInfo, toastShow } from "./toastReducer";
 
 export default combineReducers({
 	auth: authReducer,
@@ -19,5 +20,7 @@ export default combineReducers({
 	modalInfo,
 	modalNewShow,
 	modalEditShow,
-	modalDeleteShow
+	modalDeleteShow,
+	toastInfo,
+	toastShow
 });

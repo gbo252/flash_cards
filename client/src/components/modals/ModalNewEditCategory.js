@@ -13,17 +13,22 @@ const ModalNewEditCategory = ({
 	modalNewShow,
 	modalEditShow,
 	setModalNewShow,
-	setModalEditShow
+	setModalEditShow,
+	setToastInfo,
+	setToastShow
 }) => {
 	const setModalShow = title === "New" ? setModalNewShow : setModalEditShow;
 
 	const onSubmit = formValues => {
 		if (title === "New") {
 			newCategory(formValues);
+			setToastInfo("New category created!");
 		} else {
 			editCategory(formValues, modalInfo.category);
+			setToastInfo("Category edited successfully!");
 		}
 		setModalShow(false);
+		setToastShow(true);
 	};
 
 	const renderContent = () => {

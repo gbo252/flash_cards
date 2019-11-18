@@ -9,7 +9,9 @@ const ModalDeleteCategory = ({
 	modalDeleteShow,
 	deleteCategories,
 	setModalDeleteShow,
-	setCategoriesDelete
+	setCategoriesDelete,
+	setToastInfo,
+	setToastShow
 }) => {
 	const renderTitle = () => {
 		if (modalInfo) {
@@ -62,6 +64,12 @@ const ModalDeleteCategory = ({
 						);
 						setModalDeleteShow(false);
 						setCategoriesDelete(false);
+						setToastInfo(
+							modalInfo.arrayOfIds
+								? "Categories deleted successfully!"
+								: "Category deleted successfully!"
+						);
+						setToastShow(true);
 					}}
 				>
 					Submit

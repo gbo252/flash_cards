@@ -8,7 +8,9 @@ import {
 	SET_MODAL_INFO,
 	SET_MODAL_NEW_SHOW,
 	SET_MODAL_EDIT_SHOW,
-	SET_MODAL_DELETE_SHOW
+	SET_MODAL_DELETE_SHOW,
+	SET_TOAST_INFO,
+	SET_TOAST_SHOW
 } from "./types";
 
 // USER
@@ -91,4 +93,17 @@ export const setModalEditShow = show => {
 
 export const setModalDeleteShow = show => {
 	return { type: SET_MODAL_DELETE_SHOW, payload: show };
+};
+
+// TOASTS
+
+export const setToastInfo = info => {
+	return { type: SET_TOAST_INFO, payload: info };
+};
+
+export const setToastShow = show => {
+	if (show) {
+		return { type: SET_TOAST_SHOW, payload: { show, inc: 1 } };
+	}
+	return { type: SET_TOAST_SHOW, payload: { show, inc: 0 } };
 };
