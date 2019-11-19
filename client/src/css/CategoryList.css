@@ -1,25 +1,3 @@
-.cat-label {
-	opacity: 1;
-}
-
-.cat-label-appear {
-	opacity: 0;
-}
-
-.cat-label-appear-active {
-	opacity: 1;
-	transition: opacity 500ms;
-}
-
-.cat-label-exit {
-	opacity: 1;
-}
-
-.cat-label-exit-done {
-	opacity: 0;
-	transition: opacity 500ms;
-}
-
 .category-card {
 	width: 99%;
 	transition: width 50ms ease-in;
@@ -96,26 +74,59 @@ input[type="checkbox"].category-select:focus
 	background-color: rgba(156, 156, 156, 0.2);
 }
 
+/* REACT TRANSITION GROUP */
+.cat-label {
+	opacity: 1;
+}
+
+.cat-label-appear {
+	opacity: 0;
+}
+
+.cat-label-appear-active {
+	opacity: 1;
+	transition: opacity 500ms;
+}
+
+.cat-label-exit {
+	opacity: 1;
+}
+
+.cat-label-exit-done {
+	opacity: 0;
+	transition: opacity 500ms;
+}
+
 /* MEDIA QUERIES */
-@media only screen and (max-width: 575px) {
+@media only screen and (max-width: 767px) {
 	.category-card,
 	.category-delete {
-		border-width: 3px;
+		border-width: 4px;
 	}
 	.cat-circle {
-		width: 50px;
-		height: 50px;
-		border-width: 3px;
+		width: 90px;
+		height: 90px;
+		border-width: 4px;
 	}
 	.check-circle {
-		font-size: 4.4rem;
+		font-size: 6.2rem;
+	}
+}
+
+@media only screen and (max-width: 575px) {
+	.cat-circle {
+		width: 80px;
+		height: 80px;
+	}
+	.check-circle {
+		font-size: 5.4rem;
 	}
 }
 
 @media only screen and (max-width: 411px) {
 	.cat-circle {
-		width: 40px;
-		height: 40px;
+		width: 55px;
+		height: 55px;
 	}
 	.check-circle {
 		font-size: 3.5rem;

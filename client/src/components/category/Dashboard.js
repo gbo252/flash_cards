@@ -54,7 +54,7 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories, form }) => {
 	};
 
 	return (
-		<div className="d-flex flex-column mt-4 mt-xl-5 pt-5">
+		<div className="d-flex flex-column mt-4 mt-md-5 pt-5">
 			<h1 className="display-3 text-center mb-0">Flash Cards Online</h1>
 			<p className="h4 mb-2 font-weight-light text-center">
 				A simple online flash card maker!
@@ -62,7 +62,7 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories, form }) => {
 			<div className="d-flex justify-content-center mb-2">
 				{renderSquares()}
 			</div>
-			<div className="d-flex flex-wrap justify-content-center justify-content-sm-between">
+			<div className="d-flex flex-wrap justify-content-center justify-content-md-between">
 				<SortCategoriesForm />
 				<FilterCategoriesForm forms={form} />
 			</div>
