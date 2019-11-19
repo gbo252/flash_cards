@@ -2,6 +2,15 @@
 	opacity: 1;
 }
 
+.cat-label-appear {
+	opacity: 0;
+}
+
+.cat-label-appear-active {
+	opacity: 1;
+	transition: opacity 500ms;
+}
+
 .cat-label-exit {
 	opacity: 1;
 }

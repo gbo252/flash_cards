@@ -5,7 +5,6 @@ import { reduxForm } from "redux-form";
 import * as actions from "../../actions";
 
 import CategoryList from "./CategoryList";
-import ButtonsAddSelect from "./ButtonsAddSelect";
 import Spinner from "../generic/Spinner";
 import { colors } from "../generic/colors";
 import SortCategoriesForm, {

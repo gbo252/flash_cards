@@ -45,6 +45,7 @@ const CategoryList = ({ categories, categoriesDelete, reset, justDeleted }) => {
 				in={!justDeleted.includes(cat._id)}
 				timeout={500}
 				classNames="cat-label"
+				appear
 			>
 				<div className="d-flex justify-content-center my-3">
 					<Field

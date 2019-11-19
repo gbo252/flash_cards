@@ -14,7 +14,7 @@ const Toast = ({ toastInfo, toastShow, toastInc, setToastShow }) => {
 	}, [toastInc, setToastShow]);
 
 	const isShow = () => {
-		return toastShow ? { right: "15px" } : { right: "-300px" };
+		return toastShow ? { right: "25px" } : { right: "-300px" };
 	};
 
 	return ReactDOM.createPortal(
