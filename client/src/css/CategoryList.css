@@ -1,3 +1,16 @@
+.cat-label {
+	opacity: 1;
+}
+
+.cat-label-exit {
+	opacity: 1;
+}
+
+.cat-label-exit-done {
+	opacity: 0;
+	transition: opacity 500ms;
+}
+
 .category-card {
 	width: 99%;
 	transition: width 50ms ease-in;

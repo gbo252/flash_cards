@@ -3,9 +3,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
 
+import { CSSTransition } from "react-transition-group";
+
 import Label from "./Label";
 
-const CategoryList = ({ categories, categoriesDelete, reset }) => {
+const CategoryList = ({ categories, categoriesDelete, reset, justDeleted }) => {
 	React.useEffect(() => {
 		if (!categoriesDelete) {
 			reset("categoryDelete");
@@ -38,19 +40,26 @@ const CategoryList = ({ categories, categoriesDelete, reset }) => {
 		};
 
 		return (
-			<div key={cat._id} className="d-flex justify-content-center my-3">
-				<Field
-					component={categoryComponent}
-					name={cat._id}
-					type="checkbox"
-				/>
-			</div>
+			<CSSTransition
+				key={cat._id}
+				in={!justDeleted.includes(cat._id)}
+				timeout={500}
+				classNames="cat-label"
+			>
+				<div className="d-flex justify-content-center my-3">
+					<Field
+						component={categoryComponent}
+						name={cat._id}
+						type="checkbox"
+					/>
+				</div>
+			</CSSTransition>
 		);
 	});
 };
 
-const mapStateToProps = ({ categoriesDelete }) => {
-	return { categoriesDelete };
+const mapStateToProps = ({ categoriesDelete, justDeleted }) => {
+	return { categoriesDelete, justDeleted };
 };
 
 export default reduxForm({

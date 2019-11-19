@@ -8,6 +8,7 @@ const ModalDeleteCategory = ({
 	modalInfo,
 	modalDeleteShow,
 	deleteCategories,
+	setJustDeleted,
 	setModalDeleteShow,
 	setCategoriesDelete,
 	setToastInfo,
@@ -57,6 +58,11 @@ const ModalDeleteCategory = ({
 				<button
 					className="btn btn-success mx-2"
 					onClick={() => {
+						setJustDeleted(
+							modalInfo.arrayOfIds
+								? modalInfo.arrayOfIds
+								: [modalInfo._id]
+						);
 						deleteCategories(
 							modalInfo.arrayOfIds
 								? modalInfo.arrayOfIds

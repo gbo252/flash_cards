@@ -1,13 +1,22 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
-const Header = ({ auth }) => {
+import ButtonsAddSelect from "../category/ButtonsAddSelect";
+
+const Header = ({ auth, location }) => {
+	const renderDashboardButtons = () => {
+		if (location.pathname === "/" && auth) {
+			return <ButtonsAddSelect />;
+		}
+		return null;
+	};
+
 	const renderContent = () => {
 		if (auth) {
 			return (
 				<a
-					className="btn btn-outline-dark"
+					className="btn btn-outline-dark rounded-pill ml-1 ml-md-4"
 					role="button"
 					href="/auth/logout"
 				>
@@ -15,16 +24,32 @@ const Header = ({ auth }) => {
 				</a>
 			);
 		}
-
 		return null;
 	};
 
 	return (
-		<nav className="navbar fixed-top navbar-light bg-light border-bottom">
+		<nav className="navbar navbar-expand-md fixed-top navbar-light bg-light border-bottom">
 			<Link to="/" className="navbar-brand">
 				Flash Cards Online
 			</Link>
-			{renderContent()}
+			<button
+				className="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#header-bar"
+				aria-controls="header-bar"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<span className="navbar-toggler-icon"></span>
+			</button>
+			<div className="collapse navbar-collapse" id="header-bar">
+				<div className="navbar-nav mr-auto mt-2 mt-lg-0" style={{ width: "5px" }} />
+				<div>
+					{renderDashboardButtons()}
+					{renderContent()}
+				</div>
+			</div>
 		</nav>
 	);
 };
@@ -33,4 +58,4 @@ const mapStateToProps = ({ auth }) => {
 	return { auth };
 };
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(withRouter(Header));

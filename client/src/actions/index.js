@@ -10,7 +10,8 @@ import {
 	SET_MODAL_EDIT_SHOW,
 	SET_MODAL_DELETE_SHOW,
 	SET_TOAST_INFO,
-	SET_TOAST_SHOW
+	SET_TOAST_SHOW,
+	SET_JUST_DELETED
 } from "./types";
 
 // USER
@@ -51,6 +52,10 @@ export const deleteCategories = idArrayToDelete => async dispatch => {
 
 export const setCategoriesDelete = set => {
 	return { type: SET_CATEGORIES_DELETE, payload: set };
+};
+
+export const setJustDeleted = idArray => {
+	return { type: SET_JUST_DELETED, payload: idArray };
 };
 
 // FLASH CARDS

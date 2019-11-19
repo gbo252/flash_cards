@@ -59,34 +59,17 @@ const ButtonsAddSelect = ({
 			>
 				{categoriesDelete ? "Delete Selected" : "Add Category"}
 			</button>
-			<div className="d-flex">
-				<button
-					className="btn btn-outline-secondary align-self-center rounded-pill m-1"
-					onClick={e => {
-						setCategoriesDelete(!categoriesDelete);
-						e.currentTarget.blur();
-					}}
-				>
-					{categoriesDelete
-						? "Deselect Categories"
-						: "Select Categories"}
-				</button>
-				<div
-					className={
-						"rounded-circle justify-content-center align-self-center align-top m-1 " +
-						(categoriesDelete ? "d-flex" : "d-none")
-					}
-					style={{
-						width: "2.5rem",
-						height: "2.5rem",
-						border: "1px solid #dc3545"
-					}}
-				>
-					<p className="m-0 my-auto" style={{ color: "#dc3545" }}>
-						{total}
-					</p>
-				</div>
-			</div>
+			<button
+				className="btn btn-outline-secondary align-self-center rounded-pill m-1"
+				onClick={e => {
+					setCategoriesDelete(!categoriesDelete);
+					e.currentTarget.blur();
+				}}
+			>
+				{categoriesDelete
+					? `Deselect ${total} Categories`
+					: "Select Categories"}
+			</button>
 		</React.Fragment>
 	);
 };

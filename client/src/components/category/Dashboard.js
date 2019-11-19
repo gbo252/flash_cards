@@ -68,9 +68,6 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories, form }) => {
 					<SortCategoriesForm />
 					<FilterCategoriesForm forms={form} />
 				</div>
-				<div className="action-buttons d-flex">
-					<ButtonsAddSelect />
-				</div>
 			</div>
 			<div className="mb-4 mt-lg-2">{renderCategories()}</div>
 		</div>

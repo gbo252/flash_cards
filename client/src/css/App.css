@@ -9,9 +9,9 @@ li {
 	font-size: 1rem;
 }
 
-.action-buttons {
+/* .action-buttons {
 	flex-direction: column;
-}
+} */
 
 @media only screen and (max-width: 1199px) {
 	p.h1 {
@@ -71,11 +71,11 @@ li {
 	p.h1 {
 		font-size: 13px;
 	}
-	.action-buttons {
+	/* .action-buttons {
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;
-	}
+	} */
 }
 
 /* .colors {
