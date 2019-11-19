@@ -1,3 +1,4 @@
+import logo from "../../images/logo.png";
 import React from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
@@ -33,6 +34,13 @@ const Header = ({ auth, location }) => {
 			style={{ borderBottom: "2px solid rgba(148, 148, 148, 0.8)" }}
 		>
 			<Link to="/" className="navbar-brand">
+				<img
+					className="mr-2 mb-1"
+					width="25px"
+					height="25px"
+					src={logo}
+					alt="logo"
+				/>
 				Flash Cards Online
 			</Link>
 			<button
