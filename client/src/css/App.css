@@ -19,21 +19,12 @@ li {
 }
 
 @media only screen and (max-width: 991px) {
-	html {
-		font-size: 15px;
-	}
 }
 
 @media only screen and (max-width: 767px) {
-	html {
-		font-size: 14px;
-	}
 }
 
 @media only screen and (max-width: 575px) {
-	html {
-		font-size: 12px;
-	}
 	h1.display-3 {
 		font-size: 3rem;
 	}
@@ -63,9 +54,6 @@ li {
 @media only screen and (max-width: 411px) {
 	h1.display-3 {
 		font-size: 2.5rem;
-	}
-	p.h1 {
-		font-size: 13px;
 	}
 }
 
