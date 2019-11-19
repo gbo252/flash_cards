@@ -28,7 +28,10 @@ const Header = ({ auth, location }) => {
 	};
 
 	return (
-		<nav className="navbar navbar-expand-md fixed-top navbar-light bg-light border-bottom">
+		<nav
+			className="navbar navbar-expand-md fixed-top navbar-light bg-light"
+			style={{ borderBottom: "2px solid rgba(148, 148, 148, 0.8)" }}
+		>
 			<Link to="/" className="navbar-brand">
 				Flash Cards Online
 			</Link>
@@ -44,7 +47,10 @@ const Header = ({ auth, location }) => {
 				<span className="navbar-toggler-icon"></span>
 			</button>
 			<div className="collapse navbar-collapse" id="header-bar">
-				<div className="navbar-nav mr-auto mt-2 mt-lg-0" style={{ width: "5px" }} />
+				<div
+					className="navbar-nav mr-auto mt-2 mt-lg-0"
+					style={{ width: "5px" }}
+				/>
 				<div>
 					{renderDashboardButtons()}
 					{renderContent()}

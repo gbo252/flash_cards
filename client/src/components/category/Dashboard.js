@@ -64,10 +64,8 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories, form }) => {
 				{renderSquares()}
 			</div>
 			<div className="d-flex flex-wrap justify-content-center justify-content-sm-between">
-				<div className="d-flex flex-column">
-					<SortCategoriesForm />
-					<FilterCategoriesForm forms={form} />
-				</div>
+				<SortCategoriesForm />
+				<FilterCategoriesForm forms={form} />
 			</div>
 			<div className="mb-4 mt-lg-2">{renderCategories()}</div>
 		</div>
