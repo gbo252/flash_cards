@@ -26,7 +26,7 @@ const Toast = ({ toastInfo, toastShow, toastInc, setToastShow }) => {
 				aria-atomic="true"
 				style={{
 					opacity: "1",
-					top: "120px",
+					top: "200px",
 					transition: "right 100ms ease-in",
 					...isShow()
 				}}
