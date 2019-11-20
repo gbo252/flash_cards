@@ -63,8 +63,13 @@ const Category = ({
 	return (
 		<div className="main d-flex flex-column">
 			<h1
-				className="mb-3 py-2 px-4 display-4 text-center rounded-pill align-self-center"
-				style={{ borderBottom: `7px solid ${getColor()}`, borderTop: `1px solid rgba(0, 0, 0, 0.1)` }}
+				className="mb-3 py-4 px-5 display-3 text-center rounded-pill align-self-center"
+				style={{
+					color: getColor(),
+					textShadow: "3px 3px 2px rgba(0, 0, 0, 0.7)",
+					borderBottom: `10px solid ${getColor()}`,
+					boxShadow: "0 0 10px 2px rgba(0, 0, 0, 0.3) inset"
+				}}
 			>
 				{category}
 			</h1>

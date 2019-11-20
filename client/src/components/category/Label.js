@@ -34,7 +34,7 @@ const Label = ({
 			<div className="d-flex justify-content-between">
 				<div className="d-flex align-items-center">
 					<div
-						className="cat-circle d-flex flex-shrink-0 justify-content-center align-items-center rounded-circle m-2"
+						className="cat-circle d-flex flex-shrink-0 justify-content-center align-items-center rounded-circle m-3"
 						style={{
 							backgroundColor: categoriesDelete ? null : color,
 							borderStyle: "solid",
@@ -57,7 +57,7 @@ const Label = ({
 						{category}
 					</p>
 				</div>
-				<div className="d-lg-none dropleft mr-sm-3 mt-3">
+				<div className="d-lg-none dropleft mr-3 mr-sm-4 mt-3">
 					<button
 						onClick={e => e.stopPropagation()}
 						className="close"
