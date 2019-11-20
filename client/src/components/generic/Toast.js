@@ -18,7 +18,7 @@ const Toast = ({ toastInfo, toastShow, toastInc, setToastShow }) => {
 	};
 
 	return ReactDOM.createPortal(
-		<div className="fixed-top">
+		<div className="fixed-bottom">
 			<div
 				className="toast position-absolute"
 				role="alert"
@@ -26,7 +26,7 @@ const Toast = ({ toastInfo, toastShow, toastInc, setToastShow }) => {
 				aria-atomic="true"
 				style={{
 					opacity: "1",
-					top: "200px",
+					bottom: "15px",
 					transition: "right 100ms ease-in",
 					...isShow()
 				}}

@@ -47,7 +47,7 @@ const CategoryList = ({ categories, categoriesDelete, reset, justDeleted }) => {
 				classNames="cat-label"
 				appear
 			>
-				<div className="d-flex justify-content-center my-3">
+				<div className="d-flex justify-content-center my-4">
 					<Field
 						component={categoryComponent}
 						name={cat._id}

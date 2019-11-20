@@ -20,23 +20,14 @@ const ModalNewEditCategory = ({
 }) => {
 	const setModalShow = title === "New" ? setModalNewShow : setModalEditShow;
 
-	const getColor = () => {
-		if (form.category) {
-			if (form.category.values) {
-				if (form.category.values.color) {
-					return form.category.values.color;
-				}
-			}
-		}
-	};
-
 	const onSubmit = formValues => {
+		const color = form.category.values.color;
 		if (title === "New") {
 			newCategory(formValues);
-			setToastInfo("New category created!", getColor());
+			setToastInfo("New category created!", color);
 		} else {
 			editCategory(formValues, modalInfo.category);
-			setToastInfo("Category edited successfully!", getColor());
+			setToastInfo("Category edited successfully!", color);
 		}
 		setModalShow(false);
 		setToastShow(true);

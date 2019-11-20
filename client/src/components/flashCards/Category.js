@@ -11,26 +11,36 @@ const Category = ({
 		params: { category }
 	},
 	fetchFlashCards,
-	flashCards
+	flashCards,
+	categories
 }) => {
 	React.useEffect(() => {
 		fetchFlashCards(category);
 	}, [fetchFlashCards, category]);
 
-	const renderButton = () => {
-		if (flashCards) {
-			return (
-				<div className="d-flex justify-content-end">
-					<Link
-						to={`/categories/${category}/new-flash-card`}
-						role="button"
-						className="btn btn-warning rounded-pill"
-					>
-						Add Flash Card
-					</Link>
-				</div>
-			);
-		}
+	const getColor = () => {
+		return categories.find(cat => cat.category === category).color;
+	};
+
+	const renderButtons = () => {
+		return (
+			<React.Fragment>
+				<Link
+					to="/"
+					className="btn btn-info rounded-pill"
+					role="button"
+				>
+					Back
+				</Link>
+				<Link
+					to={`/categories/${category}/new-flash-card`}
+					role="button"
+					className="btn btn-warning rounded-pill"
+				>
+					Add Flash Card
+				</Link>
+			</React.Fragment>
+		);
 	};
 
 	const renderContent = () => {
@@ -51,26 +61,23 @@ const Category = ({
 	};
 
 	return (
-		<div className="mt-3">
-			<h1 className="display-4 text-center">{category}</h1>
-			<Link
-				to="/"
-				className="btn btn-info rounded-pill mb-3"
-				role="button"
+		<div className="main d-flex flex-column">
+			<h1
+				className="mb-3 py-2 px-4 display-4 text-center rounded-pill align-self-center"
+				style={{ borderBottom: `7px solid ${getColor()}`, borderTop: `1px solid rgba(0, 0, 0, 0.1)` }}
 			>
-				Back
-			</Link>
+				{category}
+			</h1>
+			<div className="d-flex justify-content-between">
+				{renderButtons()}
+			</div>
 			{renderContent()}
-			{renderButton()}
 		</div>
 	);
 };
 
-const mapStateToProps = ({ flashCards }) => {
-	return { flashCards };
+const mapStateToProps = ({ flashCards, categories }) => {
+	return { flashCards, categories };
 };
 
-export default connect(
-	mapStateToProps,
-	actions
-)(Category);
+export default connect(mapStateToProps, actions)(Category);

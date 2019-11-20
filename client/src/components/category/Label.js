@@ -36,6 +36,7 @@ const Label = ({
 					<div
 						className="cat-circle d-flex flex-shrink-0 justify-content-center align-items-center rounded-circle m-2"
 						style={{
+							transform: "perspective(950px) rotateX(15deg)",
 							backgroundColor: categoriesDelete ? null : color,
 							borderStyle: "solid",
 							borderColor: categoriesDelete
