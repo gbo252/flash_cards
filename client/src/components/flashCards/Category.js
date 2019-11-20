@@ -66,9 +66,11 @@ const Category = ({
 				className="mb-3 py-4 px-5 display-3 text-center rounded-pill align-self-center"
 				style={{
 					color: getColor(),
-					textShadow: "3px 3px 2px rgba(0, 0, 0, 0.7)",
+					textShadow: "2px 2px 2px rgba(0, 0, 0, 0.7)",
 					borderBottom: `10px solid ${getColor()}`,
-					boxShadow: "0 0 10px 2px rgba(0, 0, 0, 0.3) inset"
+					backgroundColor: "rgb(248, 249, 250)",
+					boxShadow:
+						"2px 4px 7px 2px rgba(146, 146, 146, 0.7), 0 0 10px 2px rgba(0, 0, 0, 0.3) inset"
 				}}
 			>
 				{category}
