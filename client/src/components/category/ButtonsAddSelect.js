@@ -60,7 +60,7 @@ const ButtonsAddSelect = ({
 				{categoriesDelete ? "Delete Selected" : "Add Category"}
 			</button>
 			<button
-				className="btn btn-outline-secondary align-self-center rounded-pill m-1"
+				className="btn btn-outline-info align-self-center rounded-pill m-1"
 				onClick={e => {
 					setCategoriesDelete(!categoriesDelete);
 					e.currentTarget.blur();

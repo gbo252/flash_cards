@@ -22,33 +22,12 @@ const Category = ({
 		return categories.find(cat => cat.category === category).color;
 	};
 
-	const renderButtons = () => {
-		return (
-			<React.Fragment>
-				<Link
-					to="/"
-					className="btn btn-info rounded-pill"
-					role="button"
-				>
-					Back
-				</Link>
-				<Link
-					to={`/categories/${category}/new-flash-card`}
-					role="button"
-					className="btn btn-warning rounded-pill"
-				>
-					Add Flash Card
-				</Link>
-			</React.Fragment>
-		);
-	};
-
 	const renderContent = () => {
 		if (!flashCards) {
 			return <Spinner />;
 		} else if (flashCards.length > 0) {
 			return (
-				<div className="d-flex flex-wrap justify-content-center my-4">
+				<div className="d-flex flex-wrap justify-content-center mt-3">
 					<FlashCardList
 						category={category}
 						flashCards={flashCards}
@@ -63,8 +42,15 @@ const Category = ({
 
 	return (
 		<div className="main d-flex flex-column">
+			<Link
+				to="/"
+				className="btn btn-outline-secondary rounded-pill align-self-start"
+				role="button"
+			>
+				Back
+			</Link>
 			<h1
-				className="mb-3 py-4 px-5 display-3 text-center rounded-pill align-self-center"
+				className="mb-3 mt-1 py-4 px-5 display-3 text-center rounded-pill align-self-center text-wrap text-break"
 				style={{
 					color: getColor(),
 					textShadow: "2px 2px 2px rgba(0, 0, 0, 0.7)",
@@ -76,9 +62,13 @@ const Category = ({
 			>
 				{category}
 			</h1>
-			<div className="d-flex justify-content-between">
-				{renderButtons()}
-			</div>
+			<Link
+				to={`/categories/${category}/new-flash-card`}
+				className="btn btn-warning rounded-pill align-self-center"
+				role="button"
+			>
+				Add Flash Card
+			</Link>
 			{renderContent()}
 		</div>
 	);

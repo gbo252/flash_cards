@@ -10,7 +10,7 @@ li {
 }
 
 .main {
-	margin-top: 100px;
+	margin-top: 75px;
 	margin-bottom: 50px;
 }
 
@@ -32,9 +32,6 @@ li {
 @media only screen and (max-width: 767px) {
 	h1.display-3 {
 		font-size: 3rem;
-	}
-	.main {
-		margin-top: 75px;
 	}
 }
 
@@ -76,7 +73,7 @@ li {
 
 @media only screen and (max-width: 325px) {
 	.main {
-		margin-top: 110px;
+		margin-top: 113px;
 	}
 }
 

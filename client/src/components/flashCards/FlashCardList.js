@@ -9,7 +9,7 @@ const FlashCardList = ({ category, color, flashCards, deleteFlashCard }) => {
 			return (
 				<div
 					key={_id}
-					className="scene my-2"
+					className="scene m-2"
 					onClick={e =>
 						e.currentTarget.children[0].classList.toggle(
 							"is-flipped"
@@ -36,20 +36,19 @@ const FlashCardList = ({ category, color, flashCards, deleteFlashCard }) => {
 	);
 
 	const blankSpaces = () => {
-		// let space = [];
+		let space = [];
 
-		// for (let i = 0; i < 3; i++) {
-		// 	space.push(
-		// 		<div
-		// 			key={i}
-		// 			className="mx-3"
-		// 			style={{ width: "15rem", height: "0" }}
-		// 		></div>
-		// 	);
-		// }
+		for (let i = 0; i < 3; i++) {
+			space.push(
+				<div
+					key={i}
+					className="mx-2"
+					style={{ width: "16rem", height: "0" }}
+				></div>
+			);
+		}
 
-		// return space;
-		return [];
+		return space;
 	};
 
 	return [...flashCardArray, ...blankSpaces()];
