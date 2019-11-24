@@ -48,10 +48,11 @@ const Category = ({
 			return <Spinner />;
 		} else if (flashCards.length > 0) {
 			return (
-				<div className="d-flex flex-wrap justify-content-center mb-4">
+				<div className="d-flex flex-wrap justify-content-center my-4">
 					<FlashCardList
 						category={category}
 						flashCards={flashCards}
+						color={getColor()}
 					/>
 				</div>
 			);

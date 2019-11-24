@@ -1,0 +1,28 @@
+.scene {
+	width: 17rem;
+	height: 10rem;
+	perspective: 600px;
+	cursor: pointer;
+}
+
+.flash-card-container {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	transition: transform 1s;
+	transform-style: preserve-3d;
+}
+
+.flash-card-container.is-flipped,
+.flash-card-back {
+	transform: rotateY(180deg);
+}
+
+.flash-card {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	backface-visibility: hidden;
+	border: 2px solid gray;
+	user-select: none;
+}
