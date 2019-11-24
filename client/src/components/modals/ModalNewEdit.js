@@ -83,7 +83,7 @@ const ModalNewEdit = ({
 
 	const renderActions = () => {
 		return (
-			<div>
+			<React.Fragment>
 				<button
 					className="btn btn-danger mx-2"
 					onClick={() => setModalShow(false)}
@@ -97,7 +97,7 @@ const ModalNewEdit = ({
 				>
 					Submit
 				</button>
-			</div>
+			</React.Fragment>
 		);
 	};
 

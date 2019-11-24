@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 
-const ButtonsAddSelect = ({
+const HeaderCategoryButtons = ({
 	categories,
 	form,
 	categoriesDelete,
@@ -78,4 +78,4 @@ const mapStateToProps = ({ categories, form, categoriesDelete }) => {
 	return { categories, form, categoriesDelete };
 };
 
-export default connect(mapStateToProps, actions)(ButtonsAddSelect);
+export default connect(mapStateToProps, actions)(HeaderCategoryButtons);

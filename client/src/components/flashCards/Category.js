@@ -12,15 +12,13 @@ const Category = ({
 	},
 	fetchFlashCards,
 	flashCards,
-	categories,
-	setModalInfo,
-	setModalNewFlashShow
+	categories
 }) => {
 	React.useEffect(() => {
 		fetchFlashCards(category);
 	}, [fetchFlashCards, category]);
 
-	const color = categories.find(cat => cat.category === category).color;
+	const { color } = categories.find(cat => cat.category === category);
 
 	const renderContent = () => {
 		if (!flashCards) {
@@ -62,16 +60,6 @@ const Category = ({
 			>
 				{category}
 			</h1>
-			<button
-				className="btn btn-outline-secondary rounded-pill align-self-center"
-				onClick={e => {
-					setModalInfo({ category, color });
-					setModalNewFlashShow(true);
-					e.currentTarget.blur();
-				}}
-			>
-				Add Flash Card
-			</button>
 			{renderContent()}
 		</div>
 	);

@@ -3,12 +3,15 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 
-import ButtonsAddSelect from "../category/ButtonsAddSelect";
+import HeaderCategoryButtons from "../category/HeaderCategoryButtons";
+import HeaderFlashCardButtons from "../flashCards/HeaderFlashCardButtons";
 
 const Header = ({ auth, location }) => {
 	const renderDashboardButtons = () => {
 		if (location.pathname === "/" && auth) {
-			return <ButtonsAddSelect />;
+			return <HeaderCategoryButtons />;
+		} else if (location.pathname.includes("/categories/") && auth) {
+			return <HeaderFlashCardButtons />;
 		}
 		return null;
 	};

@@ -16,18 +16,18 @@ const FlashCardList = ({ category, color, flashCards, deleteFlashCard }) => {
 						)
 					}
 				>
-					<div className="flash-card-container">
+					<div className="flash-card-container text-center text-wrap text-break">
 						<div
 							className="flash-card d-flex justify-content-center align-items-center rounded-lg p-2"
 							style={{ backgroundColor: color }}
 						>
-							<p className="h4 text-center">{header}</p>
+							<p className="h4">{header}</p>
 						</div>
 						<div
 							className="flash-card flash-card-back d-flex justify-content-center align-items-center rounded-lg p-2"
 							style={{ backgroundColor: color }}
 						>
-							<p className="h6 text-center">{content}</p>
+							<p className="h6">{content}</p>
 						</div>
 					</div>
 				</div>
