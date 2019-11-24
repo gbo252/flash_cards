@@ -1,8 +1,10 @@
 import {
 	SET_MODAL_INFO,
-	SET_MODAL_NEW_SHOW,
-	SET_MODAL_EDIT_SHOW,
-    SET_MODAL_DELETE_SHOW
+	SET_MODAL_NEW_CAT_SHOW,
+	SET_MODAL_EDIT_CAT_SHOW,
+	SET_MODAL_NEW_FLASH_SHOW,
+	SET_MODAL_EDIT_FLASH_SHOW,
+	SET_MODAL_DELETE_SHOW
 } from "../actions/types";
 
 export const modalInfo = (state = null, action) => {
@@ -14,18 +16,36 @@ export const modalInfo = (state = null, action) => {
 	}
 };
 
-export const modalNewShow = (state = false, action) => {
+export const modalNewCatShow = (state = false, action) => {
 	switch (action.type) {
-		case SET_MODAL_NEW_SHOW:
+		case SET_MODAL_NEW_CAT_SHOW:
 			return action.payload;
 		default:
 			return state;
 	}
 };
 
-export const modalEditShow = (state = false, action) => {
+export const modalEditCatShow = (state = false, action) => {
 	switch (action.type) {
-		case SET_MODAL_EDIT_SHOW:
+		case SET_MODAL_EDIT_CAT_SHOW:
+			return action.payload;
+		default:
+			return state;
+	}
+};
+
+export const modalNewFlashShow = (state = false, action) => {
+	switch (action.type) {
+		case SET_MODAL_NEW_FLASH_SHOW:
+			return action.payload;
+		default:
+			return state;
+	}
+};
+
+export const modalEditFlashShow = (state = false, action) => {
+	switch (action.type) {
+		case SET_MODAL_EDIT_FLASH_SHOW:
 			return action.payload;
 		default:
 			return state;

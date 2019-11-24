@@ -5,6 +5,7 @@ import { reduxForm, Field } from "redux-form";
 import { colors } from "../generic/colors";
 import FormField, { FormErrorMessageTouched } from "./FormField";
 import FormColorField from "./FormColorField";
+import validateDuplicates from "./validateDuplicates";
 
 const CategoryForm = ({ handleSubmit, onSubmit }) => {
 	return (
@@ -14,7 +15,6 @@ const CategoryForm = ({ handleSubmit, onSubmit }) => {
 				label="Category Name"
 				name="category"
 			/>
-			<Field name="category" component={FormErrorMessageTouched} />
 			<div className="color-group">
 				<label>Colour</label>
 				<div>
@@ -34,32 +34,15 @@ const CategoryForm = ({ handleSubmit, onSubmit }) => {
 	);
 };
 
-const validateCategory = (categories, category, initialValues) => {
-	let categoryNames = categories.map(x => x.category.toLowerCase());
-
-	if (initialValues) {
-		const index = categoryNames.indexOf(
-			initialValues.category.toLowerCase()
-		);
-
-		categoryNames.splice(index, 1);
-	}
-
-	if (categoryNames.includes(category.toLowerCase())) {
-		return `There is already a category called ${category}`;
-	}
-
-	return null;
-};
-
 const validate = (formValues, { categories, initialValues }) => {
 	const errors = {};
 
 	if (categories) {
-		errors.category = validateCategory(
+		errors.category = validateDuplicates(
 			categories,
 			formValues.category || "",
-			initialValues
+			initialValues,
+			"category"
 		);
 	}
 

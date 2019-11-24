@@ -12,15 +12,15 @@ const Category = ({
 	},
 	fetchFlashCards,
 	flashCards,
-	categories
+	categories,
+	setModalInfo,
+	setModalNewFlashShow
 }) => {
 	React.useEffect(() => {
 		fetchFlashCards(category);
 	}, [fetchFlashCards, category]);
 
-	const getColor = () => {
-		return categories.find(cat => cat.category === category).color;
-	};
+	const color = categories.find(cat => cat.category === category).color;
 
 	const renderContent = () => {
 		if (!flashCards) {
@@ -31,7 +31,7 @@ const Category = ({
 					<FlashCardList
 						category={category}
 						flashCards={flashCards}
-						color={getColor()}
+						color={color}
 					/>
 				</div>
 			);
@@ -52,9 +52,9 @@ const Category = ({
 			<h1
 				className="mb-3 mt-1 py-4 px-5 display-3 text-center rounded-pill align-self-center text-wrap text-break"
 				style={{
-					color: getColor(),
+					color,
 					textShadow: "2px 2px 2px rgba(0, 0, 0, 0.7)",
-					borderBottom: `10px solid ${getColor()}`,
+					borderBottom: `10px solid ${color}`,
 					backgroundColor: "rgb(248, 249, 250)",
 					boxShadow:
 						"2px 4px 7px 2px rgba(146, 146, 146, 0.7), 0 0 10px 2px rgba(0, 0, 0, 0.3) inset"
@@ -62,13 +62,16 @@ const Category = ({
 			>
 				{category}
 			</h1>
-			<Link
-				to={`/categories/${category}/new-flash-card`}
-				className="btn btn-warning rounded-pill align-self-center"
-				role="button"
+			<button
+				className="btn btn-outline-secondary rounded-pill align-self-center"
+				onClick={e => {
+					setModalInfo({ category, color });
+					setModalNewFlashShow(true);
+					e.currentTarget.blur();
+				}}
 			>
 				Add Flash Card
-			</Link>
+			</button>
 			{renderContent()}
 		</div>
 	);

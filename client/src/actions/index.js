@@ -6,8 +6,10 @@ import {
 	FETCH_FLASH_CARDS,
 	CLEAR_FLASH_CARDS,
 	SET_MODAL_INFO,
-	SET_MODAL_NEW_SHOW,
-	SET_MODAL_EDIT_SHOW,
+	SET_MODAL_NEW_CAT_SHOW,
+	SET_MODAL_EDIT_CAT_SHOW,
+	SET_MODAL_NEW_FLASH_SHOW,
+	SET_MODAL_EDIT_FLASH_SHOW,
 	SET_MODAL_DELETE_SHOW,
 	SET_TOAST_INFO,
 	SET_TOAST_SHOW,
@@ -66,10 +68,10 @@ export const fetchFlashCards = category => async dispatch => {
 	dispatch({ type: FETCH_FLASH_CARDS, payload: res.data.cards });
 };
 
-export const newFlashCard = (formValues, category, history) => async () => {
+export const newFlashCard = (formValues, category) => async dispatch => {
 	await axios.post(`/flashcards/${category}`, formValues);
 
-	history.push(`/categories/${category}`);
+	dispatch(fetchFlashCards(category));
 };
 
 export const clearFlashCards = () => {
@@ -88,12 +90,20 @@ export const setModalInfo = info => {
 	return { type: SET_MODAL_INFO, payload: info };
 };
 
-export const setModalNewShow = show => {
-	return { type: SET_MODAL_NEW_SHOW, payload: show };
+export const setModalNewCatShow = show => {
+	return { type: SET_MODAL_NEW_CAT_SHOW, payload: show };
 };
 
-export const setModalEditShow = show => {
-	return { type: SET_MODAL_EDIT_SHOW, payload: show };
+export const setModalEditCatShow = show => {
+	return { type: SET_MODAL_EDIT_CAT_SHOW, payload: show };
+};
+
+export const setModalNewFlashShow = show => {
+	return { type: SET_MODAL_NEW_FLASH_SHOW, payload: show };
+};
+
+export const setModalEditFlashShow = show => {
+	return { type: SET_MODAL_EDIT_FLASH_SHOW, payload: show };
 };
 
 export const setModalDeleteShow = show => {

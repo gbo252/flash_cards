@@ -45,17 +45,6 @@ const FilterCategoriesForm = ({ forms }) => {
 	);
 };
 
-const validate = formValues => {
-	const errors = {};
-
-	if (formValues.filter) {
-		errors.filter = "filter ON";
-	}
-
-	return errors;
-};
-
 export default reduxForm({
-	form: "categoriesFilter",
-	validate
+	form: "categoriesFilter"
 })(FilterCategoriesForm);

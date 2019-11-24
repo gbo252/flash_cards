@@ -10,10 +10,9 @@ import Header from "../generic/Header";
 import Login from "./Login";
 import Dashboard from "../category/Dashboard";
 import Category from "../flashCards/Category";
-import NewFlashCard from "../forms/NewFlashCard";
 import NotFound from "./NotFound";
+import ModalNewEdit from "../modals/ModalNewEdit";
 import ModalDeleteCategory from "../modals/ModalDeleteCategory";
-import ModalNewEditCategory from "../modals/ModalNewEditCategory";
 import Toast from "../generic/Toast";
 
 const App = ({ fetchUser }) => {
@@ -24,8 +23,10 @@ const App = ({ fetchUser }) => {
 	return (
 		<BrowserRouter>
 			<Header />
-			<ModalNewEditCategory title="New" />
-			<ModalNewEditCategory title="Edit" />
+			<ModalNewEdit title="new-cat" />
+			<ModalNewEdit title="edit-cat" />
+			<ModalNewEdit title="new-flash" />
+			<ModalNewEdit title="edit-flash" />
 			<ModalDeleteCategory />
 			<Toast />
 			<div className="container">
@@ -36,11 +37,6 @@ const App = ({ fetchUser }) => {
 						exact
 						path="/categories/:category"
 						component={Category}
-					/>
-					<PrivateRoute
-						exact
-						path="/categories/:category/new-flash-card"
-						component={NewFlashCard}
 					/>
 					<Route path="/404" component={NotFound} />
 					<Route component={NotFound} />

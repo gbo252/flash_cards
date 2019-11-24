@@ -5,8 +5,10 @@ import { categories, categoriesDelete, justDeleted } from "./categoryReducer";
 import flashCardReducer from "./flashCardReducer";
 import {
 	modalInfo,
-	modalNewShow,
-	modalEditShow,
+	modalNewCatShow,
+	modalEditCatShow,
+	modalNewFlashShow,
+	modalEditFlashShow,
 	modalDeleteShow
 } from "./modalReducer";
 import { toastInfo, toastShow } from "./toastReducer";
@@ -19,8 +21,10 @@ export default combineReducers({
 	justDeleted,
 	flashCards: flashCardReducer,
 	modalInfo,
-	modalNewShow,
-	modalEditShow,
+	modalNewCatShow,
+	modalEditCatShow,
+	modalNewFlashShow,
+	modalEditFlashShow,
 	modalDeleteShow,
 	toastInfo,
 	toastShow

@@ -8,7 +8,7 @@ const ButtonsAddSelect = ({
 	categoriesDelete,
 	setCategoriesDelete,
 	setModalInfo,
-	setModalNewShow,
+	setModalNewCatShow,
 	setModalDeleteShow
 }) => {
 	const atts = {};
@@ -50,11 +50,11 @@ const ButtonsAddSelect = ({
 				onClick={e => {
 					if (!categoriesDelete) {
 						setModalInfo(null);
-						setModalNewShow(true);
-						e.currentTarget.blur();
+						setModalNewCatShow(true);
 					} else {
 						deleteSelected();
 					}
+					e.currentTarget.blur();
 				}}
 			>
 				{categoriesDelete ? "Delete Selected" : "Add Category"}
