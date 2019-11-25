@@ -12,7 +12,7 @@ import Dashboard from "../category/Dashboard";
 import Category from "../flashCards/Category";
 import NotFound from "./NotFound";
 import ModalNewEdit from "../modals/ModalNewEdit";
-import ModalDeleteCategory from "../modals/ModalDeleteCategory";
+import ModalDelete from "../modals/ModalDelete";
 import Toast from "../generic/Toast";
 
 const App = ({ fetchUser }) => {
@@ -27,7 +27,8 @@ const App = ({ fetchUser }) => {
 			<ModalNewEdit title="edit-cat" />
 			<ModalNewEdit title="new-flash" />
 			<ModalNewEdit title="edit-flash" />
-			<ModalDeleteCategory />
+			<ModalDelete title="delete-cat" />
+			<ModalDelete title="delete-flash" />
 			<Toast />
 			<div className="container">
 				<Switch>

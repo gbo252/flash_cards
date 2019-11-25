@@ -9,7 +9,8 @@ import {
 	modalEditCatShow,
 	modalNewFlashShow,
 	modalEditFlashShow,
-	modalDeleteShow
+	modalDeleteCatShow,
+	modalDeleteFlashShow	
 } from "./modalReducer";
 import { toastInfo, toastShow } from "./toastReducer";
 
@@ -25,7 +26,8 @@ export default combineReducers({
 	modalEditCatShow,
 	modalNewFlashShow,
 	modalEditFlashShow,
-	modalDeleteShow,
+	modalDeleteCatShow,
+	modalDeleteFlashShow,
 	toastInfo,
 	toastShow
 });

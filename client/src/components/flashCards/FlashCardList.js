@@ -8,7 +8,8 @@ const FlashCardList = ({
 	color,
 	flashCards,
 	setModalInfo,
-	setModalEditFlashShow
+	setModalEditFlashShow,
+	setModalDeleteFlashShow
 }) => {
 	const flashCardArray = flashCards.map(
 		({ lastEdited, dateCreated, header, content, _id }) => {
@@ -70,7 +71,17 @@ const FlashCardList = ({
 									<button
 										className="dropdown-item mr-5"
 										type="button"
-										// onClick={handleClick}
+										onClick={e => {
+											setModalInfo({
+												_id,
+												category,
+												color,
+												flashCard: header
+											});
+											setModalDeleteFlashShow(true);
+											e.currentTarget.blur();
+											e.stopPropagation();
+										}}
 									>
 										Delete Flash Card
 									</button>

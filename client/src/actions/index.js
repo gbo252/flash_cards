@@ -13,7 +13,8 @@ import {
 	SET_MODAL_EDIT_CAT_SHOW,
 	SET_MODAL_NEW_FLASH_SHOW,
 	SET_MODAL_EDIT_FLASH_SHOW,
-	SET_MODAL_DELETE_SHOW,
+	SET_MODAL_DELETE_CAT_SHOW,
+	SET_MODAL_DELETE_FLASH_SHOW,
 	SET_TOAST_INFO,
 	SET_TOAST_SHOW,
 	SET_JUST_DELETED
@@ -124,8 +125,12 @@ export const setModalEditFlashShow = show => {
 	return { type: SET_MODAL_EDIT_FLASH_SHOW, payload: show };
 };
 
-export const setModalDeleteShow = show => {
-	return { type: SET_MODAL_DELETE_SHOW, payload: show };
+export const setModalDeleteCatShow = show => {
+	return { type: SET_MODAL_DELETE_CAT_SHOW, payload: show };
+};
+
+export const setModalDeleteFlashShow = show => {
+	return { type: SET_MODAL_DELETE_FLASH_SHOW, payload: show };
 };
 
 // TOASTS

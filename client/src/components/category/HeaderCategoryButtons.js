@@ -9,7 +9,7 @@ const HeaderCategoryButtons = ({
 	setCategoriesDelete,
 	setModalInfo,
 	setModalNewCatShow,
-	setModalDeleteShow
+	setModalDeleteCatShow
 }) => {
 	const atts = {};
 	let total = 0;
@@ -34,7 +34,7 @@ const HeaderCategoryButtons = ({
 			return categories.find(category => category._id === id).category;
 		});
 		setModalInfo({ categoryNames, arrayOfIds });
-		setModalDeleteShow(true);
+		setModalDeleteCatShow(true);
 	};
 
 	return (

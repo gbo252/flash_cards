@@ -75,16 +75,28 @@ const ModalNewEdit = ({
 			newFlashCard(formValues, modalInfo.category);
 			setToastInfo("New flash card created!", modalInfo.color);
 		} else if (title === "edit-flash") {
-			editFlashCard(formValues, modalInfo.category, modalInfo._id)
+			editFlashCard(formValues, modalInfo.category, modalInfo._id);
 			setToastInfo("Flash card edited successfully!", modalInfo.color);
 		}
 		setModalShow(false);
 		setToastShow(true);
 	}
 
-	const renderActions = () => {
-		return (
-			<React.Fragment>
+	return (
+		<Modal
+			show={modalShow}
+			onHide={() => setModalShow(false)}
+			size="lg"
+			aria-labelledby="contained-modal-title-vcenter-new-edit"
+			centered
+		>
+			<Modal.Header closeButton>
+				<Modal.Title id="contained-modal-title-vcenter-new-edit">
+					{header}
+				</Modal.Title>
+			</Modal.Header>
+			<Modal.Body>{content}</Modal.Body>
+			<Modal.Footer>
 				<button
 					className="btn btn-danger mx-2"
 					onClick={() => setModalShow(false)}
@@ -98,25 +110,7 @@ const ModalNewEdit = ({
 				>
 					Submit
 				</button>
-			</React.Fragment>
-		);
-	};
-
-	return (
-		<Modal
-			show={modalShow}
-			onHide={() => setModalShow(false)}
-			size="lg"
-			aria-labelledby="contained-modal-title-vcenter"
-			centered
-		>
-			<Modal.Header closeButton>
-				<Modal.Title id="contained-modal-title-vcenter">
-					{header}
-				</Modal.Title>
-			</Modal.Header>
-			<Modal.Body>{content}</Modal.Body>
-			<Modal.Footer>{renderActions()}</Modal.Footer>
+			</Modal.Footer>
 		</Modal>
 	);
 };

@@ -4,7 +4,8 @@ import {
 	SET_MODAL_EDIT_CAT_SHOW,
 	SET_MODAL_NEW_FLASH_SHOW,
 	SET_MODAL_EDIT_FLASH_SHOW,
-	SET_MODAL_DELETE_SHOW
+	SET_MODAL_DELETE_CAT_SHOW,
+	SET_MODAL_DELETE_FLASH_SHOW
 } from "../actions/types";
 
 export const modalInfo = (state = null, action) => {
@@ -52,9 +53,18 @@ export const modalEditFlashShow = (state = false, action) => {
 	}
 };
 
-export const modalDeleteShow = (state = false, action) => {
+export const modalDeleteCatShow = (state = false, action) => {
 	switch (action.type) {
-		case SET_MODAL_DELETE_SHOW:
+		case SET_MODAL_DELETE_CAT_SHOW:
+			return action.payload;
+		default:
+			return state;
+	}
+};
+
+export const modalDeleteFlashShow = (state = false, action) => {
+	switch (action.type) {
+		case SET_MODAL_DELETE_FLASH_SHOW:
 			return action.payload;
 		default:
 			return state;

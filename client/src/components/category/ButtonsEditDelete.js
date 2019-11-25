@@ -8,10 +8,10 @@ const ButtonsEditDelete = ({
 	setModalInfo,
 	modalInfo,
 	setModalEditCatShow,
-	setModalDeleteShow,
+	setModalDeleteCatShow,
 	setCategoriesDelete
 }) => {
-	const action = text === "Edit" ? setModalEditCatShow : setModalDeleteShow;
+	const action = text === "Edit" ? setModalEditCatShow : setModalDeleteCatShow;
 
 	const handleClick = e => {
 		setModalInfo(modalInfo);
