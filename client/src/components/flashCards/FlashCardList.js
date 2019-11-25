@@ -25,7 +25,7 @@ const FlashCardList = ({
 				>
 					<div className="flash-card-container text-center text-wrap text-break">
 						<div
-							className="flash-card rounded-lg p-2"
+							className="flash-card p-2"
 							style={{ backgroundColor: color }}
 						>
 							<div className="w-100 dropleft position-absolute">
@@ -106,7 +106,7 @@ const FlashCardList = ({
 								<p className="h5 mb-0">{header}</p>
 							</div>
 						</div>
-						<div className="d-flex justify-content-center align-items-start flash-card flash-card-back rounded-lg overflow-auto p-2">
+						<div className="d-flex justify-content-center align-items-start flash-card flash-card-back overflow-auto p-2">
 							<div
 								className="d-flex flex-column align-items-center"
 								style={{ margin: "auto 0" }}

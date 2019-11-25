@@ -27,6 +27,6 @@
 	height: 100%;
 	width: 100%;
 	backface-visibility: hidden;
-	border: 2px solid gray;
+	border: 5px solid rgba(128, 128, 128, 0.3);
 	user-select: none;
 }
