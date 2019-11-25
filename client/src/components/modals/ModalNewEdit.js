@@ -12,6 +12,7 @@ const ModalNewEdit = ({
 	newCategory,
 	editCategory,
 	newFlashCard,
+	editFlashCard,
 	modalInfo,
 	modalNewCatShow,
 	setModalNewCatShow,
@@ -74,8 +75,8 @@ const ModalNewEdit = ({
 			newFlashCard(formValues, modalInfo.category);
 			setToastInfo("New flash card created!", modalInfo.color);
 		} else if (title === "edit-flash") {
-			//edit flash card action
-			setToastInfo("Flash card edited successfully!", "black");
+			editFlashCard(formValues, modalInfo.category, modalInfo._id)
+			setToastInfo("Flash card edited successfully!", modalInfo.color);
 		}
 		setModalShow(false);
 		setToastShow(true);

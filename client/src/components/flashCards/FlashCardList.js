@@ -53,7 +53,13 @@ const FlashCardList = ({
 										className="dropdown-item mr-5"
 										type="button"
 										onClick={e => {
-											setModalInfo({ category, header, content });
+											setModalInfo({
+												_id,
+												category,
+												color,
+												header,
+												content
+											});
 											setModalEditFlashShow(true);
 											e.currentTarget.blur();
 											e.stopPropagation();
@@ -89,10 +95,7 @@ const FlashCardList = ({
 								<p className="h4">{header}</p>
 							</div>
 						</div>
-						<div
-							className="flash-card flash-card-back d-flex justify-content-center align-items-center rounded-lg p-2"
-							style={{ backgroundColor: color }}
-						>
+						<div className="flash-card flash-card-back d-flex justify-content-center align-items-center rounded-lg p-2">
 							<p className="h6">{content}</p>
 						</div>
 					</div>

@@ -40,6 +40,29 @@ flashCardRouter.post("/:category", requireLogin, async (req, res) => {
 	res.send(flashCards.cards);
 });
 
+flashCardRouter.patch("/:category/edit/:id", requireLogin, async (req, res) => {
+	const { header, content } = req.body;
+
+	const flashCards = await Category.findOneAndUpdate(
+		{
+			"cards._id": mongoose.Types.ObjectId(req.params.id)
+		},
+		{
+			$set: {
+				"cards.$.header": header,
+				"cards.$.content": content,
+				"cards.$.lastEdited": Date.now(),
+				lastEdited: Date.now()
+			}
+		},
+		{ new: true }
+	).select({
+		cards: 1
+	});
+
+	res.send(flashCards.cards);
+});
+
 flashCardRouter.delete("/:category/:id", requireLogin, async (req, res) => {
 	await Category.updateOne(
 		{

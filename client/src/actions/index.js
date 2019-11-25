@@ -83,6 +83,15 @@ export const newFlashCard = (formValues, category) => async dispatch => {
 	dispatch({ type: FETCH_FLASH_CARDS, payload: res.data });
 };
 
+export const editFlashCard = (formValues, category, id) => async dispatch => {
+	const res = await axios.patch(
+		`/flashcards/${category}/edit/${id}`,
+		formValues
+	);
+
+	dispatch({ type: FETCH_FLASH_CARDS, payload: res.data });
+};
+
 export const clearFlashCards = () => {
 	return { type: CLEAR_FLASH_CARDS };
 };

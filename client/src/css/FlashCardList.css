@@ -13,8 +13,12 @@
 	transform-style: preserve-3d;
 }
 
-.flash-card-container.is-flipped,
+.flash-card-container.is-flipped {
+	transform: rotateY(180deg);
+}
+
 .flash-card-back {
+	background-color: rgb(248, 249, 250);
 	transform: rotateY(180deg);
 }
 
