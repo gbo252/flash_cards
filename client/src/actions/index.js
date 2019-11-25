@@ -93,14 +93,14 @@ export const editFlashCard = (formValues, category, id) => async dispatch => {
 	dispatch({ type: FETCH_FLASH_CARDS, payload: res.data });
 };
 
-export const clearFlashCards = () => {
-	return { type: CLEAR_FLASH_CARDS };
+export const deleteFlashCard = (id, category) => async dispatch => {
+	const res = await axios.delete(`/flashcards/${category}/${id}`);
+
+	dispatch({ type: FETCH_FLASH_CARDS, payload: res.data });
 };
 
-export const deleteFlashCard = (id, category) => async dispatch => {
-	await axios.delete(`/flashcards/${category}/${id}`);
-
-	dispatch(fetchFlashCards(category));
+export const clearFlashCards = () => {
+	return { type: CLEAR_FLASH_CARDS };
 };
 
 // MODALS
