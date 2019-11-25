@@ -128,7 +128,7 @@ const FlashCardList = ({
 				<div
 					key={i}
 					className="mx-3"
-					style={{ width: "20rem", height: "0" }}
+					style={{ width: "330px", height: "0" }}
 				></div>
 			);
 		}
