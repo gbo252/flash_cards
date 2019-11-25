@@ -111,7 +111,7 @@ const FlashCardList = ({
 								className="d-flex flex-column align-items-center"
 								style={{ margin: "auto 0" }}
 							>
-								<p className="h6 mb-0">{content}</p>
+								<p className="h6 mb-0 p-2">{content}</p>
 							</div>
 						</div>
 					</div>

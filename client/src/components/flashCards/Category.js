@@ -5,6 +5,9 @@ import * as actions from "../../actions";
 
 import FlashCardList from "./FlashCardList";
 import Spinner from "../generic/Spinner";
+import FilterForm, {
+	filterArray
+} from "../forms/FilterForm";
 
 const Category = ({
 	match: {
@@ -12,7 +15,8 @@ const Category = ({
 	},
 	fetchFlashCards,
 	flashCards,
-	categories
+	categories,
+	form
 }) => {
 	React.useEffect(() => {
 		fetchFlashCards(category);
@@ -60,13 +64,18 @@ const Category = ({
 			>
 				{category}
 			</h1>
+			<FilterForm forms={form} />
 			{renderContent()}
 		</div>
 	);
 };
 
-const mapStateToProps = ({ flashCards, categories }) => {
-	return { flashCards, categories };
+const mapStateToProps = ({ flashCards, categories, form }) => {
+	return {
+		flashCards: filterArray(flashCards, form, "header"),
+		categories,
+		form
+	};
 };
 
 export default connect(mapStateToProps, actions)(Category);

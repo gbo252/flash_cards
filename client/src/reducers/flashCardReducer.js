@@ -1,6 +1,6 @@
 import { FETCH_FLASH_CARDS, CLEAR_FLASH_CARDS } from "../actions/types";
 
-export default (state = null, action) => {
+export const flashCards = (state = null, action) => {
 	switch (action.type) {
 		case FETCH_FLASH_CARDS:
 			return action.payload;

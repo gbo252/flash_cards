@@ -1,7 +1,6 @@
 import _ from "lodash";
 import React from "react";
 import { connect } from "react-redux";
-import { reduxForm } from "redux-form";
 import * as actions from "../../actions";
 
 import CategoryList from "./CategoryList";
@@ -10,9 +9,9 @@ import { colors } from "../generic/colors";
 import SortCategoriesForm, {
 	sortCategories
 } from "../forms/SortCategoriesForm";
-import FilterCategoriesForm, {
-	filterCategories
-} from "../forms/FilterCategoriesForm";
+import FilterForm, {
+	filterArray
+} from "../forms/FilterForm";
 
 const Dashboard = ({ fetchCategories, clearFlashCards, categories, form }) => {
 	React.useEffect(() => {
@@ -55,7 +54,9 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories, form }) => {
 
 	return (
 		<div className="main d-flex flex-column">
-			<h1 className="display-3 text-center mt-1 mt-sm-2 mt-md-3 mt-lg-4 mb-0">Flash Cards Online</h1>
+			<h1 className="display-3 text-center mt-1 mt-sm-2 mt-md-3 mt-lg-4 mb-0">
+				Flash Cards Online
+			</h1>
 			<p className="h4 mb-2 font-weight-light text-center">
 				A simple online flash card maker!
 			</p>
@@ -64,7 +65,7 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories, form }) => {
 			</div>
 			<div className="d-flex flex-wrap justify-content-center justify-content-md-between">
 				<SortCategoriesForm />
-				<FilterCategoriesForm forms={form} />
+				<FilterForm forms={form} />
 			</div>
 			<div className="mt-lg-2">{renderCategories()}</div>
 		</div>
@@ -73,11 +74,12 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories, form }) => {
 
 const mapStateToProps = ({ categories, form }) => {
 	return {
-		categories: sortCategories(filterCategories(categories, form), form),
+		categories: sortCategories(
+			filterArray(categories, form, "category"),
+			form
+		),
 		form
 	};
 };
 
-export default reduxForm({
-	form: "categoriesFilter"
-})(connect(mapStateToProps, actions)(Dashboard));
+export default connect(mapStateToProps, actions)(Dashboard);

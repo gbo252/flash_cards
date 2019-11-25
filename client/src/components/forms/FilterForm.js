@@ -2,32 +2,36 @@ import React from "react";
 import { reduxForm, Field } from "redux-form";
 import FormField from "./FormField";
 
-export const filterCategories = (categories, form) => {
+export const filterArray = (array, form, filterBy) => {
 	const regexEscape = text => {
 		// eslint-disable-next-line
 		return text.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
 	};
 
-	if (form && categories) {
-		if (form.categoriesFilter) {
-			if (form.categoriesFilter.values) {
-				const { filter } = form.categoriesFilter.values;
+	if (form && array) {
+		if (form.filterArrayForm) {
+			if (form.filterArrayForm.values) {
+				const { filter } = form.filterArrayForm.values;
 				const regex = new RegExp(regexEscape(filter), "gi");
-				return categories.filter(({ category }) =>
-					category.match(regex)
-				);
+				if (filterBy === "header") {
+					return array.filter(
+						obj =>
+							obj.header.match(regex) || obj.content.match(regex)
+					);
+				}
+				return array.filter(obj => obj.category.match(regex));
 			}
-			return categories;
+			return array;
 		}
 		return null;
 	}
 	return null;
 };
 
-const FilterCategoriesForm = ({ forms }) => {
+const FilterForm = ({ forms }) => {
 	const inputStyle = () => {
-		if (forms.categoriesFilter) {
-			if (forms.categoriesFilter.values) {
+		if (forms.filterArrayForm) {
+			if (forms.filterArrayForm.values) {
 				return "#dc3545";
 			}
 		}
@@ -46,5 +50,5 @@ const FilterCategoriesForm = ({ forms }) => {
 };
 
 export default reduxForm({
-	form: "categoriesFilter"
-})(FilterCategoriesForm);
+	form: "filterArrayForm"
+})(FilterForm);

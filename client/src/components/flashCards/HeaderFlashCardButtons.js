@@ -16,16 +16,18 @@ const HeaderFlashCardButtons = ({
 	}
 
 	return (
-		<button
-			className="btn btn-outline-success rounded-pill align-self-center m-1"
-			onClick={e => {
-				setModalInfo({ category, color });
-				setModalNewFlashShow(true);
-				e.currentTarget.blur();
-			}}
-		>
-			Add Flash Card
-		</button>
+		<React.Fragment>
+			<button
+				className="btn btn-outline-success rounded-pill align-self-center m-1"
+				onClick={e => {
+					setModalInfo({ category, color });
+					setModalNewFlashShow(true);
+					e.currentTarget.blur();
+				}}
+			>
+				Add Flash Card
+			</button>
+		</React.Fragment>
 	);
 };
 
