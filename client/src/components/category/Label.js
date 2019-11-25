@@ -90,16 +90,16 @@ const Label = ({
 							modalInfo={{ _id, category, color }}
 						/>
 						<div className="dropdown-divider"></div>
-						<span className="dropdown-item-text px-2">
+						<span className="dropdown-item-text">
 							{Object.keys(infoList).map(info => {
 								const infoContent = infoList[info];
 								return (
-									<p key={info} className="text-muted mb-0">
-										{info}:{" "}
-										<span className="h6">
-											<small>{infoContent}</small>
-										</span>
-									</p>
+									<small
+										key={info}
+										className="d-block text-muted"
+									>
+										{info}: {infoContent}
+									</small>
 								);
 							})}
 						</span>

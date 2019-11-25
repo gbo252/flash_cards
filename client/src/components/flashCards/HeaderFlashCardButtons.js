@@ -1,18 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import Path from "path-parser";
+import { useRouteMatch } from "react-router-dom";
 import * as actions from "../../actions";
 
 const HeaderFlashCardButtons = ({
 	categories,
 	setModalInfo,
-	setModalNewFlashShow,
-	location
+	setModalNewFlashShow
 }) => {
 	let color;
-	const p = new Path("/categories/:category");
-	const { category } = p.test(location.pathname);
+	const { category } = useRouteMatch("/categories/:category").params;
 
 	if (categories) {
 		color = categories.find(cat => cat.category === category).color;
@@ -36,7 +33,4 @@ const mapStateToProps = ({ categories }) => {
 	return { categories };
 };
 
-export default connect(
-	mapStateToProps,
-	actions
-)(withRouter(HeaderFlashCardButtons));
+export default connect(mapStateToProps, actions)(HeaderFlashCardButtons);

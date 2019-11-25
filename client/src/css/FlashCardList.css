@@ -1,6 +1,6 @@
 .scene {
-	width: 16rem;
-	height: 10rem;
+	width: 20rem;
+	height: 12rem;
 	perspective: 600px;
 	cursor: pointer;
 }

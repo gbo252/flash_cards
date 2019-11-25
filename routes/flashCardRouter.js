@@ -13,7 +13,7 @@ flashCardRouter.get("/:category", requireLogin, async (req, res) => {
 		cards: 1
 	});
 
-	res.send(flashCards);
+	res.send(flashCards.cards);
 });
 
 flashCardRouter.post("/:category", requireLogin, async (req, res) => {
@@ -23,13 +23,21 @@ flashCardRouter.post("/:category", requireLogin, async (req, res) => {
 			_user: req.user.id
 		},
 		{
-			$push: { cards: { ...req.body, lastEdited: Date.now() } },
+			$push: {
+				cards: {
+					...req.body,
+					lastEdited: Date.now(),
+					dateCreated: Date.now()
+				}
+			},
 			lastEdited: Date.now()
 		},
 		{ new: true }
-	).exec();
+	).select({
+		cards: 1
+	});
 
-	res.send(flashCards);
+	res.send(flashCards.cards);
 });
 
 flashCardRouter.delete("/:category/:id", requireLogin, async (req, res) => {

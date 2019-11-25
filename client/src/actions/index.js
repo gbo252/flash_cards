@@ -2,6 +2,9 @@ import axios from "axios";
 import {
 	FETCH_USER,
 	FETCH_CATEGORIES,
+	NEW_CATEGORY,
+	EDIT_CATEGORY,
+	DELETE_CATEGORY,
 	SET_CATEGORIES_DELETE,
 	FETCH_FLASH_CARDS,
 	CLEAR_FLASH_CARDS,
@@ -33,23 +36,29 @@ export const fetchCategories = () => async dispatch => {
 };
 
 export const newCategory = formValues => async dispatch => {
-	await axios.post("/category-routes", formValues);
+	const res = await axios.post("/category-routes", formValues);
 
-	dispatch(fetchCategories());
+	dispatch({
+		type: NEW_CATEGORY,
+		payload: { ...res.data, cardsTotal: 0 }
+	});
 };
 
 export const editCategory = (formValues, category) => async dispatch => {
-	await axios.patch(`/category-routes/edit/${category}`, formValues);
+	const res = await axios.patch(
+		`/category-routes/edit/${category}`,
+		formValues
+	);
 
-	dispatch(fetchCategories());
+	dispatch({ type: EDIT_CATEGORY, payload: res.data[0] });
 };
 
 export const deleteCategories = idArrayToDelete => async dispatch => {
-	await axios.delete("/category-routes/delete", {
+	const res = await axios.delete("/category-routes/delete", {
 		data: idArrayToDelete
 	});
 
-	dispatch(fetchCategories());
+	dispatch({ type: DELETE_CATEGORY, payload: res.data });
 };
 
 export const setCategoriesDelete = set => {
@@ -65,13 +74,13 @@ export const setJustDeleted = idArray => {
 export const fetchFlashCards = category => async dispatch => {
 	const res = await axios.get(`/flashcards/${category}`);
 
-	dispatch({ type: FETCH_FLASH_CARDS, payload: res.data.cards });
+	dispatch({ type: FETCH_FLASH_CARDS, payload: res.data });
 };
 
 export const newFlashCard = (formValues, category) => async dispatch => {
-	await axios.post(`/flashcards/${category}`, formValues);
+	const res = await axios.post(`/flashcards/${category}`, formValues);
 
-	dispatch(fetchFlashCards(category));
+	dispatch({ type: FETCH_FLASH_CARDS, payload: res.data });
 };
 
 export const clearFlashCards = () => {

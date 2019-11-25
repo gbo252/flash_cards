@@ -40,7 +40,7 @@ const ButtonsEditDelete = ({
 		} else {
 			return (
 				<button
-					className="dropdown-item pl-3 pr-5 mr-4"
+					className="dropdown-item mr-5"
 					type="button"
 					onClick={handleClick}
 				>

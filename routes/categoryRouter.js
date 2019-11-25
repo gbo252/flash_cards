@@ -32,7 +32,7 @@ categoryRouter.post("/", requireLogin, async (req, res) => {
 
 	await newCategory.save();
 
-	res.send({});
+	res.send(newCategory);
 });
 
 categoryRouter.patch("/edit/:category", requireLogin, async (req, res) => {
@@ -47,13 +47,26 @@ categoryRouter.patch("/edit/:category", requireLogin, async (req, res) => {
 		}
 	).exec();
 
-	res.send({});
+	const updatedCategory = await Category.aggregate([
+		{ $match: { ...req.body } },
+		{
+			$project: {
+				category: 1,
+				color: 1,
+				lastEdited: 1,
+				dateCreated: 1,
+				cardsTotal: { $size: "$cards" }
+			}
+		}
+	]).exec();
+
+	res.send(updatedCategory);
 });
 
 categoryRouter.delete("/delete", requireLogin, async (req, res) => {
 	await Category.deleteMany({ _id: { $in: req.body } });
 
-	res.send({});
+	res.send(req.body);
 });
 
 module.exports = categoryRouter;

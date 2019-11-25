@@ -3,13 +3,19 @@ import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 
-const FlashCardList = ({ category, color, flashCards, deleteFlashCard }) => {
+const FlashCardList = ({
+	category,
+	color,
+	flashCards,
+	setModalInfo,
+	setModalEditFlashShow
+}) => {
 	const flashCardArray = flashCards.map(
-		({ lastEdited, header, content, _id }) => {
+		({ lastEdited, dateCreated, header, content, _id }) => {
 			return (
 				<div
 					key={_id}
-					className="scene m-2"
+					className="scene m-3"
 					onClick={e =>
 						e.currentTarget.children[0].classList.toggle(
 							"is-flipped"
@@ -18,10 +24,70 @@ const FlashCardList = ({ category, color, flashCards, deleteFlashCard }) => {
 				>
 					<div className="flash-card-container text-center text-wrap text-break">
 						<div
-							className="flash-card d-flex justify-content-center align-items-center rounded-lg p-2"
+							className="flash-card rounded-lg p-2"
 							style={{ backgroundColor: color }}
 						>
-							<p className="h4">{header}</p>
+							<div className="w-100 dropleft position-absolute">
+								<button
+									onClick={e => e.stopPropagation()}
+									className="close pr-1"
+									type="button"
+									id="dropdownFlashButton"
+									data-toggle="dropdown"
+									aria-haspopup="true"
+									aria-expanded="false"
+								>
+									<i
+										className="text-black-50 material-icons"
+										style={{ fontSize: "2.5rem" }}
+									>
+										more_vert
+									</i>
+								</button>
+								<div
+									className="dropdown-menu"
+									aria-labelledby="dropdownFlashButton"
+									onClick={e => e.stopPropagation()}
+								>
+									<button
+										className="dropdown-item mr-5"
+										type="button"
+										onClick={e => {
+											setModalInfo({ category, header, content });
+											setModalEditFlashShow(true);
+											e.currentTarget.blur();
+											e.stopPropagation();
+										}}
+									>
+										Edit Flash Card
+									</button>
+									<button
+										className="dropdown-item mr-5"
+										type="button"
+										// onClick={handleClick}
+									>
+										Delete Flash Card
+									</button>
+									<div className="dropdown-divider"></div>
+									<span className="dropdown-item-text">
+										<small className="d-block text-muted">
+											{"Last Updated: "}
+											{new Date(
+												lastEdited
+											).toLocaleDateString("en-GB")}
+										</small>
+										<small className="d-block text-muted">
+											{"Date Created: "}
+											{new Date(
+												dateCreated
+											).toLocaleDateString("en-GB")}
+										</small>
+									</span>
+								</div>
+							</div>
+							<div className="h-100 w-100 d-flex justify-content-center align-items-center">
+								<p className="h4">{header}</p>
+							</div>
 						</div>
 						<div
 							className="flash-card flash-card-back d-flex justify-content-center align-items-center rounded-lg p-2"
@@ -38,12 +104,12 @@ const FlashCardList = ({ category, color, flashCards, deleteFlashCard }) => {
 	const blankSpaces = () => {
 		let space = [];
 
-		for (let i = 0; i < 3; i++) {
+		for (let i = 0; i < 2; i++) {
 			space.push(
 				<div
 					key={i}
-					className="mx-2"
-					style={{ width: "16rem", height: "0" }}
+					className="mx-3"
+					style={{ width: "20rem", height: "0" }}
 				></div>
 			);
 		}
