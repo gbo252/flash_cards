@@ -4,10 +4,9 @@ import { Link } from "react-router-dom";
 import * as actions from "../../actions";
 
 import FlashCardList from "./FlashCardList";
+import SortForm, { sortArray } from "../forms/SortForm";
+import FilterForm, { filterArray } from "../forms/FilterForm";
 import Spinner from "../generic/Spinner";
-import FilterForm, {
-	filterArray
-} from "../forms/FilterForm";
 
 const Category = ({
 	match: {
@@ -42,6 +41,15 @@ const Category = ({
 		}
 	};
 
+	const sortByOptions = {
+		"Alphabetic - ascending": "alphabetic-asc",
+		"Alphabetic - descending": "alphabetic-desc",
+		"Date Created - ascending": "date-created-asc",
+		"Date Created - descending": "date-created-desc",
+		"Last Updated - ascending": "last-updated-asc",
+		"Last Updated - descending": "last-updated-desc"
+	};
+
 	return (
 		<div className="main d-flex flex-column">
 			<Link
@@ -64,7 +72,13 @@ const Category = ({
 			>
 				{category}
 			</h1>
-			<FilterForm forms={form} />
+			<div className="d-flex flex-wrap justify-content-center justify-content-md-between">
+				<SortForm
+					name="flashCardSortBy"
+					sortByOptions={sortByOptions}
+				/>
+				<FilterForm forms={form} />
+			</div>
 			{renderContent()}
 		</div>
 	);
@@ -72,7 +86,12 @@ const Category = ({
 
 const mapStateToProps = ({ flashCards, categories, form }) => {
 	return {
-		flashCards: filterArray(flashCards, form, "header"),
+		flashCards: sortArray(
+			filterArray(flashCards, form, "header"),
+			form,
+			"header",
+			"flashCardSortBy"
+		),
 		categories,
 		form
 	};

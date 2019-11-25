@@ -4,14 +4,10 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 
 import CategoryList from "./CategoryList";
+import SortForm, { sortArray } from "../forms/SortForm";
+import FilterForm, { filterArray } from "../forms/FilterForm";
 import Spinner from "../generic/Spinner";
 import { colors } from "../generic/colors";
-import SortCategoriesForm, {
-	sortCategories
-} from "../forms/SortCategoriesForm";
-import FilterForm, {
-	filterArray
-} from "../forms/FilterForm";
 
 const Dashboard = ({ fetchCategories, clearFlashCards, categories, form }) => {
 	React.useEffect(() => {
@@ -52,6 +48,17 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories, form }) => {
 		}
 	};
 
+	const sortByOptions = {
+		"Alphabetic - ascending": "alphabetic-asc",
+		"Alphabetic - descending": "alphabetic-desc",
+		"Flash Card Total - ascending": "total-cards-asc",
+		"Flash Card Total - descending": "total-cards-desc",
+		"Date Created - ascending": "date-created-asc",
+		"Date Created - descending": "date-created-desc",
+		"Last Updated - ascending": "last-updated-asc",
+		"Last Updated - descending": "last-updated-desc"
+	};
+
 	return (
 		<div className="main d-flex flex-column">
 			<h1 className="display-3 text-center mt-1 mt-sm-2 mt-md-3 mt-lg-4 mb-0">
@@ -64,7 +71,7 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories, form }) => {
 				{renderSquares()}
 			</div>
 			<div className="d-flex flex-wrap justify-content-center justify-content-md-between">
-				<SortCategoriesForm />
+				<SortForm name="categorySortBy" sortByOptions={sortByOptions} />
 				<FilterForm forms={form} />
 			</div>
 			<div className="mt-lg-2">{renderCategories()}</div>
@@ -74,9 +81,11 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories, form }) => {
 
 const mapStateToProps = ({ categories, form }) => {
 	return {
-		categories: sortCategories(
+		categories: sortArray(
 			filterArray(categories, form, "category"),
-			form
+			form,
+			"category",
+			"categorySortBy"
 		),
 		form
 	};
