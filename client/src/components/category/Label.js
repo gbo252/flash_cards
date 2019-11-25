@@ -67,10 +67,7 @@ const Label = ({
 						aria-haspopup="true"
 						aria-expanded="false"
 					>
-						<i
-							className="text-black-50 material-icons"
-							style={{ fontSize: "2.5rem" }}
-						>
+						<i className="icon-size text-black-50 material-icons">
 							more_vert
 						</i>
 					</button>

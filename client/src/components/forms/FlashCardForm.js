@@ -27,6 +27,12 @@ const validate = (formValues, { flashCards, initialValues }) => {
 		);
 	}
 
+	if (formValues.header) {
+		if (formValues.header.length > 90) {
+			errors.header = "Header must be 90 characters or less";
+		}
+	}
+
 	if (!formValues.header) {
 		errors.header = "You must enter a header";
 	}

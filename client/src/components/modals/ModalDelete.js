@@ -104,7 +104,7 @@ const ModalDelete = ({
 			</Modal.Header>
 			<Modal.Body>
 				<p>{deleteMessage}</p>
-				<ul>{deleteList}</ul>
+				<ul className="text-break text-wrap">{deleteList}</ul>
 			</Modal.Body>
 			<Modal.Footer>
 				<button

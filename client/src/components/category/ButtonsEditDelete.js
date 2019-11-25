@@ -11,7 +11,8 @@ const ButtonsEditDelete = ({
 	setModalDeleteCatShow,
 	setCategoriesDelete
 }) => {
-	const action = text === "Edit" ? setModalEditCatShow : setModalDeleteCatShow;
+	const action =
+		text === "Edit" ? setModalEditCatShow : setModalDeleteCatShow;
 
 	const handleClick = e => {
 		setModalInfo(modalInfo);
@@ -29,10 +30,7 @@ const ButtonsEditDelete = ({
 					aria-label={text}
 					onClick={handleClick}
 				>
-					<i
-						className="text-black-50 material-icons"
-						style={{ fontSize: "2.5rem" }}
-					>
+					<i className="icon-size text-black-50 material-icons">
 						{text === "Edit" ? "edit" : "cancel"}
 					</i>
 				</button>

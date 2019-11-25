@@ -38,10 +38,7 @@ const FlashCardList = ({
 									aria-haspopup="true"
 									aria-expanded="false"
 								>
-									<i
-										className="text-black-50 material-icons"
-										style={{ fontSize: "2.5rem" }}
-									>
+									<i className="icon-size text-black-50 material-icons">
 										more_vert
 									</i>
 								</button>
@@ -102,8 +99,11 @@ const FlashCardList = ({
 									</span>
 								</div>
 							</div>
-							<div className="h-100 w-100 d-flex justify-content-center align-items-center">
-								<p className="h4 mb-0">{header}</p>
+							<div
+								className="h-100 mx-auto d-flex justify-content-center align-items-center"
+								style={{ width: "85%" }}
+							>
+								<p className="h5 mb-0">{header}</p>
 							</div>
 						</div>
 						<div className="d-flex justify-content-center align-items-start flash-card flash-card-back rounded-lg overflow-auto p-2">
