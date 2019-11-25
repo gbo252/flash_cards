@@ -103,11 +103,16 @@ const FlashCardList = ({
 								</div>
 							</div>
 							<div className="h-100 w-100 d-flex justify-content-center align-items-center">
-								<p className="h4">{header}</p>
+								<p className="h4 mb-0">{header}</p>
 							</div>
 						</div>
-						<div className="flash-card flash-card-back d-flex justify-content-center align-items-center rounded-lg p-2">
-							<p className="h6">{content}</p>
+						<div className="d-flex justify-content-center align-items-start flash-card flash-card-back rounded-lg overflow-auto p-2">
+							<div
+								className="d-flex flex-column align-items-center"
+								style={{ margin: "auto 0" }}
+							>
+								<p className="h6 mb-0">{content}</p>
+							</div>
 						</div>
 					</div>
 				</div>
