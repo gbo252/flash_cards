@@ -9,7 +9,13 @@ import FilterForm, { filterArray } from "../forms/FilterForm";
 import Spinner from "../generic/Spinner";
 import { colors } from "../generic/colors";
 
-const Dashboard = ({ fetchCategories, clearFlashCards, categories, form }) => {
+const Dashboard = ({
+	fetchCategories,
+	clearFlashCards,
+	categories,
+	rawCategories,
+	form
+}) => {
 	React.useEffect(() => {
 		fetchCategories();
 		clearFlashCards();
@@ -43,8 +49,18 @@ const Dashboard = ({ fetchCategories, clearFlashCards, categories, form }) => {
 			return <Spinner />;
 		} else if (categories.length > 0) {
 			return <CategoryList categories={categories} />;
+		} else if (rawCategories.length > 0) {
+			return (
+				<div className="h5 mt-4 text-center">
+					No Filtered Categories Found
+				</div>
+			);
 		} else {
-			return <div className="h5 text-center">No Categories</div>;
+			return (
+				<div className="h5 mt-4 text-center">
+					No Categories, Click Add Category
+				</div>
+			);
 		}
 	};
 
@@ -87,6 +103,7 @@ const mapStateToProps = ({ categories, form }) => {
 			"category",
 			"categorySortBy"
 		),
+		rawCategories: categories,
 		form
 	};
 };

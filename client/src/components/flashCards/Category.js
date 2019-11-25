@@ -14,6 +14,7 @@ const Category = ({
 	},
 	fetchFlashCards,
 	flashCards,
+	rawFlashCards,
 	categories,
 	form
 }) => {
@@ -36,8 +37,18 @@ const Category = ({
 					/>
 				</div>
 			);
+		} else if (rawFlashCards.length > 0) {
+			return (
+				<div className="h5 mt-4 text-center">
+					No Filtered Flash Cards Found
+				</div>
+			);
 		} else {
-			return <div className="h5 text-center">No Flash Cards</div>;
+			return (
+				<div className="h5 mt-4 text-center">
+					No Flash Cards, Click Add Flash Card
+				</div>
+			);
 		}
 	};
 
@@ -92,6 +103,7 @@ const mapStateToProps = ({ flashCards, categories, form }) => {
 			"header",
 			"flashCardSortBy"
 		),
+		rawFlashCards: flashCards,
 		categories,
 		form
 	};
