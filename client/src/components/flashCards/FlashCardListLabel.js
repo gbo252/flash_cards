@@ -14,7 +14,7 @@ const FlashCardListLabel = ({
 }) => {
 	return (
 		<div
-			className="scene m-3"
+			className="scene mx-0 mx-sm-3 my-2 my-sm-3"
 			onClick={e => {
 				if (!flashCardsDelete) {
 					e.currentTarget.children[0].classList.toggle("is-flipped");

@@ -72,7 +72,7 @@ const Category = ({
 				Back
 			</Link>
 			<div
-				className="mb-4 mt-1 py-3 px-4 text-center rounded-pill align-self-center"
+				className="mb-4 mt-2 py-3 px-4 text-center rounded-pill align-self-center"
 				style={{
 					color,
 					textShadow: "2px 2px 2px rgba(0, 0, 0, 0.8)",

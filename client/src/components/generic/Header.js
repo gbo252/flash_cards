@@ -38,11 +38,13 @@ const Header = ({ auth, location }) => {
 		>
 			<Link to="/" className="navbar-brand py-0">
 				<img
+					className="mr-2"
 					width="40px"
 					height="40px"
 					src={logo}
 					alt="logo"
 				/>
+				<span className="d-none d-sm-inline-block">Flash Cards Online</span>
 			</Link>
 			<button
 				className="navbar-toggler"
