@@ -71,14 +71,15 @@ const Category = ({
 				Back
 			</Link>
 			<h1
-				className="mb-3 mt-1 py-4 px-5 display-3 text-center rounded-pill align-self-center text-wrap text-break"
+				className="mb-4 mt-1 py-3 py-md-4 px-3 px-md-5 display-4 text-center rounded-pill align-self-center text-wrap text-break"
 				style={{
 					color,
 					textShadow: "2px 2px 2px rgba(0, 0, 0, 0.7)",
 					borderBottom: `10px solid ${color}`,
 					backgroundColor: "rgb(248, 249, 250)",
 					boxShadow:
-						"2px 4px 7px 2px rgba(146, 146, 146, 0.7), 0 0 10px 2px rgba(0, 0, 0, 0.3) inset"
+						"2px 4px 7px 2px rgba(146, 146, 146, 0.7), 0 0 10px 2px rgba(0, 0, 0, 0.3) inset",
+					userSelect: "none"
 				}}
 			>
 				{category}

@@ -29,7 +29,11 @@ const FlashCardList = ({
 						type="checkbox"
 						onClick={e => e.currentTarget.blur()}
 					/>
-					<label className="mb-0 align-top" htmlFor={input.name} style={{ cursor: "pointer" }}>
+					<label
+						className="mb-0 align-top"
+						htmlFor={input.name}
+						style={{ cursor: "pointer" }}
+					>
 						<FlashCardListLabel
 							flashCard={flashCard}
 							flashCardsDelete={flashCardsDelete}
