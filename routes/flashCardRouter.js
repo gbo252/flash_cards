@@ -63,20 +63,18 @@ flashCardRouter.patch("/:category/edit/:id", requireLogin, async (req, res) => {
 	res.send(flashCards.cards);
 });
 
-flashCardRouter.delete("/:category/:id", requireLogin, async (req, res) => {
+flashCardRouter.delete("/:category", requireLogin, async (req, res) => {
 	const flashCards = await Category.findOneAndUpdate(
 		{
 			category: req.params.category,
 			_user: req.user.id
 		},
 		{
-			$pull: { cards: { _id: req.params.id } },
+			$pull: { cards: { _id: { $in: req.body } } },
 			lastEdited: Date.now()
 		},
 		{ new: true }
-	).select({
-		cards: 1
-	});
+	);
 
 	res.send(flashCards.cards);
 });

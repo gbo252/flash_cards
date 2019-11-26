@@ -15,6 +15,7 @@ const ModalDelete = ({
 	setModalDeleteCatShow,
 	setModalDeleteFlashShow,
 	setCategoriesDelete,
+	setFlashCardsDelete,
 	setToastInfo,
 	setToastShow
 }) => {
@@ -27,7 +28,7 @@ const ModalDelete = ({
 
 	if (modalInfo) {
 		if (title === "delete-cat") {
-			if (modalInfo.arrayOfIds) {
+			if (modalInfo.categoryIdArray) {
 				header = "Delete Categories";
 				modalShow = modalDeleteCatShow;
 				setModalShow = setModalDeleteCatShow;
@@ -35,11 +36,11 @@ const ModalDelete = ({
 					<li key={name}>{name}</li>
 				));
 				deleteMessage =
-					"Are you sure want to delete the following categories and any related flash cards:";
+					"Are you sure you want to delete the following categories and any related flash cards:";
 				onClick = () => {
-					setJustDeleted(modalInfo.arrayOfIds);
+					setJustDeleted(modalInfo.categoryIdArray);
 					setTimeout(() => {
-						deleteCategories(modalInfo.arrayOfIds);
+						deleteCategories(modalInfo.categoryIdArray);
 					}, 500);
 					setModalShow(false);
 					setCategoriesDelete(false);
@@ -55,7 +56,7 @@ const ModalDelete = ({
 				setModalShow = setModalDeleteCatShow;
 				deleteList = <li>{modalInfo.category}</li>;
 				deleteMessage =
-					"Are you sure want to delete the following category and any related flash cards:";
+					"Are you sure you want to delete the following category and any related flash cards:";
 				onClick = () => {
 					setJustDeleted([modalInfo._id]);
 					setTimeout(() => {
@@ -71,21 +72,43 @@ const ModalDelete = ({
 				};
 			}
 		} else if (title === "delete-flash") {
-			header = "Delete Flash Card";
-			modalShow = modalDeleteFlashShow;
-			setModalShow = setModalDeleteFlashShow;
-			deleteList = <li>{modalInfo.flashCard}</li>;
-			deleteMessage =
-				"Are you sure want to delete the following flash card:";
-			onClick = () => {
-				deleteFlashCard(modalInfo._id, modalInfo.category);
-				setModalShow(false);
-				setToastInfo(
-					"Flash card deleted successfully",
-					modalInfo.color
-				);
-				setToastShow(true);
-			};
+			if (modalInfo.flashIdArray) {
+				header = "Delete Flash Cards";
+				modalShow = modalDeleteFlashShow;
+				setModalShow = setModalDeleteFlashShow;
+				deleteList = modalInfo.flashCardHeaders.map(name => (
+					<li key={name}>{name}</li>
+				));
+				deleteMessage =
+					"Are you sure you want to delete the following flash cards:";
+				onClick = () => {
+					deleteFlashCard(modalInfo.flashIdArray, modalInfo.category);
+					setModalShow(false);
+					setFlashCardsDelete(false);
+					setToastInfo(
+						"Flash cards deleted successfully",
+						modalInfo.color
+					);
+					setToastShow(true);
+				};
+			} else {
+				header = "Delete Flash Card";
+				modalShow = modalDeleteFlashShow;
+				setModalShow = setModalDeleteFlashShow;
+				deleteList = <li>{modalInfo.flashCard}</li>;
+				deleteMessage =
+					"Are you sure you want to delete the following flash card:";
+				onClick = () => {
+					deleteFlashCard([modalInfo._id], modalInfo.category);
+					setModalShow(false);
+					setFlashCardsDelete(false);
+					setToastInfo(
+						"Flash card deleted successfully",
+						modalInfo.color
+					);
+					setToastShow(true);
+				};
+			}
 		}
 	}
 

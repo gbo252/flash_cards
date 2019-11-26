@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import { reducer as reduxForm } from "redux-form";
 import authReducer from "./authReducer";
 import { categories, categoriesDelete, justDeleted } from "./categoryReducer";
-import { flashCards } from "./flashCardReducer";
+import { flashCards, flashCardsDelete } from "./flashCardReducer";
 import {
 	modalInfo,
 	modalNewCatShow,
@@ -21,6 +21,7 @@ export default combineReducers({
 	categoriesDelete,
 	justDeleted,
 	flashCards,
+	flashCardsDelete,
 	modalInfo,
 	modalNewCatShow,
 	modalEditCatShow,

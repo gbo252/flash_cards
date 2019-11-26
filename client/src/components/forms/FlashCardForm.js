@@ -9,7 +9,7 @@ import validateDuplicates from "./validateDuplicates";
 const FlashCardForm = ({ handleSubmit, onSubmit }) => {
 	return (
 		<form id="flash-card-form" onSubmit={handleSubmit(onSubmit)}>
-			<Field component={FormField} label="Title" name="header" />
+			<Field component={FormField} label="Header" name="header" />
 			<Field component={FormTextField} label="Content" name="content" />
 		</form>
 	);

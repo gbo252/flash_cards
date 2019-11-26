@@ -5,7 +5,7 @@ import { reduxForm, Field } from "redux-form";
 
 import { CSSTransition } from "react-transition-group";
 
-import Label from "./Label";
+import CategoryListLabel from "./CategoryListLabel";
 
 const CategoryList = ({ categories, categoriesDelete, reset, justDeleted }) => {
 	React.useEffect(() => {
@@ -14,7 +14,7 @@ const CategoryList = ({ categories, categoriesDelete, reset, justDeleted }) => {
 		}
 	}, [categoriesDelete, reset]);
 
-	return categories.map(cat => {
+	return categories.map(category => {
 		const categoryComponent = ({ input }) => {
 			return (
 				<React.Fragment>
@@ -30,8 +30,8 @@ const CategoryList = ({ categories, categoriesDelete, reset, justDeleted }) => {
 						htmlFor={input.name}
 						style={{ cursor: "pointer" }}
 					>
-						<Label
-							category={cat}
+						<CategoryListLabel
+							category={category}
 							categoriesDelete={categoriesDelete}
 						/>
 					</label>
@@ -41,8 +41,8 @@ const CategoryList = ({ categories, categoriesDelete, reset, justDeleted }) => {
 
 		return (
 			<CSSTransition
-				key={cat._id}
-				in={!justDeleted.includes(cat._id)}
+				key={category._id}
+				in={!justDeleted.includes(category._id)}
 				timeout={500}
 				classNames="cat-label"
 				appear
@@ -50,7 +50,7 @@ const CategoryList = ({ categories, categoriesDelete, reset, justDeleted }) => {
 				<div className="d-flex justify-content-center my-4">
 					<Field
 						component={categoryComponent}
-						name={cat._id}
+						name={category._id}
 						type="checkbox"
 					/>
 				</div>

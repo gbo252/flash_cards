@@ -8,6 +8,7 @@ import {
 	SET_CATEGORIES_DELETE,
 	FETCH_FLASH_CARDS,
 	CLEAR_FLASH_CARDS,
+	SET_FLASH_CARDS_DELETE,
 	SET_MODAL_INFO,
 	SET_MODAL_NEW_CAT_SHOW,
 	SET_MODAL_EDIT_CAT_SHOW,
@@ -93,14 +94,23 @@ export const editFlashCard = (formValues, category, id) => async dispatch => {
 	dispatch({ type: FETCH_FLASH_CARDS, payload: res.data });
 };
 
-export const deleteFlashCard = (id, category) => async dispatch => {
-	const res = await axios.delete(`/flashcards/${category}/${id}`);
+export const deleteFlashCard = (
+	idArrayToDelete,
+	category
+) => async dispatch => {
+	const res = await axios.delete(`/flashcards/${category}`, {
+		data: idArrayToDelete
+	});
 
 	dispatch({ type: FETCH_FLASH_CARDS, payload: res.data });
 };
 
 export const clearFlashCards = () => {
 	return { type: CLEAR_FLASH_CARDS };
+};
+
+export const setFlashCardsDelete = set => {
+	return { type: SET_FLASH_CARDS_DELETE, payload: set };
 };
 
 // MODALS

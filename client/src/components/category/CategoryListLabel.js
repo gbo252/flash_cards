@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 
 import ButtonsEditDelete from "./ButtonsEditDelete";
 
-const Label = ({
+const CategoryListLabel = ({
 	history,
 	categoriesDelete,
 	category: { _id, category, color, lastEdited, dateCreated, cardsTotal }
@@ -142,4 +142,4 @@ const Label = ({
 	);
 };
 
-export default withRouter(Label);
+export default withRouter(CategoryListLabel);

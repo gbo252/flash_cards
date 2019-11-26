@@ -29,11 +29,11 @@ const HeaderCategoryButtons = ({
 
 	const deleteSelected = () => {
 		const { values } = form.categoryDelete;
-		const arrayOfIds = Object.keys(values).filter(id => values[id]);
-		const categoryNames = arrayOfIds.map(id => {
+		const categoryIdArray = Object.keys(values).filter(id => values[id]);
+		const categoryNames = categoryIdArray.map(id => {
 			return categories.find(category => category._id === id).category;
 		});
-		setModalInfo({ categoryNames, arrayOfIds });
+		setModalInfo({ categoryNames, categoryIdArray });
 		setModalDeleteCatShow(true);
 	};
 
