@@ -30,3 +30,22 @@
 	border: 5px ridge rgba(128, 128, 128, 0.2);
 	user-select: none;
 }
+
+input[type="checkbox"].flash-card-input:checked
+	+ label
+	> div.scene
+	p.flash-header,
+div.flash-cards-delete:hover p.flash-header {
+	color: #dc3545 !important;
+}
+
+div.flash-cards-delete:hover p.flash-header {
+	text-decoration: underline;
+}
+
+input[type="checkbox"].flash-card-input:checked
+	+ label
+	> div.scene
+	div.flash-card {
+	border-color: #dc3546bd;
+}

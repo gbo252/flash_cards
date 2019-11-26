@@ -14,12 +14,14 @@ const Dashboard = ({
 	clearFlashCards,
 	categories,
 	rawCategories,
-	form
+	form,
+	setFlashCardsDelete
 }) => {
 	React.useEffect(() => {
 		fetchCategories();
 		clearFlashCards();
-	}, [fetchCategories, clearFlashCards]);
+		setFlashCardsDelete(false);
+	}, [fetchCategories, clearFlashCards, setFlashCardsDelete]);
 
 	const [shuffledColors, setShuffledColors] = React.useState([]);
 

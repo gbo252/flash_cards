@@ -9,7 +9,8 @@ const FlashCardListLabel = ({
 	setModalEditFlashShow,
 	setModalDeleteFlashShow,
 	flashCard: { lastEdited, dateCreated, header, content, _id },
-	flashCardsDelete
+	flashCardsDelete,
+	setFlashCardsDelete
 }) => {
 	return (
 		<div
@@ -23,7 +24,10 @@ const FlashCardListLabel = ({
 		>
 			<div className="flash-card-container text-center text-wrap text-break">
 				<div
-					className="flash-card p-2"
+					className={
+						"flash-card p-2" +
+						(flashCardsDelete ? " flash-cards-delete" : "")
+					}
 					style={{ backgroundColor: color }}
 				>
 					<div className="w-100 dropleft position-absolute">
@@ -56,6 +60,7 @@ const FlashCardListLabel = ({
 										header,
 										content
 									});
+									setFlashCardsDelete(false);
 									setModalEditFlashShow(true);
 									e.currentTarget.blur();
 									e.stopPropagation();
@@ -73,6 +78,7 @@ const FlashCardListLabel = ({
 										color,
 										flashCard: header
 									});
+									setFlashCardsDelete(false);
 									setModalDeleteFlashShow(true);
 									e.currentTarget.blur();
 									e.stopPropagation();
@@ -101,7 +107,14 @@ const FlashCardListLabel = ({
 						className="h-100 mx-auto d-flex justify-content-center align-items-center"
 						style={{ width: "85%" }}
 					>
-						<p className="h5 mb-0">{header}</p>
+						<p
+							className={
+								"flash-header h5 mb-0" +
+								(flashCardsDelete ? " text-muted" : "")
+							}
+						>
+							{header}
+						</p>
 					</div>
 				</div>
 				<div className="d-flex justify-content-center align-items-start flash-card flash-card-back overflow-auto p-2">

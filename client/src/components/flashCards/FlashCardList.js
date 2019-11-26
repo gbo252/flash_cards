@@ -21,15 +21,15 @@ const FlashCardList = ({
 	const flashCardArray = flashCards.map(flashCard => {
 		const flashCardComponent = ({ input }) => {
 			return (
-				<React.Fragment>
+				<div>
 					<input
 						{...input}
 						id={input.name}
-						className="custom-control-input"
+						className="flash-card-input custom-control-input"
 						type="checkbox"
 						onClick={e => e.currentTarget.blur()}
 					/>
-					<label htmlFor={input.name} style={{ cursor: "pointer" }}>
+					<label className="mb-0 align-top" htmlFor={input.name} style={{ cursor: "pointer" }}>
 						<FlashCardListLabel
 							flashCard={flashCard}
 							flashCardsDelete={flashCardsDelete}
@@ -37,7 +37,7 @@ const FlashCardList = ({
 							color={color}
 						/>
 					</label>
-				</React.Fragment>
+				</div>
 			);
 		};
 

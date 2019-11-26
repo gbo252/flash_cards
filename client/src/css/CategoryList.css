@@ -52,17 +52,16 @@ input[type="checkbox"].category-select
 	> div.category-delete:hover,
 input[type="checkbox"].category-select:focus
 	+ label.label
+	> div.category-delete,
+input[type="checkbox"].category-select:checked
+	+ label.label
 	> div.category-delete {
 	background-color: rgba(156, 156, 156, 0.2);
 }
 
 input[type="checkbox"].category-select:checked
 	+ label.label
-	> div.category-delete {
-	background-color: rgba(156, 156, 156, 0.2);
-	color: #dc3545;
-}
-
+	> div.category-delete,
 input[type="checkbox"].category-select:checked
 	+ label.label
 	> div.category-delete
