@@ -30,7 +30,7 @@ const Category = ({
 			return <Spinner />;
 		} else if (flashCards.length > 0) {
 			return (
-				<div className="d-flex flex-wrap justify-content-center mt-3">
+				<div className="d-flex flex-wrap justify-content-center mt-2">
 					<FlashCardList
 						category={category}
 						flashCards={flashCards}

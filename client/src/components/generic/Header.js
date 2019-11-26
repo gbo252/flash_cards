@@ -36,15 +36,13 @@ const Header = ({ auth, location }) => {
 			className="navbar navbar-expand-md fixed-top navbar-light bg-light"
 			style={{ borderBottom: "2px solid rgba(148, 148, 148, 0.8)" }}
 		>
-			<Link to="/" className="navbar-brand">
+			<Link to="/" className="navbar-brand py-0">
 				<img
-					className="mr-2 mb-1"
-					width="25px"
-					height="25px"
+					width="40px"
+					height="40px"
 					src={logo}
 					alt="logo"
 				/>
-				Flash Cards Online
 			</Link>
 			<button
 				className="navbar-toggler"
