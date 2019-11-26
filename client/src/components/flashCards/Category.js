@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { Textfit } from "react-textfit";
 import * as actions from "../../actions";
 
 import FlashCardList from "./FlashCardList";
@@ -70,20 +71,23 @@ const Category = ({
 			>
 				Back
 			</Link>
-			<h1
-				className="mb-4 mt-1 py-3 py-md-4 px-3 px-md-5 display-4 text-center rounded-pill align-self-center text-wrap text-break"
+			<div
+				className="mb-4 mt-1 py-3 px-4 text-center rounded-pill align-self-center"
 				style={{
 					color,
-					textShadow: "2px 2px 2px rgba(0, 0, 0, 0.7)",
+					textShadow: "2px 2px 2px rgba(0, 0, 0, 0.8)",
 					borderBottom: `10px solid ${color}`,
 					backgroundColor: "rgb(248, 249, 250)",
 					boxShadow:
 						"2px 4px 7px 2px rgba(146, 146, 146, 0.7), 0 0 10px 2px rgba(0, 0, 0, 0.3) inset",
-					userSelect: "none"
+					userSelect: "none",
+					width: "95%"
 				}}
 			>
-				{category}
-			</h1>
+				<Textfit mode="single" max={50}>
+					{category}
+				</Textfit>
+			</div>
 			<div className="d-flex flex-wrap justify-content-center justify-content-md-between">
 				<SortForm
 					name="flashCardSortBy"
