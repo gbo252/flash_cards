@@ -41,6 +41,8 @@ const HeaderCategoryButtons = ({
 		<React.Fragment>
 			<button
 				{...atts}
+				data-toggle="collapse"
+				data-target="#header-bar"
 				className={
 					"btn rounded-pill align-self-center m-1 " +
 					(categoriesDelete

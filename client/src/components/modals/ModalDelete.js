@@ -25,6 +25,7 @@ const ModalDelete = ({
 	let onClick;
 	let deleteList;
 	let deleteMessage;
+	let setDelete;
 
 	if (modalInfo) {
 		if (title === "delete-cat") {
@@ -32,6 +33,7 @@ const ModalDelete = ({
 				header = "Delete Categories";
 				modalShow = modalDeleteCatShow;
 				setModalShow = setModalDeleteCatShow;
+				setDelete = setCategoriesDelete;
 				deleteList = modalInfo.categoryNames.map(name => (
 					<li key={name}>{name}</li>
 				));
@@ -54,6 +56,7 @@ const ModalDelete = ({
 				header = "Delete Category";
 				modalShow = modalDeleteCatShow;
 				setModalShow = setModalDeleteCatShow;
+				setDelete = setCategoriesDelete;
 				deleteList = <li>{modalInfo.category}</li>;
 				deleteMessage =
 					"Are you sure you want to delete the following category and any related flash cards:";
@@ -76,6 +79,7 @@ const ModalDelete = ({
 				header = "Delete Flash Cards";
 				modalShow = modalDeleteFlashShow;
 				setModalShow = setModalDeleteFlashShow;
+				setDelete = setFlashCardsDelete;
 				deleteList = modalInfo.flashCardHeaders.map(name => (
 					<li key={name}>{name}</li>
 				));
@@ -95,6 +99,7 @@ const ModalDelete = ({
 				header = "Delete Flash Card";
 				modalShow = modalDeleteFlashShow;
 				setModalShow = setModalDeleteFlashShow;
+				setDelete = setFlashCardsDelete;
 				deleteList = <li>{modalInfo.flashCard}</li>;
 				deleteMessage =
 					"Are you sure you want to delete the following flash card:";
@@ -132,7 +137,10 @@ const ModalDelete = ({
 			<Modal.Footer>
 				<button
 					className="btn btn-danger mx-2"
-					onClick={() => setModalShow(false)}
+					onClick={() => {
+						setModalShow(false);
+						setDelete(false);
+					}}
 				>
 					Cancel
 				</button>
