@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import LoginButton from "./LoginButton";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 
@@ -14,44 +14,38 @@ const Login = ({ auth, location }) => {
 	}
 
 	return (
-		<div className="main d-flex flex-column align-items-center justify-content-center">
-			<div className="btn-group my-1">
-				<a
-					className="btn btn-danger text-light disabled"
-					href="/"
-				>
-					<FontAwesomeIcon
-						icon={faGoogle}
-						style={{ width: "1.5rem", fontSize: "1.3rem" }}
-					/>
-				</a>
-				<a
-					className="btn btn-danger"
-					role="button"
-					href={`/auth/google?next=${from.pathname}`}
-					style={{ width: "12rem" }}
-				>
-					Sign in with Google
-				</a>
-			</div>
-			<div className="btn-group my-1">
-				<a
-					className="btn btn-primary text-light disabled"
-					href="/"
-				>
-					<FontAwesomeIcon
-						icon={faFacebookF}
-						style={{ width: "1.5rem", fontSize: "1.3rem" }}
-					/>
-				</a>
-				<a
-					className="btn btn-primary"
-					role="button"
-					href="/auth/facebook"
-					style={{ width: "12rem" }}
-				>
-					Sign in with Facebook
-				</a>
+		<div
+			className="d-flex justify-content-center align-items-start overflow-auto"
+			style={{
+				position: "fixed",
+				top: "60px",
+				left: "0",
+				right: "0",
+				bottom: "0"
+			}}
+		>
+			<div
+				className="d-flex flex-column align-items-center justify-content-center mx-2 py-4 px-3 px-sm-5 border rounded-lg bg-light text-center"
+				style={{
+					boxShadow: "2px 2px 2px 1px rgba(0, 0, 0, 0.3)",
+					margin: "auto 0"
+				}}
+			>
+				<h3 className="mb-0">Welcome to</h3>
+				<h1 className="mb-3">Flash Cards Online</h1>
+				<p className="h6">Please sign in below</p>
+				<LoginButton
+					className="danger"
+					icon={faGoogle}
+					login="Google"
+					from={from.pathname}
+				/>
+				<LoginButton
+					className="primary"
+					icon={faFacebookF}
+					login="Facebook"
+					from={from.pathname}
+				/>
 			</div>
 		</div>
 	);

@@ -23,6 +23,10 @@ authRouter.get(
 
 authRouter.get(
 	"/facebook",
+	(req, res, next) => {
+		process.env.REDIRECT = req.query.next;
+		next();
+	},
 	passport.authenticate("facebook", {
 		scope: ["public_profile", "email"]
 	})
@@ -32,7 +36,7 @@ authRouter.get(
 	"/facebook/callback",
 	passport.authenticate("facebook"),
 	(req, res) => {
-		res.redirect("/");
+		res.redirect(`${process.env.REDIRECT}`);
 	}
 );
 

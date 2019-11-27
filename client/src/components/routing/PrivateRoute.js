@@ -20,10 +20,8 @@ const PrivateRoute = ({
 			if (!categories) {
 				fetchCategories();
 			} else {
-				const categoryNames = categories.map(x =>
-					x.category.toLowerCase()
-				);
-				!categoryNames.includes(category.toLowerCase())
+				const categoryNames = categories.map(x => x.category);
+				!categoryNames.includes(category)
 					? history.push("/404")
 					: setValidCategory(true);
 			}
@@ -63,7 +61,6 @@ const mapStateToProps = ({ auth, categories }) => {
 	return { auth, categories };
 };
 
-export default connect(
-	mapStateToProps,
-	{ fetchCategories }
-)(withRouter(PrivateRoute));
+export default connect(mapStateToProps, { fetchCategories })(
+	withRouter(PrivateRoute)
+);
