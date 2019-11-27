@@ -43,7 +43,7 @@ const ModalDelete = ({
 					setJustDeleted(modalInfo.categoryIdArray);
 					setTimeout(() => {
 						deleteCategories(modalInfo.categoryIdArray);
-					}, 500);
+					}, 700);
 					setModalShow(false);
 					setCategoriesDelete(false);
 					setToastInfo(
@@ -64,7 +64,7 @@ const ModalDelete = ({
 					setJustDeleted([modalInfo._id]);
 					setTimeout(() => {
 						deleteCategories([modalInfo._id]);
-					}, 500);
+					}, 700);
 					setModalShow(false);
 					setCategoriesDelete(false);
 					setToastInfo(
@@ -86,7 +86,10 @@ const ModalDelete = ({
 				deleteMessage =
 					"Are you sure you want to delete the following flash cards:";
 				onClick = () => {
-					deleteFlashCard(modalInfo.flashIdArray, modalInfo.category);
+					setJustDeleted(modalInfo.flashIdArray);
+					setTimeout(() => {
+						deleteFlashCard(modalInfo.flashIdArray, modalInfo.category);
+					}, 700);
 					setModalShow(false);
 					setFlashCardsDelete(false);
 					setToastInfo(
@@ -104,7 +107,10 @@ const ModalDelete = ({
 				deleteMessage =
 					"Are you sure you want to delete the following flash card:";
 				onClick = () => {
-					deleteFlashCard([modalInfo._id], modalInfo.category);
+					setJustDeleted([modalInfo._id]);
+					setTimeout(() => {
+						deleteFlashCard([modalInfo._id], modalInfo.category);
+					}, 700);
 					setModalShow(false);
 					setFlashCardsDelete(false);
 					setToastInfo(

@@ -2,7 +2,6 @@ import "../../css/CategoryList.css";
 import React from "react";
 import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
-
 import { CSSTransition } from "react-transition-group";
 
 import CategoryListLabel from "./CategoryListLabel";
@@ -44,7 +43,7 @@ const CategoryList = ({ categories, categoriesDelete, reset, justDeleted }) => {
 				key={category._id}
 				in={!justDeleted.includes(category._id)}
 				timeout={500}
-				classNames="cat-label"
+				classNames="opacity-transition"
 				appear
 			>
 				<div className="d-flex justify-content-center my-4">

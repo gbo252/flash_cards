@@ -11,12 +11,37 @@ li {
 
 .main {
 	margin-top: 70px;
-	margin-bottom: 50px;
+	margin-bottom: 30px;
 }
 
 .icon-size {
 	font-size: 2.5rem;
 }
+
+/* REACT TRANSITION GROUP */
+.opacity-transition {
+	opacity: 1;
+}
+
+.opacity-transition-appear {
+	opacity: 0;
+}
+
+.opacity-transition-appear-active {
+	opacity: 1;
+	transition: opacity 500ms linear;
+}
+
+.opacity-transition-exit {
+	opacity: 1;
+}
+
+.opacity-transition-exit-done {
+	opacity: 0;
+	transition: opacity 500ms linear;
+}
+
+/* MEDIA QUERIES */
 
 @media only screen and (max-width: 1199px) {
 	p.h1 {

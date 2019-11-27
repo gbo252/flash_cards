@@ -69,29 +69,6 @@ input[type="checkbox"].category-select:checked
 	color: #dc3545;
 }
 
-/* REACT TRANSITION GROUP */
-.cat-label {
-	opacity: 1;
-}
-
-.cat-label-appear {
-	opacity: 0;
-}
-
-.cat-label-appear-active {
-	opacity: 1;
-	transition: opacity 500ms;
-}
-
-.cat-label-exit {
-	opacity: 1;
-}
-
-.cat-label-exit-done {
-	opacity: 0;
-	transition: opacity 500ms;
-}
-
 /* MEDIA QUERIES */
 @media only screen and (max-width: 767px) {
 	.category-card {
