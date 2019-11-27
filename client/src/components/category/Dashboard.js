@@ -48,7 +48,11 @@ const Dashboard = ({
 
 	const renderCategories = () => {
 		if (!categories) {
-			return <Spinner />;
+			return (
+				<div className="mt-5">
+					<Spinner color={_.sample(colors)} />
+				</div>
+			);
 		} else if (categories.length > 0) {
 			return <CategoryList categories={categories} />;
 		} else if (rawCategories.length > 0) {

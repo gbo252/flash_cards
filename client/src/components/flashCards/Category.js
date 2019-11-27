@@ -27,7 +27,7 @@ const Category = ({
 
 	const renderContent = () => {
 		if (!flashCards) {
-			return <Spinner />;
+			return <Spinner color={color} />;
 		} else if (flashCards.length > 0) {
 			return (
 				<div className="d-flex flex-wrap justify-content-center mt-2">
