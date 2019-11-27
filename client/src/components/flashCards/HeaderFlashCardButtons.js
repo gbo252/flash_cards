@@ -58,7 +58,7 @@ const HeaderFlashCardButtons = ({
 					"btn rounded-pill align-self-center m-1 " +
 					(flashCardsDelete
 						? "btn-outline-danger"
-						: "btn-outline-success")
+						: "btn-custom-success")
 				}
 				onClick={e => {
 					if (!flashCardsDelete) {
@@ -73,7 +73,7 @@ const HeaderFlashCardButtons = ({
 				{flashCardsDelete ? "Delete Selected" : "Add Flash Card"}
 			</button>
 			<button
-				className="btn btn-outline-info align-self-center rounded-pill m-1"
+				className="btn btn-custom-info align-self-center rounded-pill m-1"
 				onClick={e => {
 					setFlashCardsDelete(!flashCardsDelete);
 					e.currentTarget.blur();

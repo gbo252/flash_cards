@@ -47,7 +47,7 @@ const HeaderCategoryButtons = ({
 					"btn rounded-pill align-self-center m-1 " +
 					(categoriesDelete
 						? "btn-outline-danger"
-						: "btn-outline-success")
+						: "btn-custom-success")
 				}
 				onClick={e => {
 					if (!categoriesDelete) {
@@ -62,7 +62,7 @@ const HeaderCategoryButtons = ({
 				{categoriesDelete ? "Delete Selected" : "Add Category"}
 			</button>
 			<button
-				className="btn btn-outline-info align-self-center rounded-pill m-1"
+				className="btn btn-custom-info align-self-center rounded-pill m-1"
 				onClick={e => {
 					setCategoriesDelete(!categoriesDelete);
 					e.currentTarget.blur();

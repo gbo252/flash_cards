@@ -18,6 +18,39 @@ li {
 	font-size: 2.5rem;
 }
 
+:root {
+	--orange: rgb(255, 169, 88);
+	--orange-fade: rgb(255, 190, 129);
+	--blue: rgb(103, 174, 255);
+	--blue-fade: rgb(161, 205, 255);
+}
+
+.btn-custom-success {
+	color: var(--orange);
+	border-color: var(--orange-fade);
+}
+
+.btn-custom-success:focus {
+	box-shadow: 0 0 1px 3px var(--orange-fade);
+}
+
+.btn-custom-success:hover {
+	color: #fff;
+	background-color: var(--orange-fade);
+	border-color: var(--orange-fade);
+}
+
+.btn-custom-info {
+	color: var(--blue);
+	border-color: var(--blue-fade);
+}
+
+.btn-custom-info:hover {
+	color: #fff;
+	background-color: var(--blue-fade);
+	border-color: var(--blue-fade);
+}
+
 /* REACT TRANSITION GROUP */
 .opacity-transition {
 	opacity: 1;
