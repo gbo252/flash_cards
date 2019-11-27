@@ -19,7 +19,10 @@ const HeaderFlashCardButtons = ({
 
 	const { category } = useRouteMatch("/categories/:category").params;
 	if (categories) {
-		color = categories.find(cat => cat.category === category).color;
+		let categoryName = categories.find(cat => cat.category === category);
+		if (categoryName) {
+			color = categoryName.color;
+		}
 	}
 
 	if (form.flashCardDelete && flashCardsDelete) {
