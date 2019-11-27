@@ -31,6 +31,12 @@
 	user-select: none;
 }
 
+.flash-cards-delete {
+	border-style: dashed;
+	border-color: rgba(128, 128, 128, 0.7);
+	background-clip: padding-box;
+}
+
 input[type="checkbox"].flash-card-input:checked
 	+ label
 	> div.scene
