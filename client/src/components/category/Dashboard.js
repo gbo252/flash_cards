@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 
 import CategoryList from "./CategoryList";
+import ButtonCircleAdd from "../generic/ButtonCircleAdd";
 import SortForm, { sortArray } from "../forms/SortForm";
 import FilterForm, { filterArray } from "../forms/FilterForm";
 import Spinner from "../generic/Spinner";
@@ -15,7 +16,8 @@ const Dashboard = ({
 	categories,
 	rawCategories,
 	form,
-	setFlashCardsDelete
+	setFlashCardsDelete,
+	setModalNewCatShow
 }) => {
 	React.useEffect(() => {
 		fetchCategories();
@@ -46,7 +48,7 @@ const Dashboard = ({
 		});
 	};
 
-	const renderCategories = () => {
+	const renderContent = () => {
 		if (!categories) {
 			return (
 				<div className="mt-5">
@@ -54,17 +56,33 @@ const Dashboard = ({
 				</div>
 			);
 		} else if (categories.length > 0) {
-			return <CategoryList categories={categories} />;
+			return (
+				<React.Fragment>
+					<CategoryList categories={categories} />
+					<ButtonCircleAdd
+						setModal={setModalNewCatShow}
+						info={null}
+					/>
+				</React.Fragment>
+			);
 		} else if (rawCategories.length > 0) {
 			return (
-				<div className="h5 mt-4 text-center">
-					No Filtered Categories Found
+				<div className="mt-5 text-center">
+					<p className="h4 mb-0 mx-3 font-weight-light">
+						No Filtered Categories Found
+					</p>
 				</div>
 			);
 		} else {
 			return (
-				<div className="h5 mt-4 text-center">
-					No Categories, Click Add Category
+				<div className="mt-5 text-center">
+					<p className="h4 mb-0 mx-3 font-weight-light">
+						Click the button below to add your first category!
+					</p>
+					<ButtonCircleAdd
+						setModal={setModalNewCatShow}
+						info={null}
+					/>
 				</div>
 			);
 		}
@@ -96,7 +114,7 @@ const Dashboard = ({
 				<SortForm name="categorySortBy" sortByOptions={sortByOptions} />
 				<FilterForm forms={form} />
 			</div>
-			<div className="mt-lg-2">{renderCategories()}</div>
+			<div className="mt-lg-2">{renderContent()}</div>
 		</div>
 	);
 };

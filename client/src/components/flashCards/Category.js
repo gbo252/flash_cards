@@ -5,6 +5,7 @@ import { Textfit } from "react-textfit";
 import * as actions from "../../actions";
 
 import FlashCardList from "./FlashCardList";
+import ButtonCircleAdd from "../generic/ButtonCircleAdd";
 import SortForm, { sortArray } from "../forms/SortForm";
 import FilterForm, { filterArray } from "../forms/FilterForm";
 import Spinner from "../generic/Spinner";
@@ -17,7 +18,8 @@ const Category = ({
 	flashCards,
 	rawFlashCards,
 	categories,
-	form
+	form,
+	setModalNewFlashShow
 }) => {
 	React.useEffect(() => {
 		fetchFlashCards(category);
@@ -34,24 +36,38 @@ const Category = ({
 			);
 		} else if (flashCards.length > 0) {
 			return (
-				<div className="d-flex flex-wrap justify-content-center mt-2">
-					<FlashCardList
-						category={category}
-						flashCards={flashCards}
-						color={color}
+				<React.Fragment>
+					<div className="d-flex flex-wrap justify-content-center mt-2">
+						<FlashCardList
+							category={category}
+							flashCards={flashCards}
+							color={color}
+						/>
+					</div>
+					<ButtonCircleAdd
+						setModal={setModalNewFlashShow}
+						info={{ category, color }}
 					/>
-				</div>
+				</React.Fragment>
 			);
 		} else if (rawFlashCards.length > 0) {
 			return (
-				<div className="h5 mt-4 text-center">
-					No Filtered Flash Cards Found
+				<div className="mt-5 text-center">
+					<p className="h4 mb-0 mx-3 font-weight-light">
+						No Filtered Flash Cards Found
+					</p>
 				</div>
 			);
 		} else {
 			return (
-				<div className="h5 mt-4 text-center">
-					No Flash Cards, Click Add Flash Card
+				<div className="mt-5 text-center">
+					<p className="h4 mb-0 mx-3 font-weight-light">
+						Click the button below to add a flash card!
+					</p>
+					<ButtonCircleAdd
+						setModal={setModalNewFlashShow}
+						info={{ category, color }}
+					/>
 				</div>
 			);
 		}
