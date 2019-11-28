@@ -19,8 +19,8 @@ li {
 }
 
 :root {
-	--orange: rgb(255, 169, 88);
-	--orange-fade: rgb(255, 190, 129);
+	--orange: rgb(255, 88, 88);
+	--orange-fade: rgb(250, 137, 137);
 	--blue: rgb(103, 174, 255);
 	--blue-fade: rgb(161, 205, 255);
 }

@@ -25,6 +25,8 @@ const HeaderCategoryButtons = ({
 		} else {
 			atts.disabled = true;
 		}
+	} else if (categoriesDelete) {
+		atts.disabled = true;
 	}
 
 	const deleteSelected = () => {
