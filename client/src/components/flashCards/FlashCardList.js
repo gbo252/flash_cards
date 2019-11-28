@@ -35,6 +35,11 @@ const FlashCardList = ({
 						className="mb-0 align-top"
 						htmlFor={input.name}
 						style={{ cursor: "pointer" }}
+						onClick={e => {
+							if (!flashCardsDelete) {
+								e.preventDefault();
+							}
+						}}
 					>
 						<FlashCardListLabel
 							flashCard={flashCard}
