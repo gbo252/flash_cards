@@ -7,6 +7,9 @@ import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 
 const Login = ({ auth, location }) => {
+	const [googleLoading, setGoogleLoading] = React.useState(false);
+	const [facebookLoading, setFacebookLoading] = React.useState(false);
+
 	const { from } = location.state || { from: { pathname: "/" } };
 
 	if (auth) {
@@ -39,12 +42,16 @@ const Login = ({ auth, location }) => {
 					icon={faGoogle}
 					login="Google"
 					from={from.pathname}
+					loading={googleLoading}
+					setLoading={setGoogleLoading}
 				/>
 				<LoginButton
 					className="primary"
 					icon={faFacebookF}
 					login="Facebook"
 					from={from.pathname}
+					loading={facebookLoading}
+					setLoading={setFacebookLoading}
 				/>
 			</div>
 		</div>

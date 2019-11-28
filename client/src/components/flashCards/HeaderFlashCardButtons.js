@@ -14,10 +14,14 @@ const HeaderFlashCardButtons = ({
 	setModalDeleteFlashShow
 }) => {
 	let color;
+	let category;
 	let total = 0;
 	const atts = {};
 
-	const { category } = useRouteMatch("/categories/:category").params;
+	const routeMatch = useRouteMatch("/categories/:category");
+	if (routeMatch) {
+		category = routeMatch.params.category;
+	}
 	if (categories) {
 		let categoryName = categories.find(cat => cat.category === category);
 		if (categoryName) {

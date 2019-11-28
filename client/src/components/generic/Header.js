@@ -44,7 +44,9 @@ const Header = ({ auth, location }) => {
 					src={logo}
 					alt="logo"
 				/>
-				<span className="d-none d-sm-inline-block">Flash Cards Online</span>
+				<span className="d-none d-sm-inline-block">
+					Flash Cards Online
+				</span>
 			</Link>
 			<button
 				className="navbar-toggler"

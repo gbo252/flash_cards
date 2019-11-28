@@ -53,7 +53,7 @@ input[type="checkbox"].flash-card-input:checked
 	+ label
 	> div.scene
 	div.flash-card {
-	border-color: #dc3546bd;
+	border-color: #dc3545;
 }
 
 @media only screen and (max-width: 385px) {
