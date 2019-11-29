@@ -3,6 +3,12 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default ({ className, icon, login, from, loading, setLoading }) => {
+	React.useEffect(() => {
+		setTimeout(() => {
+			setLoading(false);
+		}, 2000);
+	}, [setLoading, loading]);
+
 	const renderButton = () => {
 		if (!loading) {
 			return (

@@ -10,15 +10,6 @@ const Login = ({ auth, location }) => {
 	const [googleLoading, setGoogleLoading] = React.useState(false);
 	const [facebookLoading, setFacebookLoading] = React.useState(false);
 
-	React.useEffect(() => {
-		return () => {
-			setTimeout(() => {
-				setGoogleLoading(false);
-				setFacebookLoading(false);
-			}, 1500);
-		};
-	});
-
 	const { from } = location.state || { from: { pathname: "/" } };
 
 	if (auth) {
