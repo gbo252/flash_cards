@@ -46,7 +46,7 @@ const CategoryList = ({ categories, categoriesDelete, reset, justDeleted }) => {
 				classNames="opacity-transition"
 				appear
 			>
-				<div className="d-flex justify-content-center my-4">
+				<div className="cat-field d-flex justify-content-center my-sm-4">
 					<Field
 						component={categoryComponent}
 						name={category._id}
