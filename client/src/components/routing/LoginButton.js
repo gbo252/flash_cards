@@ -3,12 +3,6 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default ({ className, icon, login, from, loading, setLoading }) => {
-	React.useEffect(() => {
-		setTimeout(() => {
-			setLoading(false);
-		}, 2000);
-	}, [setLoading, loading]);
-
 	const renderButton = () => {
 		if (!loading) {
 			return (
@@ -17,7 +11,12 @@ export default ({ className, icon, login, from, loading, setLoading }) => {
 					role="button"
 					href={`/auth/${login.toLowerCase()}?next=${from}`}
 					style={{ width: "12rem" }}
-					onClick={() => setLoading(true)}
+					onClick={() => {
+						setLoading(true);
+						setTimeout(() => {
+							setLoading(false);
+						}, 2000);
+					}}
 				>
 					Sign in with {login}
 				</a>
