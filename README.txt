@@ -1,1 +1,0 @@
-flash card react full-stack app
