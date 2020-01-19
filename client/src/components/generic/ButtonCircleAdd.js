@@ -17,7 +17,7 @@ const ButtonCircleAdd = ({ info, setModalInfo, setModal }) => {
 					e.currentTarget.blur();
 				}}
 			>
-				<i className="material-icons icon-size text-muted">add</i>
+				<i className="material-icons icon-size text-white-50" style={{ textShadow: "2px 2px 2px rgba(0, 0, 0, 0.5)" }}>add</i>
 			</div>
 		</div>
 	);
