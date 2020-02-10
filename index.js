@@ -16,11 +16,13 @@ const flashCardRouter = require("./routes/flashCardRouter");
 
 const app = express();
 
-mongoose.connect(keys.mongoURI, {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-	useFindAndModify: false
-});
+mongoose
+	.connect(keys.mongoURI, {
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+		useFindAndModify: false
+	})
+	.catch(err => console.log(err));
 
 app.use(bodyParser.json());
 app.use(
