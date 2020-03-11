@@ -1,57 +1,75 @@
-import React from "react";
+import React from 'react';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default ({ className, icon, login, from, loading, setLoading }) => {
-	const renderButton = () => {
-		if (!loading) {
-			return (
-				<a
-					className={`btn btn-${className}`}
-					role="button"
-					href={`/auth/${login.toLowerCase()}?next=${from}`}
-					style={{ width: "12rem" }}
-					onClick={() => {
-						setLoading(true);
-						setTimeout(() => {
-							setLoading(false);
-						}, 2000);
-					}}
-				>
-					Sign in with {login}
-				</a>
-			);
-		} else {
-			return (
-				<button
-					className={`btn btn-${className}`}
-					type="button"
-					style={{ width: "12rem" }}
-					disabled
-				>
-					<span
-						className="spinner-border spinner-border-sm mr-1"
-						role="status"
-						aria-hidden="true"
-					></span>
-					Loading...
-				</button>
-			);
-		}
-	};
+export default ({
+  className,
+  icon,
+  login,
+  from,
+  loading,
+  setLoading,
+  setIsGuest
+}) => {
+  const renderButton = () => {
+    if (!loading) {
+      const atts = {};
+      if (!setIsGuest) {
+        atts.href = `/auth/${login.toLowerCase()}?next=${from}`;
+      }
 
-	return (
-		<div className="btn-group my-1">
-			<a
-				className={`btn btn-${className} d-flex align-items-center text-light disabled`}
-				href="/"
-			>
-				<FontAwesomeIcon
-					icon={icon}
-					style={{ width: "1.5rem", fontSize: "1.3rem" }}
-				/>
-			</a>
-			{renderButton()}
-		</div>
-	);
+      return (
+        <a
+          className={`btn btn-${className}`}
+          role="button"
+          {...atts}
+          style={{ width: '12rem', cursor: 'pointer' }}
+          onClick={() => {
+            setLoading(true);
+            setTimeout(() => {
+              setLoading(false);
+            }, 2000);
+            if (setIsGuest) {
+              setTimeout(() => {
+                setIsGuest('true');
+              }, 2100);
+            }
+          }}
+        >
+          {setIsGuest ? 'Continue as Guest' : `Sign in with ${login}`}
+        </a>
+      );
+    } else {
+      return (
+        <button
+          className={`btn btn-${className}`}
+          type="button"
+          style={{ width: '12rem' }}
+          disabled
+        >
+          <span
+            className="spinner-border spinner-border-sm mr-1"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          Loading...
+        </button>
+      );
+    }
+  };
+
+  return (
+    <div className="btn-group my-1">
+      <a
+        className={`btn btn-${className} d-flex align-items-center text-light disabled`}
+        href="/"
+      >
+        <FontAwesomeIcon
+          icon={icon}
+          style={{ width: '1.5rem', fontSize: '1.3rem' }}
+        />
+      </a>
+      {renderButton()}
+    </div>
+  );
 };
