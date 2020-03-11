@@ -11,6 +11,12 @@ export default ({
   setLoading,
   setIsGuest
 }) => {
+  React.useEffect(() => {
+    return () => {
+      setLoading(false);
+    };
+  }, [setLoading]);
+
   const renderButton = () => {
     if (!loading) {
       const atts = {};
@@ -26,13 +32,10 @@ export default ({
           style={{ width: '12rem', cursor: 'pointer' }}
           onClick={() => {
             setLoading(true);
-            setTimeout(() => {
-              setLoading(false);
-            }, 2000);
             if (setIsGuest) {
               setTimeout(() => {
                 setIsGuest('true');
-              }, 2100);
+              }, 1500);
             }
           }}
         >
