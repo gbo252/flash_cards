@@ -3,11 +3,7 @@ const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const bodyParser = require("body-parser");
-const secure = require('ssl-express-www');
 const keys = require("./config/keys");
-
-const app = express();
-app.use(secure);
 
 require("./models/User");
 require("./models/Category");
@@ -17,6 +13,8 @@ require("./services/passport");
 const authRouter = require("./routes/authRouter");
 const categoryRouter = require("./routes/categoryRouter");
 const flashCardRouter = require("./routes/flashCardRouter");
+
+const app = express();
 
 mongoose
 	.connect(keys.mongoURI, {
