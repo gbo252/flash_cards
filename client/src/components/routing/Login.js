@@ -11,6 +11,7 @@ const Login = ({ auth, isGuest, setIsGuest, location }) => {
   const [googleLoading, setGoogleLoading] = React.useState(false);
   const [facebookLoading, setFacebookLoading] = React.useState(false);
   const [guestLoading, setGuestLoading] = React.useState(false);
+  const [guestError, setGuestError] = React.useState(false);
 
   const { from } = location.state || { from: { pathname: '/' } };
 
@@ -19,7 +20,7 @@ const Login = ({ auth, isGuest, setIsGuest, location }) => {
   }
 
   const renderError = () => {
-    if (isGuest === 'error') {
+    if (guestError) {
       return (
         <>
           <small className="text-danger">
@@ -64,6 +65,7 @@ const Login = ({ auth, isGuest, setIsGuest, location }) => {
           setLoading={setGuestLoading}
           isGuest={isGuest}
           setIsGuest={setIsGuest}
+          setGuestError={setGuestError}
         />
         {renderError()}
         <LoginButton

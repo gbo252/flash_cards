@@ -9,7 +9,8 @@ export default ({
   loading,
   setLoading,
   isGuest,
-  setIsGuest
+  setIsGuest,
+  setGuestError
 }) => {
   React.useEffect(() => {
     return () => {
@@ -24,22 +25,26 @@ export default ({
         atts.href = `/auth/${login.toLowerCase()}?next=${from}`;
       }
 
+      const handleClick = () => {
+        if (isGuest === 'error') {
+          setGuestError(true);
+        } else {
+          setLoading(true);
+          if (setIsGuest) {
+            setTimeout(() => {
+              setIsGuest('true');
+            }, 1500);
+          }
+        }
+      };
+
       return (
         <a
-          className={
-            `btn btn-${className} ` + (isGuest === 'error' ? 'disabled' : '')
-          }
+          className={`btn btn-${className}`}
           role="button"
           {...atts}
           style={{ width: '12rem', cursor: 'pointer' }}
-          onClick={() => {
-            setLoading(true);
-            if (setIsGuest) {
-              setTimeout(() => {
-                setIsGuest('true');
-              }, 1500);
-            }
-          }}
+          onClick={handleClick}
         >
           {setIsGuest ? 'Continue as Guest' : `Sign in with ${login}`}
         </a>
