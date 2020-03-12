@@ -3,13 +3,14 @@ import axios from 'axios';
 import { FETCH_USER, SET_IS_GUEST } from './types';
 
 const hasStorage = () => {
-  try {
-    localStorage.setItem('test', 'test');
-    localStorage.removeItem('test');
-    return true;
-  } catch (e) {
-    return false;
-  }
+  return false;
+  // try {
+  //   localStorage.setItem('test', 'test');
+  //   localStorage.removeItem('test');
+  //   return true;
+  // } catch (e) {
+  //   return false;
+  // }
 };
 
 export const fetchUser = () => async dispatch => {
