@@ -19,7 +19,7 @@ const Login = ({ auth, isGuest, setIsGuest, location }) => {
   }
 
   const renderError = () => {
-    if (auth === 'error') {
+    if (isGuest === 'error') {
       setGuestLoading(false);
       return (
         <small className="text-danger">
