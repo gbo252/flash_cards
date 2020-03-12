@@ -9,7 +9,7 @@ export const authReducer = (state = null, action) => {
   }
 };
 
-let localIsGuest = localStorage.getItem("isGuest") || "false";
+let localIsGuest = localStorage.getItem('isGuest') || 'false';
 
 export const isGuest = (state = localIsGuest, action) => {
   switch (action.type) {

@@ -14,9 +14,21 @@ const Login = ({ auth, isGuest, setIsGuest, location }) => {
 
   const { from } = location.state || { from: { pathname: '/' } };
 
-  if (auth || isGuest === "true") {
+  if (auth || isGuest === 'true') {
     return <Redirect to="/" />;
   }
+
+  const renderError = () => {
+    if (auth === 'error') {
+      setGuestLoading(false);
+      return (
+        <small className="text-danger">
+          Error: read/write - localStorage unavailable
+        </small>
+      );
+    }
+    return null;
+  };
 
   return (
     <div
@@ -45,9 +57,10 @@ const Login = ({ auth, isGuest, setIsGuest, location }) => {
           login="Guest"
           from={from.pathname}
           loading={guestLoading}
-		  setLoading={setGuestLoading}
-		  setIsGuest={setIsGuest}
+          setLoading={setGuestLoading}
+          setIsGuest={setIsGuest}
         />
+        {renderError()}
         <LoginButton
           className="danger"
           icon={faGoogle}

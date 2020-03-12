@@ -2,6 +2,16 @@ import axios from 'axios';
 
 import { FETCH_USER, SET_IS_GUEST } from './types';
 
+const hasStorage = () => {
+  try {
+    localStorage.setItem('test', 'test');
+    localStorage.removeItem('test');
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
 export const fetchUser = () => async dispatch => {
   const res = await axios.get('/auth/current_user');
 
@@ -9,7 +19,14 @@ export const fetchUser = () => async dispatch => {
 };
 
 export const setIsGuest = isGuest => {
-  localStorage.setItem('isGuest', isGuest);
+  let payload;
 
-  return { type: SET_IS_GUEST, payload: isGuest };
+  if (hasStorage()) {
+    localStorage.setItem('isGuest', isGuest);
+    payload = isGuest;
+  } else {
+    payload = 'error';
+  }
+
+  return { type: SET_IS_GUEST, payload };
 };
