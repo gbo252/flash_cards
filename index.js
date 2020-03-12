@@ -4,6 +4,7 @@ const cookieSession = require("cookie-session");
 const passport = require("passport");
 const bodyParser = require("body-parser");
 const keys = require("./config/keys");
+const sslRedirect = require('heroku-ssl-redirect');
 
 require("./models/User");
 require("./models/Category");
@@ -33,6 +34,8 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(sslRedirect());
 
 app.use("/auth", authRouter);
 app.use("/category-routes", categoryRouter);
