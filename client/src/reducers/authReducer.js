@@ -11,11 +11,12 @@ export const authReducer = (state = null, action) => {
 
 let localIsGuest;
 try {
+  localStorage.setItem('test', 'test');
+  localStorage.removeItem('test');
   localIsGuest = localStorage.getItem('isGuest') || 'false';
 } catch (error) {
   localIsGuest = 'error';
 }
-
 
 export const isGuest = (state = localIsGuest, action) => {
   switch (action.type) {
