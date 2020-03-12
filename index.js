@@ -25,7 +25,6 @@ mongoose
 	})
 	.catch(err => console.log(err));
 
-app.use(secure);
 app.use(bodyParser.json());
 app.use(
 	cookieSession({
@@ -48,6 +47,8 @@ if (process.env.NODE_ENV === "production") {
 		res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 	});
 }
+
+app.use(secure);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
