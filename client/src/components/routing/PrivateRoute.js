@@ -17,7 +17,7 @@ const PrivateRoute = ({
   const { category } = { ...rest }.computedMatch.params;
 
   React.useEffect(() => {
-    if (category) {
+    if (category && auth !== null) {
       if (!categories) {
         fetchCategories();
       } else {
@@ -27,15 +27,15 @@ const PrivateRoute = ({
           : setValidCategory(true);
       }
     }
-  }, [fetchCategories, categories, category, history]);
+  }, [fetchCategories, categories, category, history, auth]);
 
   return (
     <Route
       {...rest}
       render={props => {
-        if (isGuest === "true" && category) {
+        if (isGuest === 'true' && category) {
           return validCategory ? <Component {...props} /> : null;
-        } else if (isGuest === "true") {
+        } else if (isGuest === 'true') {
           return <Component {...props} />;
         }
 
