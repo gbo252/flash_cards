@@ -6,6 +6,9 @@ const bodyParser = require("body-parser");
 const secure = require('ssl-express-www');
 const keys = require("./config/keys");
 
+const app = express();
+app.use(secure);
+
 require("./models/User");
 require("./models/Category");
 require("./models/Card");
@@ -14,8 +17,6 @@ require("./services/passport");
 const authRouter = require("./routes/authRouter");
 const categoryRouter = require("./routes/categoryRouter");
 const flashCardRouter = require("./routes/flashCardRouter");
-
-const app = express();
 
 mongoose
 	.connect(keys.mongoURI, {
@@ -47,8 +48,6 @@ if (process.env.NODE_ENV === "production") {
 		res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 	});
 }
-
-app.use(secure);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
