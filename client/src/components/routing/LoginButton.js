@@ -9,13 +9,18 @@ export default ({
   from,
   loading,
   setLoading,
+  isGuest,
   setIsGuest
 }) => {
   React.useEffect(() => {
+    if (isGuest === 'error') {
+      setLoading(false);
+    }
+
     return () => {
       setLoading(false);
     };
-  }, [setLoading]);
+  }, [isGuest, setLoading]);
 
   const renderButton = () => {
     if (!loading) {
@@ -33,6 +38,7 @@ export default ({
           onClick={() => {
             setLoading(true);
             if (setIsGuest) {
+              setIsGuest('false');
               setTimeout(() => {
                 setIsGuest('true');
               }, 1500);

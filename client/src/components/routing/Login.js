@@ -20,7 +20,7 @@ const Login = ({ auth, isGuest, setIsGuest, location }) => {
 
   const renderError = () => {
     if (isGuest === 'error') {
-      setGuestLoading(false);
+      // setGuestLoading(false);
       return (
         <small className="text-danger">
           Error: read/write - localStorage unavailable
@@ -58,6 +58,7 @@ const Login = ({ auth, isGuest, setIsGuest, location }) => {
           from={from.pathname}
           loading={guestLoading}
           setLoading={setGuestLoading}
+          isGuest={isGuest}
           setIsGuest={setIsGuest}
         />
         {renderError()}
