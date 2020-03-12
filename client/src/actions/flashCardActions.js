@@ -101,6 +101,7 @@ export const deleteFlashCard = (idArrayToDelete, category) => async (
       return !idArrayToDelete.includes(obj._id);
     });
     categoryObj.cards = updatedCards;
+    categoryObj.cardsTotal = updatedCards.length;
     categoryObj.lastEdited = new Date().toISOString();
     localStorage.setItem('categories', JSON.stringify(categories));
     payload = categoryObj.cards;
