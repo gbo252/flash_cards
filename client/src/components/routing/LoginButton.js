@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default ({
@@ -13,14 +12,10 @@ export default ({
   setIsGuest
 }) => {
   React.useEffect(() => {
-    if (isGuest === 'error') {
-      setLoading(false);
-    }
-
     return () => {
       setLoading(false);
     };
-  }, [isGuest, setLoading]);
+  }, [setLoading]);
 
   const renderButton = () => {
     if (!loading) {
@@ -31,14 +26,15 @@ export default ({
 
       return (
         <a
-          className={`btn btn-${className}`}
+          className={
+            `btn btn-${className} ` + (isGuest === 'error' ? 'disabled' : '')
+          }
           role="button"
           {...atts}
           style={{ width: '12rem', cursor: 'pointer' }}
           onClick={() => {
             setLoading(true);
             if (setIsGuest) {
-              setIsGuest('false');
               setTimeout(() => {
                 setIsGuest('true');
               }, 1500);

@@ -20,11 +20,15 @@ const Login = ({ auth, isGuest, setIsGuest, location }) => {
 
   const renderError = () => {
     if (isGuest === 'error') {
-      // setGuestLoading(false);
       return (
-        <small className="text-danger">
-          Error: read/write - localStorage unavailable
-        </small>
+        <>
+          <small className="text-danger">
+            GUEST LOGIN ERROR: read/write to localStorage unavailable
+          </small>
+          <small className="text-danger">
+            - try turning off private browsing or enabling cookies
+          </small>
+        </>
       );
     }
     return null;
