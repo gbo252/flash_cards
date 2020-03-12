@@ -8,7 +8,7 @@ import HeaderCategoryButtons from '../category/HeaderCategoryButtons';
 import HeaderFlashCardButtons from '../flashCards/HeaderFlashCardButtons';
 
 const Header = ({ auth, isGuest, setIsGuest, location }) => {
-  const renderDashboardButtons = () => {
+  const renderButtons = () => {
     if (auth || isGuest === 'true') {
       if (location.pathname === '/') {
         return <HeaderCategoryButtons />;
@@ -19,7 +19,7 @@ const Header = ({ auth, isGuest, setIsGuest, location }) => {
     return null;
   };
 
-  const renderContent = () => {
+  const renderLogOutButton = () => {
     if (auth) {
       return (
         <a
@@ -43,6 +43,25 @@ const Header = ({ auth, isGuest, setIsGuest, location }) => {
     return null;
   };
 
+  const renderToggleButton = () => {
+    if (auth || isGuest === 'true') {
+      return (
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#header-bar"
+          aria-controls="header-bar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+      );
+    }
+    return null;
+  };
+
   return (
     <nav
       className="navbar navbar-expand-md fixed-top navbar-light bg-light"
@@ -58,25 +77,15 @@ const Header = ({ auth, isGuest, setIsGuest, location }) => {
         />
         <span className="d-none d-sm-inline-block">Flash Cards Online</span>
       </Link>
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#header-bar"
-        aria-controls="header-bar"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
+      {renderToggleButton()}
       <div className="collapse navbar-collapse" id="header-bar">
         <div
           className="navbar-nav mr-auto mt-2 mt-lg-0"
           style={{ width: '5px' }}
         />
         <div>
-          {renderDashboardButtons()}
-          {renderContent()}
+          {renderButtons()}
+          {renderLogOutButton()}
         </div>
       </div>
     </nav>
